@@ -10,4 +10,4 @@ Includes all code and documentation related to the semester 6 project: **CAN Dia
 
 ### Website Link
 
-[S6 Project](eelmand.github.io/S6Project/Website/index.html)
+[S6 Project](../blob/master/Website/index.html)
