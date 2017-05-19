@@ -1,6 +1,6 @@
 /*	Filename: floor_controller.c
 	Author: David Eelman
-	Date: May 16, 2017
+	Date: May 19, 2017
 	Purpose: Header file for floor_controller.c
 */
 
@@ -19,6 +19,5 @@
 #define CALL_BUTTON	0b10000000 // Port T7
 
 // Function Prototypes
-unsigned char init_floor_controller();
-unsigned char call_elevator();
-unsigned char update_floor_led(unsigned char floorNumber);
+unsigned char initFloorController(void);
+unsigned char updateFloorLed(unsigned char floorNumber);

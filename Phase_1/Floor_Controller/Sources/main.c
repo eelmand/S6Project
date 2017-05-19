@@ -4,6 +4,7 @@
 	Purpose: Testing of floor controller
 */
 
+// Includes
 #include <stdlib.h>
 #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
@@ -13,11 +14,13 @@
 #include "timer.h"
 #include "FIFO.h"
 
-//******************************************************************************
+// Global variables
+unsigned char txbuff[1] = {0x00};
+
+//**************************************************************
 // main()
-//******************************************************************************
+//**************************************************************
 void main(void) {
-	unsigned char txbuff[2] = {0x00};
 	unsigned char * message;
 	unsigned char floorNumber;
 	link pTemp = NULL;
@@ -26,7 +29,7 @@ void main(void) {
 	configureTimer();
 	CONFIGURE_LEDS;
 	InitQueue();
-	init_floor_controller();
+	initFloorController();
 	LED1_ON;
 	LED2_OFF;
 
@@ -35,11 +38,8 @@ void main(void) {
 	SET_BITS(CANRIER, 0x01);      // Clear CAN Rx flag
 
 	EnableInterrupts;
-
+	
 	for (;;) {
-		TxCAN(ST_ID_100, 0x00, sizeof(txbuff)-1, txbuff);
-		msDelay(250);
-		
 		if(IsQueueEmpty()) 
 		{
 			// Do nothing
@@ -48,11 +48,16 @@ void main(void) {
 		{
 			pTemp = DeQueue();  // Grab a message from the Queue
       		
-			message = pTemp->Data.DATA;
+			message = pTemp->Data.DATA; // Get a pointer to the data of the message
 
-			if((*message & 0x04) != 0){ // Elevator Status
-				floorNumber = (*message & 0x03); // Elevator Floor Position
-				update_floor_led(floorNumber);
+			if((*message & 0x04) != 0){ // Determine if elevator status enabled
+				floorNumber = (*message & 0x03); // Collect the floor position reported by elevator controller
+				// Check if the current floor is the one this controller is on
+	      updateFloorLed(floorNumber); // Update LEDs 
+	      if (floorNumber == CONTROLLER_FLOOR){
+		      txbuff[0] = 0x00; // No longer need to request car
+		      CLEAR_BITS(PTT, CALL_LED);
+	      }	
 			}
 			else{
 				// What behaviour should we have when the elevator is disabled? Thinking flashing LEDs
@@ -63,10 +68,18 @@ void main(void) {
 		}
 		
 		if((PTIT & CALL_BUTTON) == 0){ // If the elevator call button pressed
-			call_elevator();
+			SET_BITS(PTT, CALL_LED); // Turn on elevator call LED
 			txbuff[0] = 0x01; // Request car
 		}		
-		TOGGLE_LEDS;
 	}
 }
 
+//**************************************************************
+//    TX_CAN()
+// Interrupt handler for transmitting CAN status message
+//**************************************************************
+interrupt VectorNumber_Vtimovf void TX_CAN(void){	
+	TxCAN(ST_ID_100, 0x00, sizeof(txbuff), txbuff);
+	TFLG2 = 0x80;
+	TOGGLE_LEDS;
+}
