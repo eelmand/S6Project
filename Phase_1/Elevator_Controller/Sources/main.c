@@ -14,8 +14,11 @@ void main(void) {
   configureTimer();
   configureLCD();
   configureUltra();
+  configureSPI();
 
 	EnableInterrupts;
+	
+  writeDAC(255, DAC_SET_CTRL_A);	
 
 
   for(;;) {

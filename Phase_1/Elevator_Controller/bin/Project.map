@@ -18,6 +18,7 @@ Start12.c.o                             Model: SMALL,         Lang: ANSI-C
 PRINTF.C.o (ansisi.lib)                 Model: SMALL,         Lang: ANSI-C
 rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
 lcd.c.o                                 Model: SMALL,         Lang: ANSI-C
+spi.c.o                                 Model: SMALL,         Lang: ANSI-C
 timer.c.o                               Model: SMALL,         Lang: ANSI-C
 
 *********************************************************************************************
@@ -27,8 +28,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     21
-  _Copy    *toCopyDownBeg 0xC8BE
+  _Range   pZeroOut       0x900     22
+  _Copy    *toCopyDownBeg 0xC90A
 } _startupData;
 
 *********************************************************************************************
@@ -39,8 +40,8 @@ Section Name                    Size  Type     From       To       Segment
 .startData                        10     R     0xC031     0xC03A   ROM_C000
 .rodata                          116     R     0xC03B     0xC0AE   ROM_C000
 .rodata1                          10     R     0xC0AF     0xC0B8   ROM_C000
-.text                           1754     R     0xC0B9     0xC792   ROM_C000
-.copy                              2     R     0xC8BE     0xC8BF   ROM_C000
+.text                           1830     R     0xC0B9     0xC7DE   ROM_C000
+.copy                              2     R     0xC90A     0xC90B   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -266,13 +267,13 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_ffde                  2     R     0xFFDE     0xFFDF   .absSeg221
 .abs_section_ffee                  2     R     0xFFEE     0xFFEF   .absSeg222
 .abs_section_ffe8                  2     R     0xFFE8     0xFFE9   .absSeg223
-.bss                              21   R/W      0x900      0x914   RAM
-RUNTIME                          299     R     0xC793     0xC8BD   ROM_C000
+.bss                              22   R/W      0x900      0x915   RAM
+RUNTIME                          299     R     0xC7DF     0xC909   ROM_C000
 .vectSeg224_vect                   2     R     0xFFFE     0xFFFF   .vectSeg224
 
 Summary of section sizes per section type:
-READ_ONLY (R):         8C8 (dec:     2248)
-READ_WRITE (R/W):      115 (dec:      277)
+READ_ONLY (R):         914 (dec:     2324)
+READ_WRITE (R/W):      116 (dec:      278)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
@@ -350,11 +351,11 @@ MODULE:                 -- mc9s12c32.c.o --
      _SCISR2                                     CD       1       1       0   .abs_section_cd
      _SCIDRH                                     CE       1       1       0   .abs_section_ce
      _SCIDRL                                     CF       1       1       0   .abs_section_cf
-     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR1                                     D8       1       1       1   .abs_section_d8
      _SPICR2                                     D9       1       1       0   .abs_section_d9
-     _SPIBR                                      DA       1       1       0   .abs_section_da
-     _SPISR                                      DB       1       1       0   .abs_section_db
-     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _SPIBR                                      DA       1       1       1   .abs_section_da
+     _SPISR                                      DB       1       1       3   .abs_section_db
+     _SPIDR                                      DD       1       1       2   .abs_section_dd
      _PWME                                       E0       1       1       0   .abs_section_e0
      _PWMPOL                                     E1       1       1       0   .abs_section_e1
      _PWMCLK                                     E2       1       1       0   .abs_section_e2
@@ -456,9 +457,9 @@ MODULE:                 -- mc9s12c32.c.o --
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTJ                                       268       1       1       0   .abs_section_268
+     _PTJ                                       268       1       1       2   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
-     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
      _PERJ                                      26C       1       1       0   .abs_section_26c
      _PPSJ                                      26D       1       1       0   .abs_section_26d
@@ -511,7 +512,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C0B9      26      38       1   .text       
+     main                                      C0B9      33      51       1   .text       
 - VARIABLES:
      STRING.Dist...d..1                        C0AF       A      10       1   .rodata1    
 MODULE:                 -- Start12.c.o --
@@ -524,10 +525,10 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                           900       0       0       1               
 MODULE:                 -- PRINTF.C.o (ansisi.lib) --
 - PROCEDURES:
-     vprintf                                   C0DF     478    1144      49   .text       
-     _out                                      C557       C      12       9   .text       
-     deposit_char                              C563       F      15       1   .text       
-     vsprintf                                  C572      29      41       1   .text       
+     vprintf                                   C0EC     478    1144      49   .text       
+     _out                                      C564       C      12       9   .text       
+     deposit_char                              C570       F      15       1   .text       
+     vsprintf                                  C57F      29      41       1   .text       
 - VARIABLES:
      pow10                                     C03B      28      40       4   .rodata     
      pow16                                     C063      20      32       4   .rodata     
@@ -535,39 +536,46 @@ MODULE:                 -- PRINTF.C.o (ansisi.lib) --
      pbuf                                       900       6       6      15   .bss        
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   C793      15      21       3   RUNTIME     
-     _LNEG                                     C7A8       D      13       1   RUNTIME     
-     _lDivMod                                  C7B5      BE     190       1   RUNTIME     
-     _LDIVU                                    C873       E      14       1   RUNTIME     
-     _ILSEXT                                   C881       7       7       3   RUNTIME     
-     _CASE_DIRECT_BYTE                         C888       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            C88D      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       C8A4      1A      26       1   RUNTIME     
+     _LCMP_P                                   C7DF      15      21       3   RUNTIME     
+     _LNEG                                     C7F4       D      13       1   RUNTIME     
+     _lDivMod                                  C801      BE     190       1   RUNTIME     
+     _LDIVU                                    C8BF       E      14       1   RUNTIME     
+     _ILSEXT                                   C8CD       7       7       3   RUNTIME     
+     _CASE_DIRECT_BYTE                         C8D4       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            C8D9      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       C8F0      1A      26       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- lcd.c.o --
 - PROCEDURES:
-     configureLCD                              C59B      59      89       1   .text       
-     LCDdata                                   C5F4      36      54       1   .text       
-     LCDcmd                                    C62A      36      54       7   .text       
-     LCDputs                                   C660      29      41       1   .text       
-     LCDprintf                                 C689      1C      28       1   .text       
+     configureLCD                              C5A8      59      89       1   .text       
+     LCDdata                                   C601      36      54       1   .text       
+     LCDcmd                                    C637      36      54       7   .text       
+     LCDputs                                   C66D      29      41       1   .text       
+     LCDprintf                                 C696      1C      28       1   .text       
 - VARIABLES:
+MODULE:                 -- spi.c.o --
+- PROCEDURES:
+     configureSPI                              C6B2       F      15       1   .text       
+     putcSPI                                   C6C1      14      20       2   .text       
+     writeDAC                                  C6D5      1C      28       1   .text       
+- VARIABLES:
+     temp.1                                     906       1       1       1   .bss        
 MODULE:                 -- timer.c.o --
 - PROCEDURES:
-     configureTimer                            C6A5       8       8       1   .text       
-     configureUltra                            C6AD      30      48       1   .text       
-     get_distance                              C6DD      18      24       1   .text       
-     msDelay                                   C6F5      2B      43       6   .text       
-     timerOverflowHandler                      C720       6       6       1   .text       
-     timer0Handler                             C726      59      89       1   .text       
-     timer3Handler                             C77F      14      20       1   .text       
+     configureTimer                            C6F1       8       8       1   .text       
+     configureUltra                            C6F9      30      48       1   .text       
+     get_distance                              C729      18      24       1   .text       
+     msDelay                                   C741      2B      43       6   .text       
+     timerOverflowHandler                      C76C       6       6       1   .text       
+     timer0Handler                             C772      59      89       1   .text       
+     timer3Handler                             C7CB      14      20       1   .text       
 - VARIABLES:
-     overflowCount                              906       1       1       3   .bss        
-     edge1                                      907       4       4       5   .bss        
-     edge2                                      90B       4       4       3   .bss        
-     edge1ovf                                   90F       1       1       2   .bss        
-     edge2ovf                                   910       1       1       1   .bss        
-     pulse_width                                911       4       4       4   .bss        
+     overflowCount                              907       1       1       3   .bss        
+     edge1                                      908       4       4       5   .bss        
+     edge2                                      90C       4       4       3   .bss        
+     edge1ovf                                   910       1       1       2   .bss        
+     edge2ovf                                   911       1       1       1   .bss        
+     pulse_width                                912       4       4       4   .bss        
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
      _Vector_11                                FFE8       2       2       0   .abs_section_ffe8
@@ -577,11 +585,12 @@ MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
-  main.c.o                                     0     38     10
+  main.c.o                                     0     51     10
   Start12.c.o                                  0     49      0
   PRINTF.C.o (ansisi.lib)                      6   1212    116
   rtshc12.c.o (ansisi.lib)                     0    299      0
   lcd.c.o                                      0    266      0
+  spi.c.o                                      1     63      0
   timer.c.o                                   15    238      6
   other                                      256     12      2
 
@@ -590,10 +599,10 @@ SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
   main vprintf _out deposit_char vsprintf configureLCD LCDdata LCDcmd LCDputs 
-  LCDprintf configureTimer configureUltra get_distance msDelay 
-  timerOverflowHandler timer0Handler timer3Handler 
+  LCDprintf configureSPI putcSPI writeDAC configureTimer configureUltra 
+  get_distance msDelay timerOverflowHandler timer0Handler timer3Handler 
 SECTION: ".bss"
-  pbuf overflowCount edge1 edge2 edge1ovf edge2ovf pulse_width 
+  pbuf temp.1 overflowCount edge1 edge2 edge1ovf edge2ovf pulse_width 
 SECTION: ".init"
   Init _Startup 
 SECTION: ".rodata"
@@ -1146,11 +1155,11 @@ OBJECT LIST SORTED BY ADDRESS
      _SCISR2                                     CD       1       1       0   .abs_section_cd
      _SCIDRH                                     CE       1       1       0   .abs_section_ce
      _SCIDRL                                     CF       1       1       0   .abs_section_cf
-     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR1                                     D8       1       1       1   .abs_section_d8
      _SPICR2                                     D9       1       1       0   .abs_section_d9
-     _SPIBR                                      DA       1       1       0   .abs_section_da
-     _SPISR                                      DB       1       1       0   .abs_section_db
-     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _SPIBR                                      DA       1       1       1   .abs_section_da
+     _SPISR                                      DB       1       1       3   .abs_section_db
+     _SPIDR                                      DD       1       1       2   .abs_section_dd
      _PWME                                       E0       1       1       0   .abs_section_e0
      _PWMPOL                                     E1       1       1       0   .abs_section_e1
      _PWMCLK                                     E2       1       1       0   .abs_section_e2
@@ -1263,9 +1272,9 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSP                                      25D       1       1       0   .abs_section_25d
      _PIEP                                      25E       1       1       0   .abs_section_25e
      _PIFP                                      25F       1       1       0   .abs_section_25f
-     _PTJ                                       268       1       1       0   .abs_section_268
+     _PTJ                                       268       1       1       2   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
-     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
      _PERJ                                      26C       1       1       0   .abs_section_26c
      _PPSJ                                      26D       1       1       0   .abs_section_26d
@@ -1278,43 +1287,47 @@ OBJECT LIST SORTED BY ADDRESS
      _PERAD                                     274       1       1       0   .abs_section_274
      _PPSAD                                     275       1       1       0   .abs_section_275
      pbuf                                       900       6       6      15   .bss        
-     overflowCount                              906       1       1       3   .bss        
-     edge1                                      907       4       4       5   .bss        
-     edge2                                      90B       4       4       3   .bss        
-     edge1ovf                                   90F       1       1       2   .bss        
-     edge2ovf                                   910       1       1       1   .bss        
-     pulse_width                                911       4       4       4   .bss        
+     temp.1                                     906       1       1       1   .bss        
+     overflowCount                              907       1       1       3   .bss        
+     edge1                                      908       4       4       5   .bss        
+     edge2                                      90C       4       4       3   .bss        
+     edge1ovf                                   910       1       1       2   .bss        
+     edge2ovf                                   911       1       1       1   .bss        
+     pulse_width                                912       4       4       4   .bss        
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      pow10                                     C03B      28      40       4   .rodata     
      pow16                                     C063      20      32       4   .rodata     
      pow8                                      C083      2C      44       4   .rodata     
      STRING.Dist...d..1                        C0AF       A      10       1   .rodata1    
-     main                                      C0B9      26      38       1   .text       
-     vprintf                                   C0DF     478    1144      49   .text       
-     _out                                      C557       C      12       9   .text       
-     deposit_char                              C563       F      15       1   .text       
-     vsprintf                                  C572      29      41       1   .text       
-     configureLCD                              C59B      59      89       1   .text       
-     LCDdata                                   C5F4      36      54       1   .text       
-     LCDcmd                                    C62A      36      54       7   .text       
-     LCDputs                                   C660      29      41       1   .text       
-     LCDprintf                                 C689      1C      28       1   .text       
-     configureTimer                            C6A5       8       8       1   .text       
-     configureUltra                            C6AD      30      48       1   .text       
-     get_distance                              C6DD      18      24       1   .text       
-     msDelay                                   C6F5      2B      43       6   .text       
-     timerOverflowHandler                      C720       6       6       1   .text       
-     timer0Handler                             C726      59      89       1   .text       
-     timer3Handler                             C77F      14      20       1   .text       
-     _LCMP_P                                   C793      15      21       3   RUNTIME     
-     _LNEG                                     C7A8       D      13       1   RUNTIME     
-     _lDivMod                                  C7B5      BE     190       1   RUNTIME     
-     _LDIVU                                    C873       E      14       1   RUNTIME     
-     _ILSEXT                                   C881       7       7       3   RUNTIME     
-     _CASE_DIRECT_BYTE                         C888       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            C88D      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       C8A4      1A      26       1   RUNTIME     
+     main                                      C0B9      33      51       1   .text       
+     vprintf                                   C0EC     478    1144      49   .text       
+     _out                                      C564       C      12       9   .text       
+     deposit_char                              C570       F      15       1   .text       
+     vsprintf                                  C57F      29      41       1   .text       
+     configureLCD                              C5A8      59      89       1   .text       
+     LCDdata                                   C601      36      54       1   .text       
+     LCDcmd                                    C637      36      54       7   .text       
+     LCDputs                                   C66D      29      41       1   .text       
+     LCDprintf                                 C696      1C      28       1   .text       
+     configureSPI                              C6B2       F      15       1   .text       
+     putcSPI                                   C6C1      14      20       2   .text       
+     writeDAC                                  C6D5      1C      28       1   .text       
+     configureTimer                            C6F1       8       8       1   .text       
+     configureUltra                            C6F9      30      48       1   .text       
+     get_distance                              C729      18      24       1   .text       
+     msDelay                                   C741      2B      43       6   .text       
+     timerOverflowHandler                      C76C       6       6       1   .text       
+     timer0Handler                             C772      59      89       1   .text       
+     timer3Handler                             C7CB      14      20       1   .text       
+     _LCMP_P                                   C7DF      15      21       3   RUNTIME     
+     _LNEG                                     C7F4       D      13       1   RUNTIME     
+     _lDivMod                                  C801      BE     190       1   RUNTIME     
+     _LDIVU                                    C8BF       E      14       1   RUNTIME     
+     _ILSEXT                                   C8CD       7       7       3   RUNTIME     
+     _CASE_DIRECT_BYTE                         C8D4       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            C8D9      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       C8F0      1A      26       1   RUNTIME     
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
      _Vector_11                                FFE8       2       2       0   .abs_section_ffe8
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
@@ -1330,6 +1343,8 @@ rtshc12.c.o (ansisi.lib):
   _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LINC _LDEC _LMUL 
   _LMULU16x32 _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT 
   _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH _CASE_SEARCH_BYTE _FCALL _FPCMP 
+spi.c.o:
+  configureDAC 
 timer.c.o:
   usDelay 
 NOT USED VARIABLES
@@ -1339,7 +1354,7 @@ rtshc12.c.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC8BE ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC90A ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1349,8 +1364,8 @@ OBJECT-DEPENDENCIES SECTION
 Init                      USES _startupData 
 _Startup                  USES __SEG_END_SSTACK Init main 
 main                      USES _DDRAB _PORTAB configureTimer configureLCD 
-                                configureUltra get_distance STRING.Dist...d..1 LCDprintf 
-                                msDelay 
+                                configureUltra configureSPI writeDAC get_distance 
+                                STRING.Dist...d..1 LCDprintf msDelay 
 vprintf                   USES vprintf _out _CASE_SEARCH_8_BYTE 
                                 _CASE_DIRECT_BYTE _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P 
                                 pow16 pow10 
@@ -1362,6 +1377,9 @@ LCDdata                   USES _PORTAB msDelay
 LCDcmd                    USES _PORTAB msDelay 
 LCDputs                   USES LCDcmd msDelay LCDdata 
 LCDprintf                 USES vsprintf LCDputs 
+configureSPI              USES _SPIBR _SPICR1 _SPISR _DDRJ 
+putcSPI                   USES _SPISR _SPIDR temp.1 
+writeDAC                  USES _PTJ putcSPI 
 configureTimer            USES _TSCR1 _TSCR2 
 configureUltra            USES _TIOS _TCTL4 _TCTL1 _CFORC _TCNT _TC3 _TIE 
                                 _TFLG1 
@@ -1395,6 +1413,12 @@ DEPENDENCY TREE
  |  |        
  |  +- configureUltra      
  |  |    
+ |  +- configureSPI        
+ |  |    
+ |  +- writeDAC            
+ |  |  | 
+ |  |  +- putcSPI             
+ |  |       
  |  +- get_distance        
  |  |  | 
  |  |  +- _LDIVU              
@@ -1462,5 +1486,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 10
-Total size of all blocks to be downloaded: 2248
+Total size of all blocks to be downloaded: 2324
 
