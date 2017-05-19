@@ -9,7 +9,7 @@
 #include "derivative.h"      /* derivative-specific definitions */
 
 // Floor Controller Number
-#define CONTROLLER_FLOOR  1
+#define CONTROLLER_FLOOR  2
 
 // Bit patterns for floor LEDs & elevator call button + LED
 #define FLOOR1_LED  0b00000001 // Port T0

@@ -8,10 +8,10 @@
 // Code from AN3034 app note (but not really because that code was hot garbage)
 
 //;**************************************************************
-//;*                 configureCAN()
+//;*                 configureCAN(nodeID)
 //;*  Configures & enables the CAN controller
 //;**************************************************************  
-void configureCAN(void) {
+void configureCAN(unsigned int nodeID) {
 	CANCTL0 = CAN_INIT;	// Enter initialization mode
 	while (!(CANCTL1 & CAN_INIT)) {
 		// Wait for initialization mode acknowledge
@@ -24,11 +24,28 @@ void configureCAN(void) {
 
 	CANIDAC = CAN_FILTER_16b;	// Define four 16-bit filters
 	
-	// 16-bit filter for ID 0x100
-	CANIDAR0 = ACC_CODE_ID100_HIGH;
 	CANIDMR0 = MASK_CODE_ST_ID_HIGH;
-	CANIDAR1 = ACC_CODE_ID100_LOW;
 	CANIDMR1 = MASK_CODE_ST_ID_LOW;
+
+	// 16-bit filter for each node
+	if(nodeID == SUPERVISORY_CONTROLLER){
+		//
+	}
+	else if(nodeID == ELEVATOR_CONTROLLER){
+		CANIDAR0 = ACC_CODE_ID100_HIGH;
+		CANIDAR1 = ACC_CODE_ID100_LOW;
+	}
+	else if(nodeID == CAR_CONTROLLER){
+		CANIDAR0 = ACC_CODE_ID101_HIGH;
+		CANIDAR1 = ACC_CODE_ID101_LOW;
+	}
+	else if((nodeID == FLOOR_CONTROLLER_1) || (nodeID == FLOOR_CONTROLLER_2) || (nodeID == FLOOR_CONTROLLER_3)){
+		CANIDAR0 = ACC_CODE_ID101_HIGH;
+		CANIDAR1 = ACC_CODE_ID101_LOW;
+	}
+	else{
+	  // Invalid Node
+	}
 
 	CANCTL0 = CAN_START;	// Exit initialization mode
 

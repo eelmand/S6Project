@@ -25,7 +25,16 @@ void main(void) {
 	unsigned char floorNumber;
 	link pTemp = NULL;
 	
-	configureCAN();
+  if(CONTROLLER_FLOOR == 1){
+	  configureCAN(FLOOR_CONTROLLER_1);
+  }
+	else if(CONTROLLER_FLOOR == 2){
+	  configureCAN(FLOOR_CONTROLLER_2);
+	}
+	else if(CONTROLLER_FLOOR == 3){
+	  configureCAN(FLOOR_CONTROLLER_3);
+	}
+		  
 	configureTimer();
 	CONFIGURE_LEDS;
 	InitQueue();
@@ -79,7 +88,15 @@ void main(void) {
 // Interrupt handler for transmitting CAN status message
 //**************************************************************
 interrupt VectorNumber_Vtimovf void TX_CAN(void){	
-	TxCAN(ST_ID_100, 0x00, sizeof(txbuff), txbuff);
-	TFLG2 = 0x80;
+	if(CONTROLLER_FLOOR == 1){
+	  TxCAN(ST_ID_201, 0x00, sizeof(txbuff), txbuff);
+	}
+	else if(CONTROLLER_FLOOR == 2){
+	  TxCAN(ST_ID_202, 0x00, sizeof(txbuff), txbuff);
+	}
+	else if(CONTROLLER_FLOOR == 3){
+	  TxCAN(ST_ID_203, 0x00, sizeof(txbuff), txbuff); 
+	}
+	TFLG2 = TOF_CLR;
 	TOGGLE_LEDS;
 }
