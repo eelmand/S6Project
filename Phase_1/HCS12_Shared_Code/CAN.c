@@ -29,7 +29,7 @@ void configureCAN(unsigned int nodeID) {
 
 	// 16-bit filter for each node
 	if(nodeID == SUPERVISORY_CONTROLLER){
-		//
+		// Accepts all messages
 	}
 	else if(nodeID == ELEVATOR_CONTROLLER){
 		CANIDAR0 = ACC_CODE_ID100_HIGH;
