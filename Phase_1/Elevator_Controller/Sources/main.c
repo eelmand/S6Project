@@ -7,18 +7,15 @@
 #include "timer.h"
 #include "spi.h"
 
-
 void main(void) {
   CONFIGURE_5VA;
   ENABLE_5VA;
   configureTimer();
   configureLCD();
-  configureUltra();
+  configureElevator();
   configureSPI();
 
 	EnableInterrupts;
-	
-  writeDAC(255, DAC_SET_CTRL_A);	
 
 
   for(;;) {

@@ -2,15 +2,28 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include "TA_Header_S2017.h"  /* my macros and constants */
 #include "timer.h"  // Macros and constants for timer3handler.
+#include "spi.h"
+#include <stdlib.h> // For abs() function
 
 // Global variables
 static unsigned char overflowCount = 0; //To handle timer wrapping for IC functionality
 
+// Ultrasonic sensor variables
 static unsigned long edge1;   // Time of first edge  in TCNT ticks
 static unsigned long edge2;   // Time of second edge in TCNT ticks
 static unsigned char edge1ovf;      // Value of overflowCount at first edge
 static unsigned char edge2ovf;      // Value of overflowCount at second edge
 static unsigned long pulse_width;   // Value of ultrasonic echo pulse width in TCNT ticks
+static unsigned char distance;      // Distance measured by ultrasonic sensor in cm
+
+// Motor control variables
+unsigned char gainP = 5;            // Proportional gain
+//unsigned char gainI = 0;            // Integral gain
+static signed long error;           // Calculated error in cm
+static unsigned char distance_sp = 100;   // Distance set poit in cm
+static signed long motor_sp_calc;   // Calculated motor setpoint before clipping
+static unsigned char motor_sp_A;      // Actual motor setpoint written to DAC OP A
+static unsigned char motor_sp_B;      // Actual motor setpoint written to DAC OP B
 
 
 //;**************************************************************
@@ -24,10 +37,10 @@ void configureTimer(void) {
 
 
 //;**************************************************************
-//;*                 configureUltra(void)
-//;*  Configures the timer channels for ultrasonic sensor operation
+//;*                 configureElevator(void)
+//;*  Configures the timer channels for elevator control
 //;**************************************************************   
-void configureUltra(void) {
+void configureElevator(void) {
 
   // Configure TC0 as IC for echo signal
   CLEAR_BITS(TIOS, TIOS_IOS0_MASK); // Enable TC0 as IC
@@ -39,12 +52,14 @@ void configureUltra(void) {
   SET_OC_ACTION(3, OC_TOGGLE);      // Set TC3 to toggle port pin
   ULTRA_Pulse = TCNT + (TCNT_uS * 10);      // Delay by 10uS to start
 
-  TIE = (TIOS_IOS0_MASK | TIOS_IOS1_MASK);     // Enable interrupts for TC0 and TC1
-  TFLG1 = (TFLG1_C0F_MASK | TFLG1_C3F_MASK);    // Clear the flag in case anything is pending
+  // Configure TC5 as OC for motor control loop
+  SET_BITS(TIOS, TIOS_IOS5_MASK);   // Enable TC5 as OC
+  SET_OC_ACTION(5, OC_OFF);         // Don't touch port pin
+  MOTOR_Timer = TCNT + (TCNT_mS *30); // Set timer for 30mS
 
-  TIE = (TIOS_IOS0_MASK | TIOS_IOS3_MASK);     // Enable interrupts for TC0 and TC3
-  TFLG1 = (TFLG1_C0F_MASK | TFLG1_C3F_MASK);    // Clear the flag in case anything is pending  
-}//end of configureUltra
+  TIE = (TIOS_IOS0_MASK | TIOS_IOS3_MASK | TIOS_IOS5_MASK);     // Enable interrupts for TC0 and TC3 and TC5
+  TFLG1 = (TFLG1_C0F_MASK | TFLG1_C3F_MASK | TFLG1_C5F_MASK);    // Clear the flag in case anything is pending  
+}//end of configureElevator
 
 
 //;**************************************************************
@@ -55,7 +70,7 @@ unsigned char get_distance(void) {
   unsigned char dist;
 
   DisableInterrupts;
-  dist = ((pulse_width / TCNT_uS) / ULTRA_uS_to_cm);
+  dist = distance;
   EnableInterrupts;
   return dist;
 }//end of get_distance
@@ -134,6 +149,7 @@ interrupt 8 void timer0Handler(void) {
     edge2 = ULTRA_Echo;
     edge2ovf = overflowCount;
     pulse_width = (edge2 - edge1) + (OVF_Factor * (edge2ovf - edge1ovf));
+    distance = ((pulse_width / TCNT_uS) / ULTRA_uS_to_cm);
   }//end of logic for handling the falling edge
 }//end of timer0Handler()
 
@@ -151,3 +167,42 @@ interrupt 11 void timer3Handler(void) {
     ULTRA_Pulse = TCNT + (TCNT_mS * 20);      // Delay by 20ms
   }
 }//end of timer3Handler()
+
+
+//;**************************************************************
+//;*                 timer5handler()
+//;*  Handles OC function for motor control loop
+//;**************************************************************
+interrupt 13 void timer5Handler(void) {
+  // Calculate error in cm
+  error = distance_sp - distance;
+
+  // PI Control Calculation
+  motor_sp_calc = error * gainP;
+
+  // Clip max/min values
+  if(motor_sp_calc > 255) {
+    motor_sp_calc = 255;
+  }
+  else if(motor_sp_calc < -255) {
+    motor_sp_calc = -255;
+  }
+
+  // Logic to determine direction
+  if(motor_sp_calc >= 0) {
+    motor_sp_A = abs(motor_sp_calc);
+    motor_sp_B = 0;
+  }
+  else {
+    motor_sp_A = 0;
+    motor_sp_B = abs(motor_sp_calc);
+  }
+  
+  // Write values to DAC channels
+  writeDAC(motor_sp_A, DAC_SET_CTRL_A);  
+  writeDAC(motor_sp_B, DAC_SET_CTRL_B);  
+  
+  // Set timer for 30mS
+  MOTOR_Timer = TCNT + (TCNT_mS *30);
+
+}//end of timer5Handler()

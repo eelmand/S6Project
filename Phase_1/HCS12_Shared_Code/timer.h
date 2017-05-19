@@ -33,9 +33,11 @@
 #define ULTRA_uS_to_cm 58		// 58uS per centimetre
 #define OVF_Factor 65536l	//2^16
 
+#define MOTOR_Timer TC5		// Timer channel for Motor control loop
+
 // Function prototypes
 void configureTimer(void);			// Configure the timer module at startup
-void configureUltra(void);			// Configure the timer channels for ultrasonic sensor operation
+void configureElevator(void);			// Configure the timer channels for ultrasonic sensor operation
 void msDelay(unsigned char time);	// Delay by time ms using OC polling
 void usDelay(unsigned char time);	// Delay by time us using OC polling
 unsigned char get_distance(void);	// Returns distance in cm from ultrasonic sensor
