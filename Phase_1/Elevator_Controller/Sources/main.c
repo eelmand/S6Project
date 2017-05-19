@@ -14,9 +14,14 @@ void main(void) {
   configureLCD();
   configureElevator();
   configureSPI();
+  
+  writeDAC(0, DAC_SET_CTRL_A);  // Don't let motor move at startup
+  writeDAC(0, DAC_SET_CTRL_B);  // Don't let motor move at startup
 
 	EnableInterrupts;
 
+  set_enable(1);
+  set_distance(F1);
 
   for(;;) {
     LCDprintf("Dist: %d\n", get_distance());

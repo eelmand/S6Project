@@ -17,13 +17,15 @@ static unsigned long pulse_width;   // Value of ultrasonic echo pulse width in T
 static unsigned char distance;      // Distance measured by ultrasonic sensor in cm
 
 // Motor control variables
-unsigned char gainP = 5;            // Proportional gain
-//unsigned char gainI = 0;            // Integral gain
-static signed long error;           // Calculated error in cm
-static unsigned char distance_sp = 100;   // Distance set poit in cm
-static signed long motor_sp_calc;   // Calculated motor setpoint before clipping
-static unsigned char motor_sp_A;      // Actual motor setpoint written to DAC OP A
-static unsigned char motor_sp_B;      // Actual motor setpoint written to DAC OP B
+static const unsigned char gainP = 2;            // Proportional gain
+static const unsigned char gainI = 0;            // Integral gain - divide this by 10 later because it will definitely be too big
+static signed long errorI = 0;
+static signed long error;                       // Calculated error in cm
+static unsigned char distance_sp = 100;         // Distance set poit in cm
+static signed long motor_sp_calc;               // Calculated motor setpoint before clipping
+static unsigned char motor_sp_A = 0;            // Actual motor setpoint written to DAC OP A
+static unsigned char motor_sp_B = 0;            // Actual motor setpoint written to DAC OP B
+static unsigned char enable = 0;                // Enable bit - don't let motor move when this is zero
 
 
 //;**************************************************************
@@ -74,6 +76,42 @@ unsigned char get_distance(void) {
   EnableInterrupts;
   return dist;
 }//end of get_distance
+
+
+//;**************************************************************
+//;*                 set_distance(unsigned card)
+//;*  Set distance target in cm
+//;**************************************************************
+void set_distance(unsigned char dist) {
+  DisableInterrupts;
+  distance_sp = dist;
+  EnableInterrupts;
+}//end of set_distance
+
+
+//;**************************************************************
+//;*                 set_enable(unsigned char)
+//;*  Set enable bit
+//;**************************************************************
+void set_enable(unsigned char ena) {
+  DisableInterrupts;
+  enable = ena;
+  EnableInterrupts;
+}//end of set_enable
+
+
+//;**************************************************************
+//;*                 get_enable(void)
+//;*  Returns current value of enable bit
+//;**************************************************************
+unsigned char get_enable(void) {
+  unsigned char ena;
+
+  DisableInterrupts;
+  ena = enable;
+  EnableInterrupts;
+  return ena;
+}//end of get_ena
 
 
 //;**************************************************************
@@ -176,9 +214,14 @@ interrupt 11 void timer3Handler(void) {
 interrupt 13 void timer5Handler(void) {
   // Calculate error in cm
   error = distance_sp - distance;
+  
+  // Only update I term if we are not already on a rail
+  if((motor_sp_A >= 0) && (motor_sp_A < 255) && (motor_sp_B >= 0) && (motor_sp_B < 255)) {
+    errorI += error;
+  }
 
   // PI Control Calculation
-  motor_sp_calc = error * gainP;
+  motor_sp_calc = (error * gainP) + (errorI * gainI / 100);
 
   // Clip max/min values
   if(motor_sp_calc > 255) {
@@ -199,10 +242,14 @@ interrupt 13 void timer5Handler(void) {
   }
   
   // Write values to DAC channels
-  writeDAC(motor_sp_A, DAC_SET_CTRL_A);  
-  writeDAC(motor_sp_B, DAC_SET_CTRL_B);  
+  if(enable) {
+    writeDAC(motor_sp_A, DAC_SET_CTRL_A);  
+    writeDAC(motor_sp_B, DAC_SET_CTRL_B);
+  }
   
   // Set timer for 30mS
   MOTOR_Timer = TCNT + (TCNT_mS *30);
 
 }//end of timer5Handler()
+
+

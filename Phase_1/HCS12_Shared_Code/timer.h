@@ -33,7 +33,12 @@
 #define ULTRA_uS_to_cm 58		// 58uS per centimetre
 #define OVF_Factor 65536l	//2^16
 
+// Elevator constants and stuff
 #define MOTOR_Timer TC5		// Timer channel for Motor control loop
+#define F3 122
+#define F2 62
+#define F1 15
+#define FLOOR_TOLERANCE 10
 
 // Function prototypes
 void configureTimer(void);			// Configure the timer module at startup
@@ -41,3 +46,6 @@ void configureElevator(void);			// Configure the timer channels for ultrasonic s
 void msDelay(unsigned char time);	// Delay by time ms using OC polling
 void usDelay(unsigned char time);	// Delay by time us using OC polling
 unsigned char get_distance(void);	// Returns distance in cm from ultrasonic sensor
+void set_distance(unsigned char dist);	// Set distance targer in cm from ultrasonic sensor
+void set_enable(unsigned char ena);	// Set the enable global variable
+unsigned char get_enable(void);		// Get the current value of the enable flag
