@@ -18,7 +18,12 @@
 #define F3 122
 #define F2 62
 #define F1 20
-#define FLOOR_TOLERANCE 10
+#define FLOOR_TOL 10
+
+// Elevator CAN signal masks
+#define enable_bit 0b00000100		// Third LSB for enable/disable
+#define floor_bits 0b00000011		// Lower 2 bits for floor number request
+
 
 // Function prototypes
 void configureElevator(void);		// Configure the timer channels for ultrasonic sensor operation
@@ -26,3 +31,4 @@ unsigned char get_distance(void);	// Returns distance in cm from ultrasonic sens
 void set_distance(unsigned char dist);	// Set distance targer in cm from ultrasonic sensor
 void set_enable(unsigned char ena);	// Set the enable global variable
 unsigned char get_enable(void);		// Get the current value of the enable flag
+unsigned char get_floor(void);		// Return the current floor

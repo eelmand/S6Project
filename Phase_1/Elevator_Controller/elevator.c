@@ -20,7 +20,7 @@ static unsigned char gainP = 3;            // Proportional gain
 static unsigned char gainI = 1;            // Integral gain - divide this by 100 later because it will definitely be too big
 static signed long errorI = 0;
 static signed long error;                       // Calculated error in cm
-static unsigned char distance_sp = 100;         // Distance set poit in cm
+static unsigned char distance_sp = 100;         // Distance set poit in cm, init to 100cm because that is a cool number
 static signed long motor_sp_calc;               // Calculated motor setpoint before clipping
 static unsigned char motor_sp_A = 0;            // Actual motor setpoint written to DAC OP A
 static unsigned char motor_sp_B = 0;            // Actual motor setpoint written to DAC OP B
@@ -105,6 +105,27 @@ unsigned char get_enable(void) {
 
 
 //;**************************************************************
+//;*                 get_floor(void)
+//;*  Returns current floor or '0' for in transit
+//;**************************************************************
+unsigned char get_floor(void) {
+  // Check if we are at a floor or in transit
+  if (((F1 - FLOOR_TOL) <= distance) && (distance <= (F1 + FLOOR_TOL))) {
+    return 1;
+  }
+  else if (((F2 - FLOOR_TOL) <= distance) && (distance <= (F2 + FLOOR_TOL))) {
+    return 2;
+  }
+  else if (((F3 - FLOOR_TOL) <= distance) && (distance <= (F3 + FLOOR_TOL))) {
+    return 3;
+  }
+
+  // Return 0 for 'in transit'
+  return 0;
+}//end of get_floor
+
+
+//;**************************************************************
 //;*                 timer0Handler()
 //;*  Handles IC function for ultrasonic pulse width measurement
 //;**************************************************************
@@ -144,35 +165,40 @@ interrupt 11 void timer3Handler(void) {
 //;*  Handles OC function for motor control loop
 //;**************************************************************
 interrupt 13 void timer5Handler(void) {
-  // Calculate error in cm
-  error = distance_sp - distance;
-  errorI += error;
-
-  // PI Control Calculation
-  motor_sp_calc = (error * gainP) + (errorI * gainI / 100);
-
-  // Clip max/min values
-  if(motor_sp_calc > 255) {
-    motor_sp_calc = 255;
-  }
-  else if(motor_sp_calc < -255) {
-    motor_sp_calc = -255;
-  }
-
-  // Logic to determine direction
-  if(motor_sp_calc >= 0) {
-    motor_sp_A = abs(motor_sp_calc);
-    motor_sp_B = 0;
-  }
-  else {
-    motor_sp_A = 0;
-    motor_sp_B = abs(motor_sp_calc);
-  }
-  
-  // Write values to DAC channels
   if(enable) {
+    // Calculate error in cm
+    error = distance_sp - distance;
+    errorI += error;
+
+    // PI Control Calculation
+    motor_sp_calc = (error * gainP) + (errorI * gainI / 100);
+
+    // Clip max/min values
+    if(motor_sp_calc > 255) {
+      motor_sp_calc = 255;
+    }
+    else if(motor_sp_calc < -255) {
+      motor_sp_calc = -255;
+    }
+
+    // Logic to determine direction
+    if(motor_sp_calc >= 0) {
+      motor_sp_A = abs(motor_sp_calc);
+      motor_sp_B = 0;
+    }
+    else {
+      motor_sp_A = 0;
+      motor_sp_B = abs(motor_sp_calc);
+    }
+    
+    // Write values to DAC channels
     writeDAC(motor_sp_A, DAC_SET_CTRL_A);  
     writeDAC(motor_sp_B, DAC_SET_CTRL_B);
+  }
+  else {
+    // If we are disabled always force 0V on DAC
+    writeDAC(0, DAC_SET_CTRL_A);  
+    writeDAC(0, DAC_SET_CTRL_B);
   }
   
   // Set timer for 30mS
