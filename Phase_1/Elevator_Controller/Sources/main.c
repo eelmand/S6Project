@@ -21,7 +21,7 @@ void main(void) {
   configureLCD();
   configureElevator();
   configureSPI();
-  configureCAN();
+  configureCAN(ELEVATOR_CONTROLLER);
   CONFIGURE_LEDS;
   LED1_ON;
   LED2_OFF;
