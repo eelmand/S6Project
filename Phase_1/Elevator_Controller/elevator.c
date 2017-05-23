@@ -16,7 +16,7 @@ static unsigned long pulse_width;   // Value of ultrasonic echo pulse width in T
 static unsigned char distance;      // Distance measured by ultrasonic sensor in cm
 
 // Motor control variables
-static unsigned char gainP = 25;           // Proportional gain - divide this by 10 later
+static unsigned char gainP = 30;           // Proportional gain - divide this by 10 later
 static unsigned char gainI = 1;            // Integral gain - divide this by 100 later because it will definitely be too big
 static signed long errorI = 0;
 static signed long error;                       // Calculated error in cm
@@ -130,6 +130,8 @@ unsigned char get_floor(void) {
 //;*  Handles IC function for ultrasonic pulse width measurement
 //;**************************************************************
 interrupt 8 void timer0Handler(void) {
+
+  static unsigned char dist_calc;
   // Rising edge logic (inverted because of schmitt trigger)
   if(!ULTRA_Echo_Pin) {
     edge1 = ULTRA_Echo;
@@ -140,7 +142,12 @@ interrupt 8 void timer0Handler(void) {
     edge2 = ULTRA_Echo;
     edge2ovf = get_overflowCount();
     pulse_width = (edge2 - edge1) + (OVF_Factor * (edge2ovf - edge1ovf));
-    distance = ((pulse_width / TCNT_uS) / ULTRA_uS_to_cm);
+    dist_calc = ((pulse_width / TCNT_uS) / ULTRA_uS_to_cm);
+    
+    // Account for reflections on sensor causing bad readings sometimes
+    if((dist_calc > 5) && (dist_calc < 150)) {
+      distance = dist_calc;
+    }
   }//end of logic for handling the falling edge
 }//end of timer0Handler()
 

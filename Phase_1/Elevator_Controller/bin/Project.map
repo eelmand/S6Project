@@ -34,8 +34,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     154
-  _Copy    *toCopyDownBeg 0xCE2C
+  _Range   pZeroOut       0x900     155
+  _Copy    *toCopyDownBeg 0xCE38
 } _startupData;
 
 *********************************************************************************************
@@ -46,8 +46,8 @@ Section Name                    Size  Type     From       To       Segment
 .startData                        10     R     0xC031     0xC03A   ROM_C000
 .rodata                          116     R     0xC03B     0xC0AE   ROM_C000
 .rodata1                          26     R     0xC0AF     0xC0C8   ROM_C000
-.text                           3029     R     0xC0C9     0xCC9D   ROM_C000
-.copy                              9     R     0xCE2C     0xCE34   ROM_C000
+.text                           3041     R     0xC0C9     0xCCA9   ROM_C000
+.copy                              9     R     0xCE38     0xCE40   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .data                              3   R/W      0x900      0x902   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -276,15 +276,15 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_ffe8                  2     R     0xFFE8     0xFFE9   .absSeg223
 .abs_section_ffe4                  2     R     0xFFE4     0xFFE5   .absSeg224
 .abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg225
-.bss                              47   R/W      0x903      0x931   RAM
-RUNTIME                          398     R     0xCC9E     0xCE2B   ROM_C000
-HEAP_SEGMENT                     100   R/W      0x932      0x995   RAM
-.common                            4   R/W      0x996      0x999   RAM
+.bss                              48   R/W      0x903      0x932   RAM
+RUNTIME                          398     R     0xCCAA     0xCE37   ROM_C000
+HEAP_SEGMENT                     100   R/W      0x933      0x996   RAM
+.common                            4   R/W      0x997      0x99A   RAM
 .vectSeg226_vect                   2     R     0xFFFE     0xFFFF   .vectSeg226
 
 Summary of section sizes per section type:
-READ_ONLY (R):         E41 (dec:     3649)
-READ_WRITE (R/W):      19A (dec:      410)
+READ_ONLY (R):         E4D (dec:     3661)
+READ_WRITE (R/W):      19B (dec:      411)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
@@ -542,7 +542,7 @@ MODULE:                 -- HEAP.C.o (ansisi.lib) --
 - PROCEDURES:
      _heapcrash_                               C1A4       C      12       3   .text       
 - VARIABLES:
-     _heap_                                     932      64     100       2   HEAP_SEGMENT
+     _heap_                                     933      64     100       2   HEAP_SEGMENT
 MODULE:                 -- PRINTF.C.o (ansisi.lib) --
 - PROCEDURES:
      vprintf                                   C1B0     478    1144      49   .text       
@@ -567,17 +567,17 @@ MODULE:                 -- ALLOC.C.o (ansisi.lib) --
      free_ptr                                   910       2       2       8   .bss        
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   CC9E      15      21       3   RUNTIME     
-     _LNEG                                     CCB3       D      13       2   RUNTIME     
-     _LMULS16x32                               CCC0      1F      31       1   RUNTIME     
-     _lDivMod                                  CCDF      BE     190       3   RUNTIME     
-     _LDIVU                                    CD9D       E      14       1   RUNTIME     
-     _NEG_P                                    CDAB       F      15       4   RUNTIME     
-     _LDIVS                                    CDBA      35      53       2   RUNTIME     
-     _ILSEXT                                   CDEF       7       7       4   RUNTIME     
-     _CASE_DIRECT_BYTE                         CDF6       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            CDFB      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       CE12      1A      26       1   RUNTIME     
+     _LCMP_P                                   CCAA      15      21       3   RUNTIME     
+     _LNEG                                     CCBF       D      13       2   RUNTIME     
+     _LMULS16x32                               CCCC      1F      31       1   RUNTIME     
+     _lDivMod                                  CCEB      BE     190       3   RUNTIME     
+     _LDIVU                                    CDA9       E      14       1   RUNTIME     
+     _NEG_P                                    CDB7       F      15       4   RUNTIME     
+     _LDIVS                                    CDC6      35      53       2   RUNTIME     
+     _ILSEXT                                   CDFB       7       7       4   RUNTIME     
+     _CASE_DIRECT_BYTE                         CE02       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            CE07      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       CE1E      1A      26       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- lcd.c.o --
 - PROCEDURES:
@@ -610,9 +610,9 @@ MODULE:                 -- elevator.c.o --
      set_enable                                C9A5       8       8       1   .text       
      get_enable                                C9AD       A      10       1   .text       
      get_floor                                 C9B7      26      38       2   .text       
-     timer0Handler                             C9DD      6D     109       1   .text       
-     timer3Handler                             CA4A      14      20       1   .text       
-     timer5Handler                             CA5E      EA     234       1   .text       
+     timer0Handler                             C9DD      79     121       1   .text       
+     timer3Handler                             CA56      14      20       1   .text       
+     timer5Handler                             CA6A      EA     234       1   .text       
 - VARIABLES:
      gainP                                      900       1       1       1   .data       
      gainI                                      901       1       1       1   .data       
@@ -629,24 +629,25 @@ MODULE:                 -- elevator.c.o --
      distance                                   929       1       1       5   .bss        
      error                                      92A       4       4       3   .bss        
      motor_sp_calc                              92E       4       4      11   .bss        
+     dist_calc.1                                932       1       1       2   .bss        
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
      _Vector_11                                FFE8       2       2       0   .abs_section_ffe8
      _Vector_13                                FFE4       2       2       0   .abs_section_ffe4
 MODULE:                 -- CAN.c.o --
 - PROCEDURES:
-     configureCAN                              CB48      5C      92       1   .text       
-     TxCAN                                     CBA4      59      89       1   .text       
-     RxHandlerCAN                              CBFD      63      99       1   .text       
+     configureCAN                              CB54      5C      92       1   .text       
+     TxCAN                                     CBB0      59      89       1   .text       
+     RxHandlerCAN                              CC09      63      99       1   .text       
 - VARIABLES:
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 MODULE:                 -- FIFO.c.o --
 - PROCEDURES:
-     IsQueueEmpty                              CC60       B      11       3   .text       
-     AddToQueue                                CC6B      1E      30       1   .text       
-     DeQueue                                   CC89      15      21       1   .text       
+     IsQueueEmpty                              CC6C       B      11       3   .text       
+     AddToQueue                                CC77      1E      30       1   .text       
+     DeQueue                                   CC95      15      21       1   .text       
 - VARIABLES:
-     pHead                                      996       2       2       5   .common     
-     pTail                                      998       2       2       2   .common     
+     pHead                                      997       2       2       5   .common     
+     pTail                                      999       2       2       2   .common     
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -663,7 +664,7 @@ MODULE STATISTIC
   lcd.c.o                                      0    266      0
   spi.c.o                                      1     63      0
   timer.c.o                                    1     61      2
-  elevator.c.o                                33    483      6
+  elevator.c.o                                34    495      6
   CAN.c.o                                      0    280      2
   FIFO.c.o                                     4     62      0
   other                                      256     12      9
@@ -683,7 +684,7 @@ SECTION: ".data"
 SECTION: ".bss"
   message enable_req floor_req TxData pbuf heap_end free_ptr temp.1 
   overflowCount errorI motor_sp_A motor_sp_B enable edge1 edge2 edge1ovf 
-  edge2ovf pulse_width distance error motor_sp_calc 
+  edge2ovf pulse_width distance error motor_sp_calc dist_calc.1 
 SECTION: ".init"
   Init _Startup 
 SECTION: ".rodata"
@@ -1399,9 +1400,10 @@ OBJECT LIST SORTED BY ADDRESS
      distance                                   929       1       1       5   .bss        
      error                                      92A       4       4       3   .bss        
      motor_sp_calc                              92E       4       4      11   .bss        
-     _heap_                                     932      64     100       2   HEAP_SEGMENT
-     pHead                                      996       2       2       5   .common     
-     pTail                                      998       2       2       2   .common     
+     dist_calc.1                                932       1       1       2   .bss        
+     _heap_                                     933      64     100       2   HEAP_SEGMENT
+     pHead                                      997       2       2       5   .common     
+     pTail                                      999       2       2       2   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      pow10                                     C03B      28      40       4   .rodata     
@@ -1434,26 +1436,26 @@ OBJECT LIST SORTED BY ADDRESS
      set_enable                                C9A5       8       8       1   .text       
      get_enable                                C9AD       A      10       1   .text       
      get_floor                                 C9B7      26      38       2   .text       
-     timer0Handler                             C9DD      6D     109       1   .text       
-     timer3Handler                             CA4A      14      20       1   .text       
-     timer5Handler                             CA5E      EA     234       1   .text       
-     configureCAN                              CB48      5C      92       1   .text       
-     TxCAN                                     CBA4      59      89       1   .text       
-     RxHandlerCAN                              CBFD      63      99       1   .text       
-     IsQueueEmpty                              CC60       B      11       3   .text       
-     AddToQueue                                CC6B      1E      30       1   .text       
-     DeQueue                                   CC89      15      21       1   .text       
-     _LCMP_P                                   CC9E      15      21       3   RUNTIME     
-     _LNEG                                     CCB3       D      13       2   RUNTIME     
-     _LMULS16x32                               CCC0      1F      31       1   RUNTIME     
-     _lDivMod                                  CCDF      BE     190       3   RUNTIME     
-     _LDIVU                                    CD9D       E      14       1   RUNTIME     
-     _NEG_P                                    CDAB       F      15       4   RUNTIME     
-     _LDIVS                                    CDBA      35      53       2   RUNTIME     
-     _ILSEXT                                   CDEF       7       7       4   RUNTIME     
-     _CASE_DIRECT_BYTE                         CDF6       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            CDFB      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       CE12      1A      26       1   RUNTIME     
+     timer0Handler                             C9DD      79     121       1   .text       
+     timer3Handler                             CA56      14      20       1   .text       
+     timer5Handler                             CA6A      EA     234       1   .text       
+     configureCAN                              CB54      5C      92       1   .text       
+     TxCAN                                     CBB0      59      89       1   .text       
+     RxHandlerCAN                              CC09      63      99       1   .text       
+     IsQueueEmpty                              CC6C       B      11       3   .text       
+     AddToQueue                                CC77      1E      30       1   .text       
+     DeQueue                                   CC95      15      21       1   .text       
+     _LCMP_P                                   CCAA      15      21       3   RUNTIME     
+     _LNEG                                     CCBF       D      13       2   RUNTIME     
+     _LMULS16x32                               CCCC      1F      31       1   RUNTIME     
+     _lDivMod                                  CCEB      BE     190       3   RUNTIME     
+     _LDIVU                                    CDA9       E      14       1   RUNTIME     
+     _NEG_P                                    CDB7       F      15       4   RUNTIME     
+     _LDIVS                                    CDC6      35      53       2   RUNTIME     
+     _ILSEXT                                   CDFB       7       7       4   RUNTIME     
+     _CASE_DIRECT_BYTE                         CE02       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            CE07      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       CE1E      1A      26       1   RUNTIME     
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
      _Vector_13                                FFE4       2       2       0   .abs_section_ffe4
@@ -1494,19 +1496,19 @@ rtshc12.c.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xCE2C ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xCE38 ---- SIZE       4 ---
 Filling bytes inserted
  00030900
-------- ROM-ADDRESS: 0xCE30 ---- RAM-ADDRESS: 0x900 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xCE3C ---- RAM-ADDRESS: 0x900 ---- SIZE       1 ---
 Name of initialized Object : gainP
- 19
-------- ROM-ADDRESS: 0xCE31 ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
+ 1E
+------- ROM-ADDRESS: 0xCE3D ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
 Name of initialized Object : gainI
  01
-------- ROM-ADDRESS: 0xCE32 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xCE3E ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
 Name of initialized Object : distance_sp
  64
-------- ROM-ADDRESS: 0xCE33 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xCE3F ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1548,7 +1550,8 @@ set_enable                USES enable
 get_enable                USES enable 
 get_floor                 USES distance 
 timer0Handler             USES _PTT _TC0 edge1 get_overflowCount edge1ovf 
-                                edge2 edge2ovf _ILSEXT pulse_width _LDIVU distance 
+                                edge2 edge2ovf _ILSEXT pulse_width _LDIVU 
+                                dist_calc.1 distance 
 timer3Handler             USES _PTT _TCNT _TC3 
 timer5Handler             USES enable distance_sp distance _ILSEXT error 
                                 errorI gainP _LDIVS gainI _LMULS16x32 motor_sp_calc 
@@ -1717,5 +1720,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 12
-Total size of all blocks to be downloaded: 3649
+Total size of all blocks to be downloaded: 3661
 
