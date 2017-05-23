@@ -16,7 +16,7 @@ static unsigned long pulse_width;   // Value of ultrasonic echo pulse width in T
 static unsigned char distance;      // Distance measured by ultrasonic sensor in cm
 
 // Motor control variables
-static unsigned char gainP = 3;            // Proportional gain
+static unsigned char gainP = 25;           // Proportional gain - divide this by 10 later
 static unsigned char gainI = 1;            // Integral gain - divide this by 100 later because it will definitely be too big
 static signed long errorI = 0;
 static signed long error;                       // Calculated error in cm
@@ -171,7 +171,7 @@ interrupt 13 void timer5Handler(void) {
     errorI += error;
 
     // PI Control Calculation
-    motor_sp_calc = (error * gainP) + (errorI * gainI / 100);
+    motor_sp_calc = (error * gainP / 10) + (errorI * gainI / 100);
 
     // Clip max/min values
     if(motor_sp_calc > 255) {

@@ -60,7 +60,6 @@
 #define ST_ID_202 0x40400000
 #define ST_ID_203 0x40600000
 
-
 // Function to initialize CAN module
 void configureCAN(unsigned int nodeID);
 

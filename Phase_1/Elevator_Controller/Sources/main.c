@@ -72,7 +72,7 @@ void main(void) {
   
     // Transmit status message
     TxData = (get_enable() | get_floor());
-    TxCAN(ST_ID_100, 0x00, 0x01, &TxData);
+    TxCAN(ST_ID_101, 0x00, 0x01, &TxData);
     
     msDelay(100);
     
