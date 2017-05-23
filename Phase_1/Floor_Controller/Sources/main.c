@@ -25,14 +25,14 @@ void main(void) {
 	unsigned char floorNumber;
 	link pTemp = NULL;
 	
-  if(CONTROLLER_FLOOR == 1){
-	  configureCAN(FLOOR_CONTROLLER_1);
-  }
+  	if(CONTROLLER_FLOOR == 1){
+		configureCAN(FLOOR_CONTROLLER_1);
+	}
 	else if(CONTROLLER_FLOOR == 2){
-	  configureCAN(FLOOR_CONTROLLER_2);
+		configureCAN(FLOOR_CONTROLLER_2);
 	}
 	else if(CONTROLLER_FLOOR == 3){
-	  configureCAN(FLOOR_CONTROLLER_3);
+		configureCAN(FLOOR_CONTROLLER_3);
 	}
 		  
 	configureTimer();
