@@ -6,6 +6,7 @@
 #include "lcd.h"
 #include "timer.h"
 #include "spi.h"
+#include "elevator.h"
 
 void main(void) {
   CONFIGURE_5VA;
