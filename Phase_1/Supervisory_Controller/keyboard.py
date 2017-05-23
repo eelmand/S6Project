@@ -7,42 +7,48 @@ import select
 import time
 import os
 
-floor = 1
-enable = 0
-
 # files monitored for input
 read_list = [sys.stdin]
 
 # select() timeout for input in seconds
 timeout = 0.1
 
-def treat_input(linein):
-	print "Processing input" # Read input from 
+# global variables
+enable = 0
+floor = 1
+
+def process_input(linein):
+  print "Elevator Command Input"
+  global floor
+  global enable
+  
+  floor = input("Enter floor number:")
+  enable = input("Enter enable value:")
 
 def update_elevator_status():
-	os.system('clear')
-	print("Elevator Status")
-	print "Floor: ", floor
-	print "Enable: ", enable
+  os.system('clear')
+  print("Elevator Status")
+  print("---------------")
+  print "Floor: ", floor
+  print "Enable: ", enable
+  print " "
+  print "Press 'Enter' for debug mode"
 
+
+# If there is keyboard input, print the menu and process commands
+# Otherwise just display elevator status
 def main():
-  global read_list
-  # while still waiting for input on at least one file
-  while read_list:
-    ready = select.select(read_list, [], [], timeout)[0]
-    
-    # Check for Keyboard Input
-    if not ready:
-      update_elevator_status()
-    else:
-      for file in ready:
-        line = file.readline()
-        if not line: # EOF, remove file from input list
-          read_list.remove(file)
-        elif line.rstrip(): # optional: skipping empty lines
-          treat_input(line)
+  
+  # Infinite loop
+  while 1:
 
-try:
-    main()
-except KeyboardInterrupt:
-  pass
+    # Wait for keyboard input, or do other stuff
+    while sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+      line = sys.stdin.readline()
+      if line:
+        process_input(line)
+    else:
+      update_elevator_status()
+      time.sleep(0.1)  
+
+main()
