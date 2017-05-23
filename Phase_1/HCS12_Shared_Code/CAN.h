@@ -27,6 +27,7 @@
 
 // ID definition
 #define ST_ID_100 0x20000000
+#define ST_ID_101 0x20200000
 
 
 // Function to initialize CAN module
