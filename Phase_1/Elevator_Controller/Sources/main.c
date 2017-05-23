@@ -12,6 +12,7 @@
 static link message = NULL;
 static unsigned char enable_req = 0;
 static unsigned char floor_req = 0;
+static unsigned char TxData = 0;
 
 void main(void) {
   CONFIGURE_5VA;
@@ -38,6 +39,7 @@ void main(void) {
     // Display debug data on LCD
     LCDprintf("Ena: %u Req: %u\nFloor: %u", enable_req, floor_req, get_floor());
     
+    // Check for new CAN messages & process if requried
     if(IsQueueEmpty()) 
     {
       // Do Nothing
@@ -67,6 +69,10 @@ void main(void) {
       free(message);            // Free the message structure
       TOGGLE_LEDS;    
     }
+  
+    // Transmit status message
+    TxData = (get_enable() | get_floor());
+    TxCAN(ST_ID_100, 0x00, 0x01, &TxData);
     
     msDelay(100);
     

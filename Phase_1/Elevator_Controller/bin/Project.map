@@ -34,8 +34,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     153
-  _Copy    *toCopyDownBeg 0xCD6B
+  _Range   pZeroOut       0x900     154
+  _Copy    *toCopyDownBeg 0xCDEE
 } _startupData;
 
 *********************************************************************************************
@@ -46,8 +46,8 @@ Section Name                    Size  Type     From       To       Segment
 .startData                        10     R     0xC031     0xC03A   ROM_C000
 .rodata                          116     R     0xC03B     0xC0AE   ROM_C000
 .rodata1                          26     R     0xC0AF     0xC0C8   ROM_C000
-.text                           2836     R     0xC0C9     0xCBDC   ROM_C000
-.copy                              9     R     0xCD6B     0xCD73   ROM_C000
+.text                           2967     R     0xC0C9     0xCC5F   ROM_C000
+.copy                              9     R     0xCDEE     0xCDF6   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .data                              3   R/W      0x900      0x902   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -276,15 +276,15 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_ffe8                  2     R     0xFFE8     0xFFE9   .absSeg223
 .abs_section_ffe4                  2     R     0xFFE4     0xFFE5   .absSeg224
 .abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg225
-.bss                              46   R/W      0x903      0x930   RAM
-RUNTIME                          398     R     0xCBDD     0xCD6A   ROM_C000
-HEAP_SEGMENT                     100   R/W      0x931      0x994   RAM
-.common                            4   R/W      0x995      0x998   RAM
+.bss                              47   R/W      0x903      0x931   RAM
+RUNTIME                          398     R     0xCC60     0xCDED   ROM_C000
+HEAP_SEGMENT                     100   R/W      0x932      0x995   RAM
+.common                            4   R/W      0x996      0x999   RAM
 .vectSeg226_vect                   2     R     0xFFFE     0xFFFF   .vectSeg226
 
 Summary of section sizes per section type:
-READ_ONLY (R):         D80 (dec:     3456)
-READ_WRITE (R/W):      199 (dec:      409)
+READ_ONLY (R):         E03 (dec:     3587)
+READ_WRITE (R/W):      19A (dec:      410)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
@@ -388,11 +388,11 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANBTR1                                   143       1       1       1   .abs_section_143
      _CANRFLG                                   144       1       1       2   .abs_section_144
      _CANRIER                                   145       1       1       1   .abs_section_145
-     _CANTFLG                                   146       1       1       0   .abs_section_146
+     _CANTFLG                                   146       1       1       4   .abs_section_146
      _CANTIER                                   147       1       1       0   .abs_section_147
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
-     _CANTBSEL                                  14A       1       1       0   .abs_section_14a
+     _CANTBSEL                                  14A       1       1       2   .abs_section_14a
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
@@ -425,11 +425,11 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANRXDSR6                                 16A       1       1       0   .abs_section_16a
      _CANRXDSR7                                 16B       1       1       0   .abs_section_16b
      _CANRXDLR                                  16C       1       1       1   .abs_section_16c
-     _CANTXIDR0                                 170       1       1       0   .abs_section_170
+     _CANTXIDR0                                 170       1       1       2   .abs_section_170
      _CANTXIDR1                                 171       1       1       0   .abs_section_171
      _CANTXIDR2                                 172       1       1       0   .abs_section_172
      _CANTXIDR3                                 173       1       1       0   .abs_section_173
-     _CANTXDSR0                                 174       1       1       0   .abs_section_174
+     _CANTXDSR0                                 174       1       1       1   .abs_section_174
      _CANTXDSR1                                 175       1       1       0   .abs_section_175
      _CANTXDSR2                                 176       1       1       0   .abs_section_176
      _CANTXDSR3                                 177       1       1       0   .abs_section_177
@@ -437,8 +437,8 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXDSR5                                 179       1       1       0   .abs_section_179
      _CANTXDSR6                                 17A       1       1       0   .abs_section_17a
      _CANTXDSR7                                 17B       1       1       0   .abs_section_17b
-     _CANTXDLR                                  17C       1       1       0   .abs_section_17c
-     _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
+     _CANTXDLR                                  17C       1       1       1   .abs_section_17c
+     _CANTXTBPR                                 17D       1       1       1   .abs_section_17d
      _PTT                                       240       1       1       2   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       0   .abs_section_242
@@ -523,12 +523,13 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C0C9      B7     183       1   .text       
+     main                                      C0C9      D7     215       2   .text       
 - VARIABLES:
      STRING.Ena...u.Req...u.Floo.1             C0AF      1A      26       1   .rodata1    
      message                                    903       2       2       3   .bss        
      enable_req                                 905       1       1       3   .bss        
      floor_req                                  906       1       1       3   .bss        
+     TxData                                     907       1       1       2   .bss        
 MODULE:                 -- Start12.c.o --
 - PROCEDURES:
      Init                                      C000      29      41       1   .init       
@@ -539,118 +540,120 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                           900       0       0       1               
 MODULE:                 -- HEAP.C.o (ansisi.lib) --
 - PROCEDURES:
-     _heapcrash_                               C180       C      12       3   .text       
+     _heapcrash_                               C1A0       C      12       3   .text       
 - VARIABLES:
-     _heap_                                     931      64     100       2   HEAP_SEGMENT
+     _heap_                                     932      64     100       2   HEAP_SEGMENT
 MODULE:                 -- PRINTF.C.o (ansisi.lib) --
 - PROCEDURES:
-     vprintf                                   C18C     478    1144      49   .text       
-     _out                                      C604       C      12       9   .text       
-     deposit_char                              C610       F      15       1   .text       
-     vsprintf                                  C61F      29      41       1   .text       
+     vprintf                                   C1AC     478    1144      49   .text       
+     _out                                      C624       C      12       9   .text       
+     deposit_char                              C630       F      15       1   .text       
+     vsprintf                                  C63F      29      41       1   .text       
 - VARIABLES:
      pow10                                     C03B      28      40       4   .rodata     
      pow16                                     C063      20      32       4   .rodata     
      pow8                                      C083      2C      44       4   .rodata     
-     pbuf                                       907       6       6      15   .bss        
+     pbuf                                       908       6       6      15   .bss        
 MODULE:                 -- STDLIB.C.o (ansisi.lib) --
 - PROCEDURES:
-     abs                                       C648       A      10       2   .text       
+     abs                                       C668       A      10       2   .text       
 - VARIABLES:
 MODULE:                 -- ALLOC.C.o (ansisi.lib) --
 - PROCEDURES:
-     malloc                                    C652      A5     165       2   .text       
-     free                                      C6F7      C4     196       3   .text       
+     malloc                                    C672      A5     165       2   .text       
+     free                                      C717      C4     196       3   .text       
 - VARIABLES:
-     heap_end                                   90D       2       2       3   .bss        
-     free_ptr                                   90F       2       2       8   .bss        
+     heap_end                                   90E       2       2       3   .bss        
+     free_ptr                                   910       2       2       8   .bss        
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   CBDD      15      21       3   RUNTIME     
-     _LNEG                                     CBF2       D      13       2   RUNTIME     
-     _LMULS16x32                               CBFF      1F      31       1   RUNTIME     
-     _lDivMod                                  CC1E      BE     190       3   RUNTIME     
-     _LDIVU                                    CCDC       E      14       1   RUNTIME     
-     _NEG_P                                    CCEA       F      15       4   RUNTIME     
-     _LDIVS                                    CCF9      35      53       1   RUNTIME     
-     _ILSEXT                                   CD2E       7       7       4   RUNTIME     
-     _CASE_DIRECT_BYTE                         CD35       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            CD3A      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       CD51      1A      26       1   RUNTIME     
+     _LCMP_P                                   CC60      15      21       3   RUNTIME     
+     _LNEG                                     CC75       D      13       2   RUNTIME     
+     _LMULS16x32                               CC82      1F      31       1   RUNTIME     
+     _lDivMod                                  CCA1      BE     190       3   RUNTIME     
+     _LDIVU                                    CD5F       E      14       1   RUNTIME     
+     _NEG_P                                    CD6D       F      15       4   RUNTIME     
+     _LDIVS                                    CD7C      35      53       1   RUNTIME     
+     _ILSEXT                                   CDB1       7       7       4   RUNTIME     
+     _CASE_DIRECT_BYTE                         CDB8       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            CDBD      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       CDD4      1A      26       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- lcd.c.o --
 - PROCEDURES:
-     configureLCD                              C7BB      59      89       1   .text       
-     LCDdata                                   C814      36      54       1   .text       
-     LCDcmd                                    C84A      36      54       7   .text       
-     LCDputs                                   C880      29      41       1   .text       
-     LCDprintf                                 C8A9      1C      28       1   .text       
+     configureLCD                              C7DB      59      89       1   .text       
+     LCDdata                                   C834      36      54       1   .text       
+     LCDcmd                                    C86A      36      54       7   .text       
+     LCDputs                                   C8A0      29      41       1   .text       
+     LCDprintf                                 C8C9      1C      28       1   .text       
 - VARIABLES:
 MODULE:                 -- spi.c.o --
 - PROCEDURES:
-     configureSPI                              C8C5       F      15       1   .text       
-     putcSPI                                   C8D4      14      20       2   .text       
-     writeDAC                                  C8E8      1C      28       4   .text       
+     configureSPI                              C8E5       F      15       1   .text       
+     putcSPI                                   C8F4      14      20       2   .text       
+     writeDAC                                  C908      1C      28       4   .text       
 - VARIABLES:
-     temp.1                                     911       1       1       1   .bss        
+     temp.1                                     912       1       1       1   .bss        
 MODULE:                 -- timer.c.o --
 - PROCEDURES:
-     configureTimer                            C904       8       8       1   .text       
-     msDelay                                   C90C      2B      43       6   .text       
-     timerOverflowHandler                      C937       6       6       1   .text       
-     get_overflowCount                         C93D       4       4       2   .text       
+     configureTimer                            C924       8       8       1   .text       
+     msDelay                                   C92C      2B      43       6   .text       
+     timerOverflowHandler                      C957       6       6       1   .text       
+     get_overflowCount                         C95D       4       4       2   .text       
 - VARIABLES:
-     overflowCount                              912       1       1       2   .bss        
+     overflowCount                              913       1       1       2   .bss        
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
 MODULE:                 -- elevator.c.o --
 - PROCEDURES:
-     configureElevator                         C941      38      56       1   .text       
-     set_distance                              C979       8       8       1   .text       
-     set_enable                                C981       8       8       1   .text       
-     get_floor                                 C989      26      38       1   .text       
-     timer0Handler                             C9AF      6D     109       1   .text       
-     timer3Handler                             CA1C      14      20       1   .text       
-     timer5Handler                             CA30      DB     219       1   .text       
+     configureElevator                         C961      38      56       1   .text       
+     set_distance                              C999       8       8       1   .text       
+     set_enable                                C9A1       8       8       1   .text       
+     get_enable                                C9A9       A      10       1   .text       
+     get_floor                                 C9B3      26      38       2   .text       
+     timer0Handler                             C9D9      6D     109       1   .text       
+     timer3Handler                             CA46      14      20       1   .text       
+     timer5Handler                             CA5A      DB     219       1   .text       
 - VARIABLES:
      gainP                                      900       1       1       1   .data       
      gainI                                      901       1       1       1   .data       
      distance_sp                                902       1       1       2   .data       
-     errorI                                     913       4       4       6   .bss        
-     motor_sp_A                                 917       1       1       3   .bss        
-     motor_sp_B                                 918       1       1       3   .bss        
-     enable                                     919       1       1       2   .bss        
-     edge1                                      91A       4       4       5   .bss        
-     edge2                                      91E       4       4       4   .bss        
-     edge1ovf                                   922       1       1       2   .bss        
-     edge2ovf                                   923       1       1       1   .bss        
-     pulse_width                                924       4       4       2   .bss        
-     distance                                   928       1       1       5   .bss        
-     error                                      929       4       4       3   .bss        
-     motor_sp_calc                              92D       4       4      11   .bss        
+     errorI                                     914       4       4       6   .bss        
+     motor_sp_A                                 918       1       1       3   .bss        
+     motor_sp_B                                 919       1       1       3   .bss        
+     enable                                     91A       1       1       3   .bss        
+     edge1                                      91B       4       4       5   .bss        
+     edge2                                      91F       4       4       4   .bss        
+     edge1ovf                                   923       1       1       2   .bss        
+     edge2ovf                                   924       1       1       1   .bss        
+     pulse_width                                925       4       4       2   .bss        
+     distance                                   929       1       1       5   .bss        
+     error                                      92A       4       4       3   .bss        
+     motor_sp_calc                              92E       4       4      11   .bss        
      _Vector_8                                 FFEE       2       2       0   .abs_section_ffee
      _Vector_11                                FFE8       2       2       0   .abs_section_ffe8
      _Vector_13                                FFE4       2       2       0   .abs_section_ffe4
 MODULE:                 -- CAN.c.o --
 - PROCEDURES:
-     configureCAN                              CB0B      31      49       1   .text       
-     RxHandlerCAN                              CB3C      63      99       1   .text       
+     configureCAN                              CB35      31      49       1   .text       
+     TxCAN                                     CB66      59      89       1   .text       
+     RxHandlerCAN                              CBBF      63      99       1   .text       
 - VARIABLES:
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 MODULE:                 -- FIFO.c.o --
 - PROCEDURES:
-     IsQueueEmpty                              CB9F       B      11       3   .text       
-     AddToQueue                                CBAA      1E      30       1   .text       
-     DeQueue                                   CBC8      15      21       1   .text       
+     IsQueueEmpty                              CC22       B      11       3   .text       
+     AddToQueue                                CC2D      1E      30       1   .text       
+     DeQueue                                   CC4B      15      21       1   .text       
 - VARIABLES:
-     pHead                                      995       2       2       5   .common     
-     pTail                                      997       2       2       2   .common     
+     pHead                                      996       2       2       5   .common     
+     pTail                                      998       2       2       2   .common     
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
-  main.c.o                                     4    183     26
+  main.c.o                                     5    215     26
   Start12.c.o                                  0     49      0
   HEAP.C.o (ansisi.lib)                      100     12      0
   PRINTF.C.o (ansisi.lib)                      6   1212    116
@@ -660,8 +663,8 @@ MODULE STATISTIC
   lcd.c.o                                      0    266      0
   spi.c.o                                      1     63      0
   timer.c.o                                    1     61      2
-  elevator.c.o                                33    458      6
-  CAN.c.o                                      0    148      2
+  elevator.c.o                                33    468      6
+  CAN.c.o                                      0    237      2
   FIFO.c.o                                     4     62      0
   other                                      256     12      9
 
@@ -672,15 +675,15 @@ SECTION: ".text"
   main _heapcrash_ vprintf _out deposit_char vsprintf abs malloc free 
   configureLCD LCDdata LCDcmd LCDputs LCDprintf configureSPI putcSPI writeDAC 
   configureTimer msDelay timerOverflowHandler get_overflowCount 
-  configureElevator set_distance set_enable get_floor timer0Handler 
-  timer3Handler timer5Handler configureCAN RxHandlerCAN IsQueueEmpty AddToQueue 
-  DeQueue 
+  configureElevator set_distance set_enable get_enable get_floor timer0Handler 
+  timer3Handler timer5Handler configureCAN TxCAN RxHandlerCAN IsQueueEmpty 
+  AddToQueue DeQueue 
 SECTION: ".data"
   gainP gainI distance_sp 
 SECTION: ".bss"
-  message enable_req floor_req pbuf heap_end free_ptr temp.1 overflowCount 
-  errorI motor_sp_A motor_sp_B enable edge1 edge2 edge1ovf edge2ovf pulse_width 
-  distance error motor_sp_calc 
+  message enable_req floor_req TxData pbuf heap_end free_ptr temp.1 
+  overflowCount errorI motor_sp_A motor_sp_B enable edge1 edge2 edge1ovf 
+  edge2ovf pulse_width distance error motor_sp_calc 
 SECTION: ".init"
   Init _Startup 
 SECTION: ".rodata"
@@ -1276,11 +1279,11 @@ OBJECT LIST SORTED BY ADDRESS
      _CANBTR1                                   143       1       1       1   .abs_section_143
      _CANRFLG                                   144       1       1       2   .abs_section_144
      _CANRIER                                   145       1       1       1   .abs_section_145
-     _CANTFLG                                   146       1       1       0   .abs_section_146
+     _CANTFLG                                   146       1       1       4   .abs_section_146
      _CANTIER                                   147       1       1       0   .abs_section_147
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
-     _CANTBSEL                                  14A       1       1       0   .abs_section_14a
+     _CANTBSEL                                  14A       1       1       2   .abs_section_14a
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
@@ -1314,11 +1317,11 @@ OBJECT LIST SORTED BY ADDRESS
      _CANRXDSR7                                 16B       1       1       0   .abs_section_16b
      _CANRXDLR                                  16C       1       1       1   .abs_section_16c
      _CANRXTSR                                  16E       2       2       0   .abs_section_16e
-     _CANTXIDR0                                 170       1       1       0   .abs_section_170
+     _CANTXIDR0                                 170       1       1       2   .abs_section_170
      _CANTXIDR1                                 171       1       1       0   .abs_section_171
      _CANTXIDR2                                 172       1       1       0   .abs_section_172
      _CANTXIDR3                                 173       1       1       0   .abs_section_173
-     _CANTXDSR0                                 174       1       1       0   .abs_section_174
+     _CANTXDSR0                                 174       1       1       1   .abs_section_174
      _CANTXDSR1                                 175       1       1       0   .abs_section_175
      _CANTXDSR2                                 176       1       1       0   .abs_section_176
      _CANTXDSR3                                 177       1       1       0   .abs_section_177
@@ -1326,8 +1329,8 @@ OBJECT LIST SORTED BY ADDRESS
      _CANTXDSR5                                 179       1       1       0   .abs_section_179
      _CANTXDSR6                                 17A       1       1       0   .abs_section_17a
      _CANTXDSR7                                 17B       1       1       0   .abs_section_17b
-     _CANTXDLR                                  17C       1       1       0   .abs_section_17c
-     _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
+     _CANTXDLR                                  17C       1       1       1   .abs_section_17c
+     _CANTXTBPR                                 17D       1       1       1   .abs_section_17d
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
      _PTT                                       240       1       1       2   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
@@ -1378,76 +1381,79 @@ OBJECT LIST SORTED BY ADDRESS
      message                                    903       2       2       3   .bss        
      enable_req                                 905       1       1       3   .bss        
      floor_req                                  906       1       1       3   .bss        
-     pbuf                                       907       6       6      15   .bss        
-     heap_end                                   90D       2       2       3   .bss        
-     free_ptr                                   90F       2       2       8   .bss        
-     temp.1                                     911       1       1       1   .bss        
-     overflowCount                              912       1       1       2   .bss        
-     errorI                                     913       4       4       6   .bss        
-     motor_sp_A                                 917       1       1       3   .bss        
-     motor_sp_B                                 918       1       1       3   .bss        
-     enable                                     919       1       1       2   .bss        
-     edge1                                      91A       4       4       5   .bss        
-     edge2                                      91E       4       4       4   .bss        
-     edge1ovf                                   922       1       1       2   .bss        
-     edge2ovf                                   923       1       1       1   .bss        
-     pulse_width                                924       4       4       2   .bss        
-     distance                                   928       1       1       5   .bss        
-     error                                      929       4       4       3   .bss        
-     motor_sp_calc                              92D       4       4      11   .bss        
-     _heap_                                     931      64     100       2   HEAP_SEGMENT
-     pHead                                      995       2       2       5   .common     
-     pTail                                      997       2       2       2   .common     
+     TxData                                     907       1       1       2   .bss        
+     pbuf                                       908       6       6      15   .bss        
+     heap_end                                   90E       2       2       3   .bss        
+     free_ptr                                   910       2       2       8   .bss        
+     temp.1                                     912       1       1       1   .bss        
+     overflowCount                              913       1       1       2   .bss        
+     errorI                                     914       4       4       6   .bss        
+     motor_sp_A                                 918       1       1       3   .bss        
+     motor_sp_B                                 919       1       1       3   .bss        
+     enable                                     91A       1       1       3   .bss        
+     edge1                                      91B       4       4       5   .bss        
+     edge2                                      91F       4       4       4   .bss        
+     edge1ovf                                   923       1       1       2   .bss        
+     edge2ovf                                   924       1       1       1   .bss        
+     pulse_width                                925       4       4       2   .bss        
+     distance                                   929       1       1       5   .bss        
+     error                                      92A       4       4       3   .bss        
+     motor_sp_calc                              92E       4       4      11   .bss        
+     _heap_                                     932      64     100       2   HEAP_SEGMENT
+     pHead                                      996       2       2       5   .common     
+     pTail                                      998       2       2       2   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      pow10                                     C03B      28      40       4   .rodata     
      pow16                                     C063      20      32       4   .rodata     
      pow8                                      C083      2C      44       4   .rodata     
      STRING.Ena...u.Req...u.Floo.1             C0AF      1A      26       1   .rodata1    
-     main                                      C0C9      B7     183       1   .text       
-     _heapcrash_                               C180       C      12       3   .text       
-     vprintf                                   C18C     478    1144      49   .text       
-     _out                                      C604       C      12       9   .text       
-     deposit_char                              C610       F      15       1   .text       
-     vsprintf                                  C61F      29      41       1   .text       
-     abs                                       C648       A      10       2   .text       
-     malloc                                    C652      A5     165       2   .text       
-     free                                      C6F7      C4     196       3   .text       
-     configureLCD                              C7BB      59      89       1   .text       
-     LCDdata                                   C814      36      54       1   .text       
-     LCDcmd                                    C84A      36      54       7   .text       
-     LCDputs                                   C880      29      41       1   .text       
-     LCDprintf                                 C8A9      1C      28       1   .text       
-     configureSPI                              C8C5       F      15       1   .text       
-     putcSPI                                   C8D4      14      20       2   .text       
-     writeDAC                                  C8E8      1C      28       4   .text       
-     configureTimer                            C904       8       8       1   .text       
-     msDelay                                   C90C      2B      43       6   .text       
-     timerOverflowHandler                      C937       6       6       1   .text       
-     get_overflowCount                         C93D       4       4       2   .text       
-     configureElevator                         C941      38      56       1   .text       
-     set_distance                              C979       8       8       1   .text       
-     set_enable                                C981       8       8       1   .text       
-     get_floor                                 C989      26      38       1   .text       
-     timer0Handler                             C9AF      6D     109       1   .text       
-     timer3Handler                             CA1C      14      20       1   .text       
-     timer5Handler                             CA30      DB     219       1   .text       
-     configureCAN                              CB0B      31      49       1   .text       
-     RxHandlerCAN                              CB3C      63      99       1   .text       
-     IsQueueEmpty                              CB9F       B      11       3   .text       
-     AddToQueue                                CBAA      1E      30       1   .text       
-     DeQueue                                   CBC8      15      21       1   .text       
-     _LCMP_P                                   CBDD      15      21       3   RUNTIME     
-     _LNEG                                     CBF2       D      13       2   RUNTIME     
-     _LMULS16x32                               CBFF      1F      31       1   RUNTIME     
-     _lDivMod                                  CC1E      BE     190       3   RUNTIME     
-     _LDIVU                                    CCDC       E      14       1   RUNTIME     
-     _NEG_P                                    CCEA       F      15       4   RUNTIME     
-     _LDIVS                                    CCF9      35      53       1   RUNTIME     
-     _ILSEXT                                   CD2E       7       7       4   RUNTIME     
-     _CASE_DIRECT_BYTE                         CD35       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            CD3A      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       CD51      1A      26       1   RUNTIME     
+     main                                      C0C9      D7     215       2   .text       
+     _heapcrash_                               C1A0       C      12       3   .text       
+     vprintf                                   C1AC     478    1144      49   .text       
+     _out                                      C624       C      12       9   .text       
+     deposit_char                              C630       F      15       1   .text       
+     vsprintf                                  C63F      29      41       1   .text       
+     abs                                       C668       A      10       2   .text       
+     malloc                                    C672      A5     165       2   .text       
+     free                                      C717      C4     196       3   .text       
+     configureLCD                              C7DB      59      89       1   .text       
+     LCDdata                                   C834      36      54       1   .text       
+     LCDcmd                                    C86A      36      54       7   .text       
+     LCDputs                                   C8A0      29      41       1   .text       
+     LCDprintf                                 C8C9      1C      28       1   .text       
+     configureSPI                              C8E5       F      15       1   .text       
+     putcSPI                                   C8F4      14      20       2   .text       
+     writeDAC                                  C908      1C      28       4   .text       
+     configureTimer                            C924       8       8       1   .text       
+     msDelay                                   C92C      2B      43       6   .text       
+     timerOverflowHandler                      C957       6       6       1   .text       
+     get_overflowCount                         C95D       4       4       2   .text       
+     configureElevator                         C961      38      56       1   .text       
+     set_distance                              C999       8       8       1   .text       
+     set_enable                                C9A1       8       8       1   .text       
+     get_enable                                C9A9       A      10       1   .text       
+     get_floor                                 C9B3      26      38       2   .text       
+     timer0Handler                             C9D9      6D     109       1   .text       
+     timer3Handler                             CA46      14      20       1   .text       
+     timer5Handler                             CA5A      DB     219       1   .text       
+     configureCAN                              CB35      31      49       1   .text       
+     TxCAN                                     CB66      59      89       1   .text       
+     RxHandlerCAN                              CBBF      63      99       1   .text       
+     IsQueueEmpty                              CC22       B      11       3   .text       
+     AddToQueue                                CC2D      1E      30       1   .text       
+     DeQueue                                   CC4B      15      21       1   .text       
+     _LCMP_P                                   CC60      15      21       3   RUNTIME     
+     _LNEG                                     CC75       D      13       2   RUNTIME     
+     _LMULS16x32                               CC82      1F      31       1   RUNTIME     
+     _lDivMod                                  CCA1      BE     190       3   RUNTIME     
+     _LDIVU                                    CD5F       E      14       1   RUNTIME     
+     _NEG_P                                    CD6D       F      15       4   RUNTIME     
+     _LDIVS                                    CD7C      35      53       1   RUNTIME     
+     _ILSEXT                                   CDB1       7       7       4   RUNTIME     
+     _CASE_DIRECT_BYTE                         CDB8       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            CDBD      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       CDD4      1A      26       1   RUNTIME     
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
      _Vector_13                                FFE4       2       2       0   .abs_section_ffe4
@@ -1476,9 +1482,7 @@ spi.c.o:
 timer.c.o:
   usDelay 
 elevator.c.o:
-  get_distance get_enable 
-CAN.c.o:
-  TxCAN 
+  get_distance 
 FIFO.c.o:
   InitQueue 
 NOT USED VARIABLES
@@ -1490,19 +1494,19 @@ rtshc12.c.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xCD6B ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xCDEE ---- SIZE       4 ---
 Filling bytes inserted
  00030900
-------- ROM-ADDRESS: 0xCD6F ---- RAM-ADDRESS: 0x900 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xCDF2 ---- RAM-ADDRESS: 0x900 ---- SIZE       1 ---
 Name of initialized Object : gainP
  03
-------- ROM-ADDRESS: 0xCD70 ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xCDF3 ---- RAM-ADDRESS: 0x901 ---- SIZE       1 ---
 Name of initialized Object : gainI
  01
-------- ROM-ADDRESS: 0xCD71 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xCDF4 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
 Name of initialized Object : distance_sp
  64
-------- ROM-ADDRESS: 0xCD72 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xCDF5 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1516,7 +1520,7 @@ main                      USES _DDRAB _PORTAB configureTimer configureLCD
                                 _CANCTL0 _CANRFLG _CANRIER get_floor floor_req 
                                 enable_req STRING.Ena...u.Req...u.Floo.1 LCDprintf 
                                 IsQueueEmpty DeQueue message set_distance set_enable free 
-                                msDelay 
+                                get_enable TxData TxCAN msDelay main 
 vprintf                   USES vprintf _out _CASE_SEARCH_8_BYTE 
                                 _CASE_DIRECT_BYTE _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P 
                                 pow16 pow10 
@@ -1541,6 +1545,7 @@ configureElevator         USES _TIOS _TCTL4 _TCTL1 _CFORC _TCNT _TC3 _TC5 _TIE
                                 _TFLG1 
 set_distance              USES distance_sp 
 set_enable                USES enable 
+get_enable                USES enable 
 get_floor                 USES distance 
 timer0Handler             USES _PTT _TC0 edge1 get_overflowCount edge1ovf 
                                 edge2 edge2ovf _ILSEXT pulse_width _LDIVU distance 
@@ -1550,6 +1555,8 @@ timer5Handler             USES enable distance_sp distance _ILSEXT error
                                 abs motor_sp_A motor_sp_B writeDAC _TCNT _TC5 
 configureCAN              USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
                                 _CANIDAR0 _CANIDMR0 _CANIDAR1 _CANIDMR1 
+TxCAN                     USES _CANTFLG _CANTBSEL _CANTXIDR0 _CANTXDSR0 
+                                _CANTXDLR _CANTXTBPR 
 RxHandlerCAN              USES malloc _CANRXIDR0 _CANRXIDR1 _CANRXDLR 
                                 _CANRXDSR0 AddToQueue _CANRFLG 
 IsQueueEmpty              USES pHead 
@@ -1639,6 +1646,10 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- _heapcrash_         
  |  |       
+ |  +- get_enable          
+ |  |    
+ |  +- TxCAN               
+ |  |    
  |  +- msDelay              (see above)
  |     
  +- _Startup            
@@ -1705,6 +1716,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 11
-Total size of all blocks to be downloaded: 3456
+Number of blocks to be downloaded: 12
+Total size of all blocks to be downloaded: 3587
 
