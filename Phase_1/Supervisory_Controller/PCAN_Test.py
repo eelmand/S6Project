@@ -15,12 +15,11 @@ else:
 	print "PCAN USB Initialized"
 
 
-# Infinite loop of reading CAN messages
-for i in range(0,3):
-	sleep(1)
+# Infinite loop of reading CAN messages & keyboard input
+while true:
 	message = PCANBasic.Read(PCAN, PCAN_USBBUS1)
 
-	if message[1].ID > 1:
+	if message[1].ID > 1:	# For some reason .Read returns ID of 1 when no messages present...
 		print "Received CAN Message"
 		print "ID: ",format(message[1].ID, '02x')
 		print "DLC: ", message[1].LEN
@@ -30,6 +29,8 @@ for i in range(0,3):
 			print "Byte ", j, ": ", message[1].DATA[j]
 	else:
 		print "No messages"
+
+
 
 status = PCANBasic.Uninitialize(PCAN, PCAN_USBBUS1)
 if status > 0:
