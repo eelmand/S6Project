@@ -15,5 +15,5 @@
 void configureTimer(void) {
 	TSCR1 = TSCR1_INIT; // Turn on timer module
 	TSCR2 = TSCR2_INIT; // Set pre-scaler to 6 for a Timer Overflow of 524 ms (1/(8MHz clock / 64 prescaler) * 2^16 counts)
-	TFLG2 = 0x80; // Clear the Timer Overflow Flag
+	TFLG2 = TOF_CLR; // Clear the Timer Overflow Flag
 }

@@ -7,6 +7,7 @@
 // Timer configuration parameters
 #define TSCR1_INIT 0b10000000	// Turn on timer module
 #define TSCR2_INIT 0b10000110	// Set pre-scaler to 6 for 
+#define TOF_CLR 0x80 // Clear the Timer Overflow Flag
 
 // Function prototypes
 void configureTimer(void);

@@ -19,8 +19,8 @@ ALLOC.C.o (ansisi.lib)                  Model: SMALL,         Lang: ANSI-C
 floor_controller.c.o                    Model: SMALL,         Lang: ANSI-C
 timer.c.o                               Model: SMALL,         Lang: ANSI-C
 main.c.o                                Model: SMALL,         Lang: ANSI-C
-CAN.c.o                                 Model: SMALL,         Lang: ANSI-C
 FIFO.c.o                                Model: SMALL,         Lang: ANSI-C
+CAN.c.o                                 Model: SMALL,         Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -30,7 +30,7 @@ _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0x900     109
-  _Copy    *toCopyDownBeg 0xC3BE
+  _Copy    *toCopyDownBeg 0xC3EE
 } _startupData;
 
 *********************************************************************************************
@@ -39,8 +39,8 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            899     R     0xC03B     0xC3BD   ROM_C000
-.copy                              2     R     0xC3BE     0xC3BF   ROM_C000
+.text                            947     R     0xC03B     0xC3ED   ROM_C000
+.copy                              2     R     0xC3EE     0xC3EF   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -271,7 +271,7 @@ HEAP_SEGMENT                     100   R/W      0x905      0x968   RAM
 .vectSeg223_vect                   2     R     0xFFFE     0xFFFF   .vectSeg223
 
 Summary of section sizes per section type:
-READ_ONLY (R):         3C6 (dec:      966)
+READ_ONLY (R):         3F6 (dec:     1014)
 READ_WRITE (R/W):      16D (dec:      365)
 NO_INIT (N/I):         104 (dec:      260)
 
@@ -384,8 +384,8 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       1   .abs_section_150
-     _CANIDAR1                                  151       1       1       1   .abs_section_151
+     _CANIDAR0                                  150       1       1       2   .abs_section_150
+     _CANIDAR1                                  151       1       1       2   .abs_section_151
      _CANIDAR2                                  152       1       1       0   .abs_section_152
      _CANIDAR3                                  153       1       1       0   .abs_section_153
      _CANIDMR0                                  154       1       1       1   .abs_section_154
@@ -540,27 +540,27 @@ MODULE:                 -- timer.c.o --
 - VARIABLES:
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C1F9      73     115       1   .text       
-     TX_CAN                                    C26C      1E      30       1   .text       
+     main                                      C1F9      77     119       1   .text       
+     TX_CAN                                    C270      1F      31       1   .text       
 - VARIABLES:
      txbuff                                     904       1       1       3   .bss        
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
-MODULE:                 -- CAN.c.o --
-- PROCEDURES:
-     configureCAN                              C28A      31      49       1   .text       
-     TxCAN                                     C2BB      59      89       1   .text       
-     RxHandlerCAN                              C314      63      99       1   .text       
-- VARIABLES:
-     _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 MODULE:                 -- FIFO.c.o --
 - PROCEDURES:
-     InitQueue                                 C377       9       9       1   .text       
-     IsQueueEmpty                              C380       B      11       3   .text       
-     AddToQueue                                C38B      1E      30       1   .text       
-     DeQueue                                   C3A9      15      21       1   .text       
+     InitQueue                                 C28F       9       9       1   .text       
+     IsQueueEmpty                              C298       B      11       3   .text       
+     AddToQueue                                C2A3      1E      30       1   .text       
+     DeQueue                                   C2C1      15      21       1   .text       
 - VARIABLES:
      pHead                                      969       2       2       6   .common     
      pTail                                      96B       2       2       3   .common     
+MODULE:                 -- CAN.c.o --
+- PROCEDURES:
+     configureCAN                              C2D6      5C      92       1   .text       
+     TxCAN                                     C332      59      89       1   .text       
+     RxHandlerCAN                              C38B      63      99       1   .text       
+- VARIABLES:
+     _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -572,9 +572,9 @@ MODULE STATISTIC
   ALLOC.C.o (ansisi.lib)                       4    361      0
   floor_controller.c.o                         0     63      0
   timer.c.o                                    0     10      0
-  main.c.o                                     1    145      2
-  CAN.c.o                                      0    237      2
+  main.c.o                                     1    150      2
   FIFO.c.o                                     4     71      0
+  CAN.c.o                                      0    280      2
   other                                      256     12      2
 
 *********************************************************************************************
@@ -582,8 +582,8 @@ SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
   _heapcrash_ malloc free initFloorController updateFloorLed configureTimer 
-  main TX_CAN configureCAN TxCAN RxHandlerCAN InitQueue IsQueueEmpty AddToQueue 
-  DeQueue 
+  main TX_CAN InitQueue IsQueueEmpty AddToQueue DeQueue configureCAN TxCAN 
+  RxHandlerCAN 
 SECTION: ".bss"
   heap_end free_ptr txbuff 
 SECTION: ".init"
@@ -1176,8 +1176,8 @@ OBJECT LIST SORTED BY ADDRESS
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       1   .abs_section_150
-     _CANIDAR1                                  151       1       1       1   .abs_section_151
+     _CANIDAR0                                  150       1       1       2   .abs_section_150
+     _CANIDAR1                                  151       1       1       2   .abs_section_151
      _CANIDAR2                                  152       1       1       0   .abs_section_152
      _CANIDAR3                                  153       1       1       0   .abs_section_153
      _CANIDMR0                                  154       1       1       1   .abs_section_154
@@ -1278,15 +1278,15 @@ OBJECT LIST SORTED BY ADDRESS
      initFloorController                       C1B0      12      18       1   .text       
      updateFloorLed                            C1C2      2D      45       1   .text       
      configureTimer                            C1EF       A      10       1   .text       
-     main                                      C1F9      73     115       1   .text       
-     TX_CAN                                    C26C      1E      30       1   .text       
-     configureCAN                              C28A      31      49       1   .text       
-     TxCAN                                     C2BB      59      89       1   .text       
-     RxHandlerCAN                              C314      63      99       1   .text       
-     InitQueue                                 C377       9       9       1   .text       
-     IsQueueEmpty                              C380       B      11       3   .text       
-     AddToQueue                                C38B      1E      30       1   .text       
-     DeQueue                                   C3A9      15      21       1   .text       
+     main                                      C1F9      77     119       1   .text       
+     TX_CAN                                    C270      1F      31       1   .text       
+     InitQueue                                 C28F       9       9       1   .text       
+     IsQueueEmpty                              C298       B      11       3   .text       
+     AddToQueue                                C2A3      1E      30       1   .text       
+     DeQueue                                   C2C1      15      21       1   .text       
+     configureCAN                              C2D6      5C      92       1   .text       
+     TxCAN                                     C332      59      89       1   .text       
+     RxHandlerCAN                              C38B      63      99       1   .text       
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
 
@@ -1300,7 +1300,7 @@ ALLOC.C.o (ansisi.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC3BE ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC3EE ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1318,16 +1318,16 @@ main                      USES configureCAN configureTimer _DDRS InitQueue
                                 initFloorController _PTS _CANCTL0 _CANRFLG _CANRIER IsQueueEmpty 
                                 DeQueue updateFloorLed txbuff _PTT free _PTIT 
 TX_CAN                    USES txbuff TxCAN _TFLG2 _PTS 
-configureCAN              USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
-                                _CANIDAR0 _CANIDMR0 _CANIDAR1 _CANIDMR1 
-TxCAN                     USES _CANTFLG _CANTBSEL _CANTXIDR0 _CANTXDSR0 
-                                _CANTXDLR _CANTXTBPR 
-RxHandlerCAN              USES malloc _CANRXIDR0 _CANRXIDR1 _CANRXDLR 
-                                _CANRXDSR0 AddToQueue _CANRFLG 
 InitQueue                 USES pHead pTail 
 IsQueueEmpty              USES pHead 
 AddToQueue                USES IsQueueEmpty pHead pTail 
 DeQueue                   USES IsQueueEmpty pHead 
+configureCAN              USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
+                                _CANIDMR0 _CANIDMR1 _CANIDAR0 _CANIDAR1 
+TxCAN                     USES _CANTFLG _CANTBSEL _CANTXIDR0 _CANTXDSR0 
+                                _CANTXDLR _CANTXTBPR 
+RxHandlerCAN              USES malloc _CANRXIDR0 _CANRXIDR1 _CANRXDLR 
+                                _CANRXDSR0 AddToQueue _CANRFLG 
 _Vector_38                USES RxHandlerCAN 
 _Vector_16                USES TX_CAN 
 
@@ -1389,5 +1389,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 966
+Total size of all blocks to be downloaded: 1014
 
