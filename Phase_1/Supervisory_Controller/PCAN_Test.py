@@ -96,14 +96,14 @@ def Rx_CAN(device):
 	message = PCANBasic.Read(PCAN, PCAN_USBBUS1)
 
 	# Keep reading messages until there aren't any more
-	while message[1].ID > 1:
-		if message[1].ID > 1:
-			
-			# Process EC_Status message
-			if message[1].ID == 0x101:
-				floor_status = message[1].DATA[0] & 3			# Bit mask hardcoded which is shitty
-				enable_status = ((message[1].DATA[0] & 4) >> 2)	# Same here
-				message = PCANBasic.Read(PCAN, PCAN_USBBUS1)		
+	#while message[1].ID > 1:
+	if message[1].ID > 1:
+		
+		# Process EC_Status message
+		if message[1].ID == 0x101:
+			floor_status = message[1].DATA[0] & 3			# Bit mask hardcoded which is shitty
+			enable_status = ((message[1].DATA[0] & 4) >> 2)	# Same here
+			message = PCANBasic.Read(PCAN, PCAN_USBBUS1)		
 ## end of method
 
 
@@ -142,6 +142,9 @@ def main():
 			line = sys.stdin.readline()
 			if line:
 				process_input()
+			else: 
+				print('eof')
+				exit(0)
 		else:
 			Rx_CAN(PCAN)
 	  		update_display()
