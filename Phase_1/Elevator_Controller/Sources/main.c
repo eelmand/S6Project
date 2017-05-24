@@ -21,7 +21,7 @@ void main(void) {
   configureLCD();
   configureElevator();
   configureSPI();
-  configureCAN();
+  configureCAN(ELEVATOR_CONTROLLER);
   CONFIGURE_LEDS;
   LED1_ON;
   LED2_OFF;
@@ -70,11 +70,12 @@ void main(void) {
       TOGGLE_LEDS;    
     }
   
-    // Transmit status message
+    // Transmit status message, 2Hz is plenty fast enough
     TxData = (get_enable() | get_floor());
     TxCAN(ST_ID_101, 0x00, 0x01, &TxData);
     
-    msDelay(100);
+    msDelay(250);
+    msDelay(250);
     
   } /* loop forever */
   /* please make sure that you never leave main */
