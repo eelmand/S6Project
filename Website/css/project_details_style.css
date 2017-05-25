@@ -13,5 +13,5 @@ p, ul, ol {line-height: 20px; text-align: justify;}
 img {height: 300px}
 figcaption {text-align: center; font-style: italic; font-size: 90%}
 
-.mkunderlined {font-style: underline}
-.mkbold {font-style: bold}
+.mkunderlined {text-decoration: underline}
+.mkbold {font-weight: bold}
