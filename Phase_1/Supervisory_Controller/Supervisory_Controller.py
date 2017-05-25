@@ -70,9 +70,19 @@ f3_call_req = 0 				# Value of request bit from Floor Controller 3
 # Car Controller Data
 cc_floor_req = 0 				# Floor number requested from Car Controller
 cc_door_state = 0 				# Door state reported from Car Controller, init to 0 (open)
+cc_door_open = 0
+cc_door_closed = 1
 
 # Remote Interface Data
 remote_floor_req = 0 			# Floor number requested from Remote Operator
+
+# State machine data
+sm_floor_req = 0 				# Floor request input to the state machine
+sm_state = 0 					# State machine current state
+sm_state_values = ["CAR NOT MOVING", "REQUEST NEW FLOOR", "CAR MOVING"]
+sm_state_car_not_moving = 0
+sm_state_request_new_floor = 1
+sm_state_car_moving = 2
 
 
 ##############################################################################################
@@ -118,11 +128,9 @@ def Uninit_PCAN(device):
 ##
 def process_input():
 	print "Elevator Command Input"
-	global sc_floor_cmd
-	global sc_enable
+	global remote_floor_req
 
-	sc_floor_cmd = input("Enter floor number:")
-	sc_enable = input("Enter enable value:")			
+	remote_floor_req = input("Enter floor number:")		
 ## end of method
 
 
@@ -137,6 +145,12 @@ def update_display():
 	global ec_state
 	
 	os.system('clear')	# Clear screen
+
+	# Display current state
+	print "STATE: ", sm_state_values[sm_state]
+	print "SM_FLOOR_REQ: ", sm_floor_req
+	print ""
+
 
 	# Print data nicely https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
 	header = ["Signal", "Value"]
@@ -227,6 +241,81 @@ def Tx_EC_Cmd(device):
 ## end of method
 
 
+##
+## Calc_Floor_Req()
+## Logic for determining what floor to request
+## Priority (highest to lowest): Remote request, car controller request, floor controller request
+## See: S6Project/Phase_1/Supervisory_Controller_State_Machine.pdf
+##
+def Calc_Floor_Req():
+	global sm_floor_req
+	global remote_floor_req
+	global cc_floor_req
+	global f1_call_req
+	global f2_call_req
+	global f3_call_req
+
+	if remote_floor_req > 0:
+		sm_floor_req = remote_floor_req
+		remote_floor_req = 0
+	elif cc_floor_req > 0:
+		sm_floor_req = cc_floor_req
+	elif f1_call_req > 0:
+		sm_floor_req = 1
+	elif f2_call_req > 0:
+		sm_floor_req = 2
+	elif f3_call_req > 0:
+		sm_floor_req = 3
+## end of method
+
+
+##
+## Calc_State():
+## Main state machine
+## See: S6Project/Phase_1/Supervisory_Controller_State_Machine.pdf
+##
+def Calc_State():
+	global sm_state
+	global sm_floor_req
+	global remote_floor_req
+	global cc_door_state
+	global ec_car_pos
+	global sc_enable
+	global sc_floor_cmd
+
+	# Note: Data is set on exit of a state
+
+	# Car not moving state (init)
+	if sm_state == sm_state_car_not_moving:
+		if (ec_car_pos != sm_floor_req) and (sm_floor_req > 0):# and (cc_door_state == cc_door_closed):
+			sc_enable = 1
+			sc_floor_cmd = sm_floor_req
+			sm_state = sm_state_request_new_floor
+
+	# Request new floor state
+	if sm_state == sm_state_request_new_floor:
+		if (ec_car_pos == 0):					# Wait for car to start moving
+			sm_state = sm_state_car_moving
+		if (ec_car_pos == sm_floor_req):		# Handle case where car movement happens super fast
+			sc_enable = 0
+			sc_floor_cmd = 0
+			sm_state = sm_state_car_not_moving
+
+	# Car moving state
+	if sm_state == sm_state_car_moving:
+		if (ec_car_pos == sm_floor_req):# and (cc_door_state == cc_door_open):
+			sc_enable = 0
+			sc_floor_cmd = 0
+			sm_state = sm_state_car_not_moving
+		elif (remote_floor_req > 0):
+			sc_enable = 1
+			sc_floor_cmd = remote_floor_req
+			sm_state = sm_state_request_new_floor
+	
+
+
+## end of method
+
 ## 
 ## main()
 ##
@@ -246,6 +335,8 @@ def main():
 				exit(0)
 		else:
 			Rx_CAN(PCAN)
+			Calc_Floor_Req()
+			Calc_State()
 	  		update_display()
 	  		Tx_EC_Cmd(PCAN)
 	  		sleep(0.5)  
