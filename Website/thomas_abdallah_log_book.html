@@ -49,6 +49,27 @@
 				</ul>
 			</ul>
 		</ul>
+		<h2>Week3</h2>
+		<ul>
+			<li>Finished elevator controller implementation</li>
+			<ul>
+				<li>Using input-capture to measure ultrasonic sensor distance and convert to 'floor number'</li>
+				<li>Using SPI controlled DAC to control motor voltage</li>
+				<li>Closed loop (PI) controller implemented based on floor request</li>
+				<li>Fully validated - code frozen and ready for entire class to use</li>
+			</ul>
+			<li>Installed PCAN Linux drivers</li>
+			<ul>
+				<li><a href= "http://www.peak-system.com/forum/viewtopic.php?f=59&t=256">This is not straight forward</a></li>
+				<li>Drivers do not stay installed after rebooting Virtual Machine - okay for now</li>
+			</ul>
+			<li>Installed PCAN Basic API (Python and C++ support)</li>
+			<li>Started playing with PCAN Basic API in Python to initialize and Tx/Rx messages</li>
+			<li>Implemented a basic "SC" Python script that just sends commands to EC and prints out status stuff</li>
+			<li><a href= "https://eelmand.github.io/S6Project/Website/about.html#sc_state_machine">Designed state machine for SC</a></li>
+			<li>Implemented State Machine in Python - Supervisory Controller fully functional</li>
+			<li>Worked with David to build 2 more floor controllers and set up a table for our CAN network testing</li>
+			<li>Started testing complete CAN network (simulating Car Controller with USB to CAN device)</li>
 		<p><a href="thomas_abdallah_log_book.html#top">To Top</a></p>
 		<p><a href="index.html">Home</a></p>
 	</body>

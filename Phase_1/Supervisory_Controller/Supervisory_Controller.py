@@ -254,17 +254,18 @@ def Calc_Floor_Req():
 	global f1_call_req
 	global f2_call_req
 	global f3_call_req
+	global cc_door_state
 
 	if remote_floor_req > 0:
 		sm_floor_req = remote_floor_req
 		remote_floor_req = 0
-	elif cc_floor_req > 0:
+	elif (cc_floor_req > 0) and (cc_door_state == cc_door_open):
 		sm_floor_req = cc_floor_req
-	elif f1_call_req > 0:
+	elif (f1_call_req > 0) and (cc_door_state == cc_door_open):
 		sm_floor_req = 1
-	elif f2_call_req > 0:
+	elif (f2_call_req > 0) and (cc_door_state == cc_door_open):
 		sm_floor_req = 2
-	elif f3_call_req > 0:
+	elif (f3_call_req > 0) and (cc_door_state == cc_door_open):
 		sm_floor_req = 3
 ## end of method
 
@@ -287,7 +288,7 @@ def Calc_State():
 
 	# Car not moving state (init)
 	if sm_state == sm_state_car_not_moving:
-		if (ec_car_pos != sm_floor_req) and (sm_floor_req > 0):# and (cc_door_state == cc_door_closed):
+		if (ec_car_pos != sm_floor_req) and (sm_floor_req > 0) and (cc_door_state == cc_door_closed):
 			sc_enable = 1
 			sc_floor_cmd = sm_floor_req
 			sm_state = sm_state_request_new_floor
@@ -303,7 +304,7 @@ def Calc_State():
 
 	# Car moving state
 	if sm_state == sm_state_car_moving:
-		if (ec_car_pos == sm_floor_req):# and (cc_door_state == cc_door_open):
+		if (ec_car_pos == sm_floor_req) and (cc_door_state == cc_door_open):
 			sc_enable = 0
 			sc_floor_cmd = 0
 			sm_state = sm_state_car_not_moving
