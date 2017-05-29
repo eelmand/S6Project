@@ -249,23 +249,23 @@ def Tx_EC_Cmd(device):
 ##
 def Calc_Floor_Req():
 	global sm_floor_req
+	global sm_state
 	global remote_floor_req
 	global cc_floor_req
 	global f1_call_req
 	global f2_call_req
 	global f3_call_req
-	global cc_door_state
 
 	if remote_floor_req > 0:
 		sm_floor_req = remote_floor_req
 		remote_floor_req = 0
-	elif (cc_floor_req > 0) and (cc_door_state == cc_door_open):
+	elif (cc_floor_req > 0) and (sm_state == sm_state_car_not_moving):
 		sm_floor_req = cc_floor_req
-	elif (f1_call_req > 0) and (cc_door_state == cc_door_open):
+	elif (f1_call_req > 0) and (sm_state == sm_state_car_not_moving):
 		sm_floor_req = 1
-	elif (f2_call_req > 0) and (cc_door_state == cc_door_open):
+	elif (f2_call_req > 0) and (sm_state == sm_state_car_not_moving):
 		sm_floor_req = 2
-	elif (f3_call_req > 0) and (cc_door_state == cc_door_open):
+	elif (f3_call_req > 0) and (sm_state == sm_state_car_not_moving):
 		sm_floor_req = 3
 ## end of method
 
