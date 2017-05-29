@@ -10,21 +10,19 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include "floor_controller.h"
 #include "TA_Header_S2017.h"  /* my macros and constants */
-#include "CAN.h"
 #include "timer.h"
 #include "FIFO.h"
-
-// Global variables
-unsigned char txbuff[1] = {0x00};
 
 //**************************************************************
 // main()
 //**************************************************************
 void main(void) {
-	unsigned char * message;
-	unsigned char floorNumber;
-	link pTemp = NULL;
+	unsigned char floorNumber = 0;
+	unsigned char doorStatus = 1;
+	unsigned long nodeID;
+	link message = NULL;
 	
+	// Based on the floor this controller is at, set appropriate filters
   	if(CONTROLLER_FLOOR == 1){
 		configureCAN(FLOOR_CONTROLLER_1);
 	}
@@ -34,7 +32,8 @@ void main(void) {
 	else if(CONTROLLER_FLOOR == 3){
 		configureCAN(FLOOR_CONTROLLER_3);
 	}
-		  
+	
+	// Setup functions	  
 	configureTimer();
 	CONFIGURE_LEDS;
 	InitQueue();
@@ -55,48 +54,20 @@ void main(void) {
 		} 
 		else 
 		{
-			pTemp = DeQueue();  // Grab a message from the Queue
-      		
-			message = pTemp->Data.DATA; // Get a pointer to the data of the message
-
-			if((*message & 0x04) != 0){ // Determine if elevator status enabled
-				floorNumber = (*message & 0x03); // Collect the floor position reported by elevator controller
-				// Check if the current floor is the one this controller is on
-	      updateFloorLed(floorNumber); // Update LEDs 
-	      if (floorNumber == CONTROLLER_FLOOR){
-		      txbuff[0] = 0x00; // No longer need to request car
-		      CLEAR_BITS(PTT, CALL_LED);
-	      }	
-			}
-			else{
-				// What behaviour should we have when the elevator is disabled? Thinking flashing LEDs
-			}
-
-			free(pTemp->Data.DATA); // Free the memory malloc'd for data
-			free(pTemp);            // Free the memory malloc'd for the node structure				   
+			message = DeQueue(); // Grab a message from the Queue
+      		nodeID = message->Data.ID; // Get the Node ID of the sender
+      		if(nodeID == CAR_CONTROLLER){
+      			doorStatus = *(message->Data.DATA) & DOOR_STATUS_BIT;
+      		}
+      		else if(nodeID == ELEVATOR_CONTROLLER){
+      			floorNumber = *(message->Data.DATA) & FLOOR_BITS; // Process floor status
+				    updateController(floorNumber, doorStatus);
+      		}
+			free(message->Data.DATA); // Free the memory malloc'd for data
+			free(message);            // Free the memory malloc'd for the node structure				   
 		}
-		
 		if((PTIT & CALL_BUTTON) == 0){ // If the elevator call button pressed
-			SET_BITS(PTT, CALL_LED); // Turn on elevator call LED
-			txbuff[0] = 0x01; // Request car
+			callElevator();
 		}		
 	}
-}
-
-//**************************************************************
-//    TX_CAN()
-// Interrupt handler for transmitting CAN status message
-//**************************************************************
-interrupt VectorNumber_Vtimovf void TX_CAN(void){	
-	if(CONTROLLER_FLOOR == 1){
-	  TxCAN(ST_ID_201, 0x00, sizeof(txbuff), txbuff);
-	}
-	else if(CONTROLLER_FLOOR == 2){
-	  TxCAN(ST_ID_202, 0x00, sizeof(txbuff), txbuff);
-	}
-	else if(CONTROLLER_FLOOR == 3){
-	  TxCAN(ST_ID_203, 0x00, sizeof(txbuff), txbuff); 
-	}
-	TFLG2 = TOF_CLR;
-	TOGGLE_LEDS;
 }

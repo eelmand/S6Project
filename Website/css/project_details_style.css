@@ -1,0 +1,17 @@
+/* 
+CSS Stylesheet for Project Details Page
+Author: Thomas Abdallah
+Date: 2017-05-25
+*/
+
+/* Font is Georgia with Serif as backup */
+body {font-family: Georgia, serif;}
+p {font-size: 100%; text-indent: 15px}
+h1 {font-size: 160%;}
+h2 {font-size: 125%;}
+p, ul, ol {line-height: 20px; text-align: justify;}
+img {height: 300px}
+figcaption {text-align: center; font-style: italic; font-size: 90%}
+
+.mkunderlined {text-decoration: underline}
+.mkbold {font-weight: bold}
