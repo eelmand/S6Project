@@ -29,8 +29,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     109
-  _Copy    *toCopyDownBeg 0xC3EE
+  _Range   pZeroOut       0x900     111
+  _Copy    *toCopyDownBeg 0xC45E
 } _startupData;
 
 *********************************************************************************************
@@ -39,8 +39,8 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            947     R     0xC03B     0xC3ED   ROM_C000
-.copy                              2     R     0xC3EE     0xC3EF   ROM_C000
+.text                           1059     R     0xC03B     0xC45D   ROM_C000
+.copy                              2     R     0xC45E     0xC45F   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -263,16 +263,17 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_fc                    2   N/I       0xFC       0xFD   .absSeg218
 .abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg219
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
-.abs_section_ffde                  2     R     0xFFDE     0xFFDF   .absSeg221
-.abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg222
-.bss                               5   R/W      0x900      0x904   RAM
-HEAP_SEGMENT                     100   R/W      0x905      0x968   RAM
-.common                            4   R/W      0x969      0x96C   RAM
-.vectSeg223_vect                   2     R     0xFFFE     0xFFFF   .vectSeg223
+.abs_section_ffe6                  2     R     0xFFE6     0xFFE7   .absSeg221
+.abs_section_ffde                  2     R     0xFFDE     0xFFDF   .absSeg222
+.abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg223
+.bss                               7   R/W      0x900      0x906   RAM
+HEAP_SEGMENT                     100   R/W      0x907      0x96A   RAM
+.common                            4   R/W      0x96B      0x96E   RAM
+.vectSeg224_vect                   2     R     0xFFFE     0xFFFF   .vectSeg224
 
 Summary of section sizes per section type:
-READ_ONLY (R):         3F6 (dec:     1014)
-READ_WRITE (R/W):      16D (dec:      365)
+READ_ONLY (R):         468 (dec:     1128)
+READ_WRITE (R/W):      16F (dec:      367)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
@@ -323,20 +324,20 @@ MODULE:                 -- mc9s12c32.c.o --
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       0   .abs_section_40
+     _TIOS                                       40       1       1       1   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
      _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
-     _TCTL1                                      48       1       1       0   .abs_section_48
+     _TCTL1                                      48       1       1       1   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TIE                                        4C       1       1       1   .abs_section_4c
      _TSCR2                                      4D       1       1       1   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
-     _TFLG2                                      4F       1       1       2   .abs_section_4f
+     _TFLG1                                      4E       1       1       1   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
      _ATDSTAT0                                   86       1       1       0   .abs_section_86
@@ -384,10 +385,10 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       2   .abs_section_150
-     _CANIDAR1                                  151       1       1       2   .abs_section_151
-     _CANIDAR2                                  152       1       1       0   .abs_section_152
-     _CANIDAR3                                  153       1       1       0   .abs_section_153
+     _CANIDAR0                                  150       1       1       3   .abs_section_150
+     _CANIDAR1                                  151       1       1       3   .abs_section_151
+     _CANIDAR2                                  152       1       1       1   .abs_section_152
+     _CANIDAR3                                  153       1       1       1   .abs_section_153
      _CANIDMR0                                  154       1       1       1   .abs_section_154
      _CANIDMR1                                  155       1       1       1   .abs_section_155
      _CANIDMR2                                  156       1       1       0   .abs_section_156
@@ -477,12 +478,12 @@ MODULE:                 -- mc9s12c32.c.o --
      _DBGCC                                      26       2       2       0   .abs_section_26
      _DBGCA                                      2B       2       2       0   .abs_section_2b
      _DBGCB                                      2E       2       2       0   .abs_section_2e
-     _TCNT                                       44       2       2       0   .abs_section_44
+     _TCNT                                       44       2       2       3   .abs_section_44
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
-     _TC4                                        58       2       2       0   .abs_section_58
+     _TC4                                        58       2       2       2   .abs_section_58
      _TC5                                        5A       2       2       0   .abs_section_5a
      _TC6                                        5C       2       2       0   .abs_section_5c
      _TC7                                        5E       2       2       0   .abs_section_5e
@@ -521,7 +522,7 @@ MODULE:                 -- HEAP.C.o (ansisi.lib) --
 - PROCEDURES:
      _heapcrash_                               C03B       C      12       3   .text       
 - VARIABLES:
-     _heap_                                     905      64     100       2   HEAP_SEGMENT
+     _heap_                                     907      64     100       2   HEAP_SEGMENT
 MODULE:                 -- ALLOC.C.o (ansisi.lib) --
 - PROCEDURES:
      malloc                                    C047      A5     165       2   .text       
@@ -531,34 +532,39 @@ MODULE:                 -- ALLOC.C.o (ansisi.lib) --
      free_ptr                                   902       2       2       8   .bss        
 MODULE:                 -- floor_controller.c.o --
 - PROCEDURES:
-     initFloorController                       C1B0      12      18       1   .text       
-     updateFloorLed                            C1C2      2D      45       1   .text       
+     initFloorController                       C1B0      25      37       1   .text       
+     updateController                          C1D5      43      67       1   .text       
+     callElevator                              C218       B      11       1   .text       
+     timer4Handler                             C223      32      50       1   .text       
 - VARIABLES:
+     CanTxBuffer                                904       1       1       3   .bss        
+     count                                      905       1       1       3   .bss        
+     _Vector_12                                FFE6       2       2       0   .abs_section_ffe6
 MODULE:                 -- timer.c.o --
 - PROCEDURES:
-     configureTimer                            C1EF       A      10       1   .text       
+     configureTimer                            C255       8       8       1   .text       
+     timerOverflowHandler                      C25D       6       6       1   .text       
 - VARIABLES:
+     overflowCount                              906       1       1       1   .bss        
+     _Vector_16                                FFDE       2       2       0   .abs_section_ffde
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C1F9      77     119       1   .text       
-     TX_CAN                                    C270      1F      31       1   .text       
+     main                                      C263      8C     140       1   .text       
 - VARIABLES:
-     txbuff                                     904       1       1       3   .bss        
-     _Vector_16                                FFDE       2       2       0   .abs_section_ffde
 MODULE:                 -- FIFO.c.o --
 - PROCEDURES:
-     InitQueue                                 C28F       9       9       1   .text       
-     IsQueueEmpty                              C298       B      11       3   .text       
-     AddToQueue                                C2A3      1E      30       1   .text       
-     DeQueue                                   C2C1      15      21       1   .text       
+     InitQueue                                 C2EF       9       9       1   .text       
+     IsQueueEmpty                              C2F8       B      11       3   .text       
+     AddToQueue                                C303      1E      30       1   .text       
+     DeQueue                                   C321      15      21       1   .text       
 - VARIABLES:
-     pHead                                      969       2       2       6   .common     
-     pTail                                      96B       2       2       3   .common     
+     pHead                                      96B       2       2       6   .common     
+     pTail                                      96D       2       2       3   .common     
 MODULE:                 -- CAN.c.o --
 - PROCEDURES:
-     configureCAN                              C2D6      5C      92       1   .text       
-     TxCAN                                     C332      59      89       1   .text       
-     RxHandlerCAN                              C38B      63      99       1   .text       
+     configureCAN                              C336      6C     108       1   .text       
+     TxCAN                                     C3A2      59      89       1   .text       
+     RxHandlerCAN                              C3FB      63      99       1   .text       
 - VARIABLES:
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 
@@ -570,22 +576,22 @@ MODULE STATISTIC
   Start12.c.o                                  0     49      0
   HEAP.C.o (ansisi.lib)                      100     12      0
   ALLOC.C.o (ansisi.lib)                       4    361      0
-  floor_controller.c.o                         0     63      0
-  timer.c.o                                    0     10      0
-  main.c.o                                     1    150      2
+  floor_controller.c.o                         2    165      2
+  timer.c.o                                    1     14      2
+  main.c.o                                     0    140      0
   FIFO.c.o                                     4     71      0
-  CAN.c.o                                      0    280      2
+  CAN.c.o                                      0    296      2
   other                                      256     12      2
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  _heapcrash_ malloc free initFloorController updateFloorLed configureTimer 
-  main TX_CAN InitQueue IsQueueEmpty AddToQueue DeQueue configureCAN TxCAN 
-  RxHandlerCAN 
+  _heapcrash_ malloc free initFloorController updateController callElevator 
+  timer4Handler configureTimer timerOverflowHandler main InitQueue IsQueueEmpty 
+  AddToQueue DeQueue configureCAN TxCAN RxHandlerCAN 
 SECTION: ".bss"
-  heap_end free_ptr txbuff 
+  heap_end free_ptr CanTxBuffer count overflowCount 
 SECTION: ".init"
   Init _Startup 
 SECTION: ".abs_section_8"
@@ -1034,6 +1040,8 @@ SECTION: "HEAP_SEGMENT"
   _heap_ 
 SECTION: ".common"
   pHead pTail 
+SECTION: ".abs_section_ffe6"
+  _Vector_12 
 SECTION: ".abs_section_ffde"
   _Vector_16 
 SECTION: ".abs_section_ffb2"
@@ -1085,26 +1093,26 @@ OBJECT LIST SORTED BY ADDRESS
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       0   .abs_section_40
+     _TIOS                                       40       1       1       1   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TCNT                                       44       2       2       0   .abs_section_44
+     _TCNT                                       44       2       2       3   .abs_section_44
      _TSCR1                                      46       1       1       1   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
-     _TCTL1                                      48       1       1       0   .abs_section_48
+     _TCTL1                                      48       1       1       1   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TIE                                        4C       1       1       1   .abs_section_4c
      _TSCR2                                      4D       1       1       1   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
-     _TFLG2                                      4F       1       1       2   .abs_section_4f
+     _TFLG1                                      4E       1       1       1   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
-     _TC4                                        58       2       2       0   .abs_section_58
+     _TC4                                        58       2       2       2   .abs_section_58
      _TC5                                        5A       2       2       0   .abs_section_5a
      _TC6                                        5C       2       2       0   .abs_section_5c
      _TC7                                        5E       2       2       0   .abs_section_5e
@@ -1176,10 +1184,10 @@ OBJECT LIST SORTED BY ADDRESS
      _CANIDAC                                   14B       1       1       1   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       2   .abs_section_150
-     _CANIDAR1                                  151       1       1       2   .abs_section_151
-     _CANIDAR2                                  152       1       1       0   .abs_section_152
-     _CANIDAR3                                  153       1       1       0   .abs_section_153
+     _CANIDAR0                                  150       1       1       3   .abs_section_150
+     _CANIDAR1                                  151       1       1       3   .abs_section_151
+     _CANIDAR2                                  152       1       1       1   .abs_section_152
+     _CANIDAR3                                  153       1       1       1   .abs_section_153
      _CANIDMR0                                  154       1       1       1   .abs_section_154
      _CANIDMR1                                  155       1       1       1   .abs_section_155
      _CANIDMR2                                  156       1       1       0   .abs_section_156
@@ -1266,29 +1274,34 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSAD                                     275       1       1       0   .abs_section_275
      heap_end                                   900       2       2       3   .bss        
      free_ptr                                   902       2       2       8   .bss        
-     txbuff                                     904       1       1       3   .bss        
-     _heap_                                     905      64     100       2   HEAP_SEGMENT
-     pHead                                      969       2       2       6   .common     
-     pTail                                      96B       2       2       3   .common     
+     CanTxBuffer                                904       1       1       3   .bss        
+     count                                      905       1       1       3   .bss        
+     overflowCount                              906       1       1       1   .bss        
+     _heap_                                     907      64     100       2   HEAP_SEGMENT
+     pHead                                      96B       2       2       6   .common     
+     pTail                                      96D       2       2       3   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      _heapcrash_                               C03B       C      12       3   .text       
      malloc                                    C047      A5     165       2   .text       
      free                                      C0EC      C4     196       3   .text       
-     initFloorController                       C1B0      12      18       1   .text       
-     updateFloorLed                            C1C2      2D      45       1   .text       
-     configureTimer                            C1EF       A      10       1   .text       
-     main                                      C1F9      77     119       1   .text       
-     TX_CAN                                    C270      1F      31       1   .text       
-     InitQueue                                 C28F       9       9       1   .text       
-     IsQueueEmpty                              C298       B      11       3   .text       
-     AddToQueue                                C2A3      1E      30       1   .text       
-     DeQueue                                   C2C1      15      21       1   .text       
-     configureCAN                              C2D6      5C      92       1   .text       
-     TxCAN                                     C332      59      89       1   .text       
-     RxHandlerCAN                              C38B      63      99       1   .text       
+     initFloorController                       C1B0      25      37       1   .text       
+     updateController                          C1D5      43      67       1   .text       
+     callElevator                              C218       B      11       1   .text       
+     timer4Handler                             C223      32      50       1   .text       
+     configureTimer                            C255       8       8       1   .text       
+     timerOverflowHandler                      C25D       6       6       1   .text       
+     main                                      C263      8C     140       1   .text       
+     InitQueue                                 C2EF       9       9       1   .text       
+     IsQueueEmpty                              C2F8       B      11       3   .text       
+     AddToQueue                                C303      1E      30       1   .text       
+     DeQueue                                   C321      15      21       1   .text       
+     configureCAN                              C336      6C     108       1   .text       
+     TxCAN                                     C3A2      59      89       1   .text       
+     RxHandlerCAN                              C3FB      63      99       1   .text       
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
      _Vector_16                                FFDE       2       2       0   .abs_section_ffde
+     _Vector_12                                FFE6       2       2       0   .abs_section_ffe6
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -1296,11 +1309,13 @@ UNUSED-OBJECTS SECTION
 NOT USED PROCEDURES
 ALLOC.C.o (ansisi.lib):
   calloc realloc 
+timer.c.o:
+  msDelay usDelay get_overflowCount 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC3EE ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC45E ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1311,25 +1326,30 @@ Init                      USES _startupData
 _Startup                  USES __SEG_END_SSTACK Init main 
 malloc                    USES heap_end _heap_ free_ptr _heapcrash_ 
 free                      USES _heap_ heap_end free free_ptr _heapcrash_ 
-initFloorController       USES _DDRT _PERT _PPST 
-updateFloorLed            USES _PTT 
-configureTimer            USES _TSCR1 _TSCR2 _TFLG2 
+initFloorController       USES _DDRT _PERT _PPST _TCTL1 _TIOS _TCNT _TC4 _TIE 
+                                _TFLG1 
+updateController          USES CanTxBuffer _PTT 
+callElevator              USES _PTT CanTxBuffer 
+timer4Handler             USES _TCNT _TC4 count CanTxBuffer TxCAN _PTS 
+configureTimer            USES _TSCR1 _TSCR2 
+timerOverflowHandler      USES overflowCount _TCNT 
 main                      USES configureCAN configureTimer _DDRS InitQueue 
                                 initFloorController _PTS _CANCTL0 _CANRFLG _CANRIER IsQueueEmpty 
-                                DeQueue updateFloorLed txbuff _PTT free _PTIT 
-TX_CAN                    USES txbuff TxCAN _TFLG2 _PTS 
+                                DeQueue updateController free _PTIT callElevator 
 InitQueue                 USES pHead pTail 
 IsQueueEmpty              USES pHead 
 AddToQueue                USES IsQueueEmpty pHead pTail 
 DeQueue                   USES IsQueueEmpty pHead 
 configureCAN              USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
-                                _CANIDMR0 _CANIDMR1 _CANIDAR0 _CANIDAR1 
+                                _CANIDMR0 _CANIDMR1 _CANIDAR0 _CANIDAR1 _CANIDAR2 
+                                _CANIDAR3 
 TxCAN                     USES _CANTFLG _CANTBSEL _CANTXIDR0 _CANTXDSR0 
                                 _CANTXDLR _CANTXTBPR 
 RxHandlerCAN              USES malloc _CANRXIDR0 _CANRXIDR1 _CANRXDLR 
                                 _CANRXDSR0 AddToQueue _CANRFLG 
 _Vector_38                USES RxHandlerCAN 
-_Vector_16                USES TX_CAN 
+_Vector_16                USES timerOverflowHandler 
+_Vector_12                USES timer4Handler 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -1352,24 +1372,30 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- IsQueueEmpty         (see above)
  |  |     
- |  +- updateFloorLed      
+ |  +- updateController    
  |  |    
  |  +- free                
- |     | 
- |     +- _heapcrash_         
- |          
+ |  |  | 
+ |  |  +- _heapcrash_         
+ |  |       
+ |  +- callElevator        
+ |       
  +- _Startup            
     | 
     +- Init                
     |    
     +- main                 (see above)
        
- _Vector_16          
+ _Vector_12          
  | 
- +- TX_CAN              
+ +- timer4Handler       
     | 
     +- TxCAN               
          
+ _Vector_16          
+ | 
+ +- timerOverflowHandler
+      
  _Vector_38          
  | 
  +- RxHandlerCAN        
@@ -1388,6 +1414,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 1014
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 1128
 
