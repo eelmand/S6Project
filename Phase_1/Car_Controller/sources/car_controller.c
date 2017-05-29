@@ -12,21 +12,32 @@
 #include "TA_Header_S2017.h"
 
 unsigned char initCarController(void){
-	// Configure ports with LEDs as outputs
+  // Configure ports with LEDs as outputs
 	SET_BITS(DDRA, (FLOOR1_LED|FLOOR2_LED|FLOOR3_LED|OPEN_LED|CLOSE_LED));
+	
 	// Configure port with button to be input
 	CLEAR_BITS(DDRP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));
+	CLEAR_BITS(DDRJ, (OPEN_BUTTON|CLOSE_BUTTON));
 
-	// Configure the button ports to have a pull up resistor
+
+	// Configure the button ports to have a pull down resistor 
 	SET_BITS(PERP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));
-	CLEAR_BITS(PPSP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));
+	SET_BITS(PPSP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));
+	SET_BITS(PERJ, (OPEN_BUTTON|CLOSE_BUTTON));
+	SET_BITS(PPSJ, (OPEN_BUTTON|CLOSE_BUTTON));
+	
+            
+	//Turn on Interrupts on Port J and Port P
+	SET_BITS(PIEP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));	
+	SET_BITS(PIEJ, (OPEN_BUTTON|CLOSE_BUTTON));
 
-	//Port P Interrupt Enable Register
-	SET_BITS(PIEP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));
 
-	//Clear any pending interrupt flags on Port P Interrupt Flag Register (PIFP)
+	//Clear any pending interrupt flags on Port P and J
 	//by writing 1 to it
-	SET_BITS(PIFP, (0xFF));
+	SET_BITS(PIFP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));	
+	SET_BITS(PIFP, (FLOOR1_BUTTON|FLOOR2_BUTTON|FLOOR3_BUTTON));	
+	SET_BITS(PIFJ, (OPEN_BUTTON|CLOSE_BUTTON));
+	SET_BITS(PIFJ, (OPEN_BUTTON|CLOSE_BUTTON));	
 
 
 	return 0;

@@ -18,7 +18,6 @@ HEAP.C.o (ansisi.lib)                   Model: SMALL,         Lang: ANSI-C
 ALLOC.C.o (ansisi.lib)                  Model: SMALL,         Lang: ANSI-C
 car_controller.c.o                      Model: SMALL,         Lang: ANSI-C
 main.c.o                                Model: SMALL,         Lang: ANSI-C
-timer.c.o                               Model: SMALL,         Lang: ANSI-C
 FIFO.c.o                                Model: SMALL,         Lang: ANSI-C
 CAN.c.o                                 Model: SMALL,         Lang: ANSI-C
 
@@ -29,8 +28,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     109
-  _Copy    *toCopyDownBeg 0xC29F
+  _Range   pZeroOut       0x900     110
+  _Copy    *toCopyDownBeg 0xC274
 } _startupData;
 
 *********************************************************************************************
@@ -39,10 +38,9 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            612     R     0xC03B     0xC29E   ROM_C000
-.copy                              7     R     0xC29F     0xC2A5   ROM_C000
+.text                            569     R     0xC03B     0xC273   ROM_C000
+.copy                              2     R     0xC274     0xC275   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
-.data                              1   R/W      0x900      0x900   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -265,15 +263,16 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg219
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
 .abs_section_ff8e                  2     R     0xFF8E     0xFF8F   .absSeg221
-.abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg222
-.bss                               4   R/W      0x901      0x904   RAM
-HEAP_SEGMENT                     100   R/W      0x905      0x968   RAM
-.common                            4   R/W      0x969      0x96C   RAM
-.vectSeg223_vect                   2     R     0xFFFE     0xFFFF   .vectSeg223
+.abs_section_ffce                  2     R     0xFFCE     0xFFCF   .absSeg222
+.abs_section_ffb2                  2     R     0xFFB2     0xFFB3   .absSeg223
+.bss                               4   R/W      0x900      0x903   RAM
+HEAP_SEGMENT                     100   R/W      0x904      0x967   RAM
+.common                            6   R/W      0x968      0x96D   RAM
+.vectSeg224_vect                   2     R     0xFFFE     0xFFFF   .vectSeg224
 
 Summary of section sizes per section type:
-READ_ONLY (R):         2AC (dec:      684)
-READ_WRITE (R/W):      16D (dec:      365)
+READ_ONLY (R):         27E (dec:      638)
+READ_WRITE (R/W):      16E (dec:      366)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
@@ -328,16 +327,16 @@ MODULE:                 -- mc9s12c32.c.o --
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TSCR1                                      46       1       1       1   .abs_section_46
+     _TSCR1                                      46       1       1       0   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       1   .abs_section_4d
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
      _TFLG1                                      4E       1       1       0   .abs_section_4e
-     _TFLG2                                      4F       1       1       1   .abs_section_4f
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
      _ATDSTAT0                                   86       1       1       0   .abs_section_86
@@ -371,10 +370,10 @@ MODULE:                 -- mc9s12c32.c.o --
      _FPROT                                     104       1       1       0   .abs_section_104
      _FSTAT                                     105       1       1       0   .abs_section_105
      _FCMD                                      106       1       1       0   .abs_section_106
-     _CANCTL0                                   140       1       1       2   .abs_section_140
-     _CANCTL1                                   141       1       1       3   .abs_section_141
-     _CANBTR0                                   142       1       1       1   .abs_section_142
-     _CANBTR1                                   143       1       1       1   .abs_section_143
+     _CANCTL0                                   140       1       1       0   .abs_section_140
+     _CANCTL1                                   141       1       1       0   .abs_section_141
+     _CANBTR0                                   142       1       1       0   .abs_section_142
+     _CANBTR1                                   143       1       1       0   .abs_section_143
      _CANRFLG                                   144       1       1       1   .abs_section_144
      _CANRIER                                   145       1       1       0   .abs_section_145
      _CANTFLG                                   146       1       1       0   .abs_section_146
@@ -382,15 +381,15 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
      _CANTBSEL                                  14A       1       1       0   .abs_section_14a
-     _CANIDAC                                   14B       1       1       1   .abs_section_14b
+     _CANIDAC                                   14B       1       1       0   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       2   .abs_section_150
-     _CANIDAR1                                  151       1       1       2   .abs_section_151
+     _CANIDAR0                                  150       1       1       0   .abs_section_150
+     _CANIDAR1                                  151       1       1       0   .abs_section_151
      _CANIDAR2                                  152       1       1       0   .abs_section_152
      _CANIDAR3                                  153       1       1       0   .abs_section_153
-     _CANIDMR0                                  154       1       1       1   .abs_section_154
-     _CANIDMR1                                  155       1       1       1   .abs_section_155
+     _CANIDMR0                                  154       1       1       0   .abs_section_154
+     _CANIDMR1                                  155       1       1       0   .abs_section_155
      _CANIDMR2                                  156       1       1       0   .abs_section_156
      _CANIDMR3                                  157       1       1       0   .abs_section_157
      _CANIDAR4                                  158       1       1       0   .abs_section_158
@@ -435,7 +434,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _PERT                                      244       1       1       0   .abs_section_244
      _PPST                                      245       1       1       0   .abs_section_245
      _MODRR                                     247       1       1       0   .abs_section_247
-     _PTS                                       248       1       1       4   .abs_section_248
+     _PTS                                       248       1       1       6   .abs_section_248
      _PTIS                                      249       1       1       0   .abs_section_249
      _DDRS                                      24A       1       1       0   .abs_section_24a
      _RDRS                                      24B       1       1       0   .abs_section_24b
@@ -456,15 +455,15 @@ MODULE:                 -- mc9s12c32.c.o --
      _PERP                                      25C       1       1       1   .abs_section_25c
      _PPSP                                      25D       1       1       1   .abs_section_25d
      _PIEP                                      25E       1       1       1   .abs_section_25e
-     _PIFP                                      25F       1       1       7   .abs_section_25f
+     _PIFP                                      25F       1       1       8   .abs_section_25f
      _PTJ                                       268       1       1       0   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
-     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
-     _PERJ                                      26C       1       1       0   .abs_section_26c
-     _PPSJ                                      26D       1       1       0   .abs_section_26d
-     _PIEJ                                      26E       1       1       0   .abs_section_26e
-     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       1   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       6   .abs_section_26f
      _PTAD                                      270       1       1       0   .abs_section_270
      _PTIAD                                     271       1       1       0   .abs_section_271
      _DDRAD                                     272       1       1       0   .abs_section_272
@@ -522,41 +521,39 @@ MODULE:                 -- HEAP.C.o (ansisi.lib) --
 - PROCEDURES:
      _heapcrash_                               C03B       C      12       1   .text       
 - VARIABLES:
-     _heap_                                     905      64     100       1   HEAP_SEGMENT
+     _heap_                                     904      64     100       1   HEAP_SEGMENT
 MODULE:                 -- ALLOC.C.o (ansisi.lib) --
 - PROCEDURES:
      malloc                                    C047      A5     165       2   .text       
 - VARIABLES:
-     heap_end                                   901       2       2       2   .bss        
-     free_ptr                                   903       2       2       6   .bss        
+     heap_end                                   900       2       2       2   .bss        
+     free_ptr                                   902       2       2       6   .bss        
 MODULE:                 -- car_controller.c.o --
 - PROCEDURES:
-     initCarController                         C0EC      1A      26       1   .text       
-     updateFloorLed                            C106      27      39       1   .text       
-     updateDoorLed                             C12D      13      19       1   .text       
+     initCarController                         C0EC      35      53       1   .text       
+     updateFloorLed                            C121      27      39       1   .text       
+     updateDoorLed                             C148      13      19       1   .text       
 - VARIABLES:
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      C140      36      54       1   .text       
-     CALL_FLOOR_ISR                            C176      37      55       1   .text       
+     main                                      C15B      2D      45       1   .text       
+     CALL_FLOOR_ISR                            C188      37      55       1   .text       
+     DOOR_ISR                                  C1BF      29      41       1   .text       
 - VARIABLES:
-     floorNumber                                900       1       1       5   .data       
      _Vector_56                                FF8E       2       2       0   .abs_section_ff8e
-MODULE:                 -- timer.c.o --
-- PROCEDURES:
-     configureTimer                            C1AD       A      10       1   .text       
-- VARIABLES:
+     _Vector_24                                FFCE       2       2       0   .abs_section_ffce
+     floorNumber                                968       1       1       5   .common     
+     doorOpen                                   969       1       1       4   .common     
 MODULE:                 -- FIFO.c.o --
 - PROCEDURES:
-     IsQueueEmpty                              C1B7       B      11       1   .text       
-     AddToQueue                                C1C2      1E      30       1   .text       
+     IsQueueEmpty                              C1E8       B      11       1   .text       
+     AddToQueue                                C1F3      1E      30       1   .text       
 - VARIABLES:
-     pHead                                      969       2       2       2   .common     
-     pTail                                      96B       2       2       2   .common     
+     pHead                                      96A       2       2       2   .common     
+     pTail                                      96C       2       2       2   .common     
 MODULE:                 -- CAN.c.o --
 - PROCEDURES:
-     configureCAN                              C1E0      5C      92       1   .text       
-     RxHandlerCAN                              C23C      63      99       1   .text       
+     RxHandlerCAN                              C211      63      99       1   .text       
 - VARIABLES:
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
 
@@ -568,22 +565,18 @@ MODULE STATISTIC
   Start12.c.o                                  0     49      0
   HEAP.C.o (ansisi.lib)                      100     12      0
   ALLOC.C.o (ansisi.lib)                       4    165      0
-  car_controller.c.o                           0     84      0
-  main.c.o                                     1    109      2
-  timer.c.o                                    0     10      0
+  car_controller.c.o                           0    111      0
+  main.c.o                                     2    141      4
   FIFO.c.o                                     4     41      0
-  CAN.c.o                                      0    191      2
-  other                                      256     12      7
+  CAN.c.o                                      0     99      2
+  other                                      256     12      2
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
   _heapcrash_ malloc initCarController updateFloorLed updateDoorLed main 
-  CALL_FLOOR_ISR configureTimer IsQueueEmpty AddToQueue configureCAN 
-  RxHandlerCAN 
-SECTION: ".data"
-  floorNumber 
+  CALL_FLOOR_ISR DOOR_ISR IsQueueEmpty AddToQueue RxHandlerCAN 
 SECTION: ".bss"
   heap_end free_ptr 
 SECTION: ".init"
@@ -1033,9 +1026,11 @@ SECTION: ".abs_section_17e"
 SECTION: "HEAP_SEGMENT"
   _heap_ 
 SECTION: ".common"
-  pHead pTail 
+  floorNumber doorOpen pHead pTail 
 SECTION: ".abs_section_ff8e"
   _Vector_56 
+SECTION: ".abs_section_ffce"
+  _Vector_24 
 SECTION: ".abs_section_ffb2"
   _Vector_38 
 
@@ -1090,16 +1085,16 @@ OBJECT LIST SORTED BY ADDRESS
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
      _TCNT                                       44       2       2       0   .abs_section_44
-     _TSCR1                                      46       1       1       1   .abs_section_46
+     _TSCR1                                      46       1       1       0   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
      _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
-     _TSCR2                                      4D       1       1       1   .abs_section_4d
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
      _TFLG1                                      4E       1       1       0   .abs_section_4e
-     _TFLG2                                      4F       1       1       1   .abs_section_4f
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
@@ -1162,10 +1157,10 @@ OBJECT LIST SORTED BY ADDRESS
      _FPROT                                     104       1       1       0   .abs_section_104
      _FSTAT                                     105       1       1       0   .abs_section_105
      _FCMD                                      106       1       1       0   .abs_section_106
-     _CANCTL0                                   140       1       1       2   .abs_section_140
-     _CANCTL1                                   141       1       1       3   .abs_section_141
-     _CANBTR0                                   142       1       1       1   .abs_section_142
-     _CANBTR1                                   143       1       1       1   .abs_section_143
+     _CANCTL0                                   140       1       1       0   .abs_section_140
+     _CANCTL1                                   141       1       1       0   .abs_section_141
+     _CANBTR0                                   142       1       1       0   .abs_section_142
+     _CANBTR1                                   143       1       1       0   .abs_section_143
      _CANRFLG                                   144       1       1       1   .abs_section_144
      _CANRIER                                   145       1       1       0   .abs_section_145
      _CANTFLG                                   146       1       1       0   .abs_section_146
@@ -1173,15 +1168,15 @@ OBJECT LIST SORTED BY ADDRESS
      _CANTARQ                                   148       1       1       0   .abs_section_148
      _CANTAAK                                   149       1       1       0   .abs_section_149
      _CANTBSEL                                  14A       1       1       0   .abs_section_14a
-     _CANIDAC                                   14B       1       1       1   .abs_section_14b
+     _CANIDAC                                   14B       1       1       0   .abs_section_14b
      _CANRXERR                                  14E       1       1       0   .abs_section_14e
      _CANTXERR                                  14F       1       1       0   .abs_section_14f
-     _CANIDAR0                                  150       1       1       2   .abs_section_150
-     _CANIDAR1                                  151       1       1       2   .abs_section_151
+     _CANIDAR0                                  150       1       1       0   .abs_section_150
+     _CANIDAR1                                  151       1       1       0   .abs_section_151
      _CANIDAR2                                  152       1       1       0   .abs_section_152
      _CANIDAR3                                  153       1       1       0   .abs_section_153
-     _CANIDMR0                                  154       1       1       1   .abs_section_154
-     _CANIDMR1                                  155       1       1       1   .abs_section_155
+     _CANIDMR0                                  154       1       1       0   .abs_section_154
+     _CANIDMR1                                  155       1       1       0   .abs_section_155
      _CANIDMR2                                  156       1       1       0   .abs_section_156
      _CANIDMR3                                  157       1       1       0   .abs_section_157
      _CANIDAR4                                  158       1       1       0   .abs_section_158
@@ -1228,7 +1223,7 @@ OBJECT LIST SORTED BY ADDRESS
      _PERT                                      244       1       1       0   .abs_section_244
      _PPST                                      245       1       1       0   .abs_section_245
      _MODRR                                     247       1       1       0   .abs_section_247
-     _PTS                                       248       1       1       4   .abs_section_248
+     _PTS                                       248       1       1       6   .abs_section_248
      _PTIS                                      249       1       1       0   .abs_section_249
      _DDRS                                      24A       1       1       0   .abs_section_24a
      _RDRS                                      24B       1       1       0   .abs_section_24b
@@ -1249,43 +1244,44 @@ OBJECT LIST SORTED BY ADDRESS
      _PERP                                      25C       1       1       1   .abs_section_25c
      _PPSP                                      25D       1       1       1   .abs_section_25d
      _PIEP                                      25E       1       1       1   .abs_section_25e
-     _PIFP                                      25F       1       1       7   .abs_section_25f
+     _PIFP                                      25F       1       1       8   .abs_section_25f
      _PTJ                                       268       1       1       0   .abs_section_268
      _PTIJ                                      269       1       1       0   .abs_section_269
-     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
      _RDRJ                                      26B       1       1       0   .abs_section_26b
-     _PERJ                                      26C       1       1       0   .abs_section_26c
-     _PPSJ                                      26D       1       1       0   .abs_section_26d
-     _PIEJ                                      26E       1       1       0   .abs_section_26e
-     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       1   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       6   .abs_section_26f
      _PTAD                                      270       1       1       0   .abs_section_270
      _PTIAD                                     271       1       1       0   .abs_section_271
      _DDRAD                                     272       1       1       0   .abs_section_272
      _RDRAD                                     273       1       1       0   .abs_section_273
      _PERAD                                     274       1       1       0   .abs_section_274
      _PPSAD                                     275       1       1       0   .abs_section_275
-     floorNumber                                900       1       1       5   .data       
-     heap_end                                   901       2       2       2   .bss        
-     free_ptr                                   903       2       2       6   .bss        
-     _heap_                                     905      64     100       1   HEAP_SEGMENT
-     pHead                                      969       2       2       2   .common     
-     pTail                                      96B       2       2       2   .common     
+     heap_end                                   900       2       2       2   .bss        
+     free_ptr                                   902       2       2       6   .bss        
+     _heap_                                     904      64     100       1   HEAP_SEGMENT
+     floorNumber                                968       1       1       5   .common     
+     doorOpen                                   969       1       1       4   .common     
+     pHead                                      96A       2       2       2   .common     
+     pTail                                      96C       2       2       2   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
      _heapcrash_                               C03B       C      12       1   .text       
      malloc                                    C047      A5     165       2   .text       
-     initCarController                         C0EC      1A      26       1   .text       
-     updateFloorLed                            C106      27      39       1   .text       
-     updateDoorLed                             C12D      13      19       1   .text       
-     main                                      C140      36      54       1   .text       
-     CALL_FLOOR_ISR                            C176      37      55       1   .text       
-     configureTimer                            C1AD       A      10       1   .text       
-     IsQueueEmpty                              C1B7       B      11       1   .text       
-     AddToQueue                                C1C2      1E      30       1   .text       
-     configureCAN                              C1E0      5C      92       1   .text       
-     RxHandlerCAN                              C23C      63      99       1   .text       
+     initCarController                         C0EC      35      53       1   .text       
+     updateFloorLed                            C121      27      39       1   .text       
+     updateDoorLed                             C148      13      19       1   .text       
+     main                                      C15B      2D      45       1   .text       
+     CALL_FLOOR_ISR                            C188      37      55       1   .text       
+     DOOR_ISR                                  C1BF      29      41       1   .text       
+     IsQueueEmpty                              C1E8       B      11       1   .text       
+     AddToQueue                                C1F3      1E      30       1   .text       
+     RxHandlerCAN                              C211      63      99       1   .text       
      _Vector_56                                FF8E       2       2       0   .abs_section_ff8e
      _Vector_38                                FFB2       2       2       0   .abs_section_ffb2
+     _Vector_24                                FFCE       2       2       0   .abs_section_ffce
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -1296,7 +1292,7 @@ ALLOC.C.o (ansisi.lib):
 FIFO.c.o:
   InitQueue DeQueue 
 CAN.c.o:
-  TxCAN 
+  configureCAN TxCAN 
 NOT USED VARIABLES
 main.c.o:
   txbuff 
@@ -1304,13 +1300,7 @@ main.c.o:
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC29F ---- SIZE       4 ---
-Filling bytes inserted
- 00010900
-------- ROM-ADDRESS: 0xC2A3 ---- RAM-ADDRESS: 0x900 ---- SIZE       1 ---
-Name of initialized Object : floorNumber
- 01
-------- ROM-ADDRESS: 0xC2A4 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC274 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1320,21 +1310,21 @@ OBJECT-DEPENDENCIES SECTION
 Init                      USES _startupData 
 _Startup                  USES __SEG_END_SSTACK Init main 
 malloc                    USES heap_end _heap_ free_ptr _heapcrash_ 
-initCarController         USES _DDRAB _DDRP _PERP _PPSP _PIEP _PIFP 
+initCarController         USES _DDRAB _DDRP _DDRJ _PERP _PPSP _PERJ _PPSJ 
+                                _PIEP _PIEJ _PIFP _PIFJ 
 updateFloorLed            USES _PORTAB 
 updateDoorLed             USES _PORTAB 
-main                      USES configureCAN configureTimer initCarController 
-                                _PTS floorNumber updateFloorLed updateDoorLed 
+main                      USES initCarController _PTS floorNumber doorOpen 
+                                updateFloorLed updateDoorLed 
 CALL_FLOOR_ISR            USES _PIFP floorNumber _PTS 
-configureTimer            USES _TSCR1 _TSCR2 _TFLG2 
+DOOR_ISR                  USES _PIFJ doorOpen _PTS 
 IsQueueEmpty              USES pHead 
 AddToQueue                USES IsQueueEmpty pHead pTail 
-configureCAN              USES _CANCTL0 _CANCTL1 _CANBTR0 _CANBTR1 _CANIDAC 
-                                _CANIDMR0 _CANIDMR1 _CANIDAR0 _CANIDAR1 
 RxHandlerCAN              USES malloc _CANRXIDR0 _CANRXIDR1 _CANRXDLR 
                                 _CANRXDSR0 AddToQueue _CANRFLG 
 _Vector_56                USES CALL_FLOOR_ISR 
 _Vector_38                USES RxHandlerCAN 
+_Vector_24                USES DOOR_ISR 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -1343,10 +1333,6 @@ DEPENDENCY TREE
  | 
  +- main                
  |  | 
- |  +- configureCAN        
- |  |    
- |  +- configureTimer      
- |  |    
  |  +- initCarController   
  |  |    
  |  +- updateFloorLed      
@@ -1362,6 +1348,10 @@ DEPENDENCY TREE
  _Vector_56          
  | 
  +- CALL_FLOOR_ISR      
+      
+ _Vector_24          
+ | 
+ +- DOOR_ISR            
       
  _Vector_38          
  | 
@@ -1381,6 +1371,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 684
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 638
 

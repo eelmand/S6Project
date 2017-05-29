@@ -25,12 +25,12 @@
 #define CLOSE_BUTTON 0b10000000 // built-in SW2 (Port J7)
 
 
-/*// Configure PS2 and PS3 as outputs to drive LEDs on my board
+// Configure PS2 and PS3 as outputs to drive LEDs on my board
 #define OPEN_LED_ON (SET_BITS(PTS, LED1))
 #define LED2_ON (SET_BITS(PTS, LED2))
 #define LED1_OFF (CLEAR_BITS(PTS, LED1))
 #define LED2_OFF (CLEAR_BITS(PTS, LED2))
-*/
+
 
 // Function Prototypes
 unsigned char initCarController(void);

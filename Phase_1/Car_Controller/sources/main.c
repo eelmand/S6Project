@@ -16,44 +16,49 @@
 
 // Global variables
 unsigned char txbuff[1] = {0x00};
+unsigned char floorNumber;
+unsigned char doorOpen;
 
 //**************************************************************
 // main()
 //**************************************************************
 void main(void) {
 	unsigned char * message;
-	unsigned char floorNumber;
-	unsigned char doorOpen;
+	
 	link pTemp = NULL;
 	
-	configureCAN(CAR_CONTROLLER);
+// configureCAN(CAR_CONTROLLER);
 		  
-	configureTimer();
+//	configureTimer();
 //	CONFIGURE_LEDS;
-	InitQueue();
+//	InitQueue();
 	initCarController();
 	
-  	LED1_ON;
+	
+  LED1_ON;
 	LED2_OFF;
 	
 	floorNumber=1;
 	doorOpen=1;
+	
 
-	EnableInterrupts;
+  EnableInterrupts;
 
 
 for(;;) {
   
-	updateFloorLed(floorNumber);
+  updateFloorLed(floorNumber);
 	updateDoorLed(doorOpen);
 	
-	}
-	
+	                                                                       
+  _FEED_COP(); /* feeds the dog */
+  } /* loop forever */
+  /* please make sure that you never leave main */
+  
 	
 }
 
 
-// NEED TO SIMPLIFY this interrupt
 //ISR for elevator in-car floor requests 
 interrupt VectorNumber_Vportp void CALL_FLOOR_ISR(void)
 {
@@ -64,11 +69,27 @@ interrupt VectorNumber_Vportp void CALL_FLOOR_ISR(void)
 	}
 	else if((PIFP & FLOOR2_BUTTON) == FLOOR2_BUTTON){
 	  	floorNumber=2;
-	  	SET_BITS(PIFP, FLOOR1_BUTTON);
+	  	SET_BITS(PIFP, FLOOR2_BUTTON);
 	}
 	else if((PIFP & FLOOR3_BUTTON) == FLOOR3_BUTTON){
 	  	floorNumber=3;
-	  	SET_BITS(PIFP, FLOOR1_BUTTON);
+	  	SET_BITS(PIFP, FLOOR3_BUTTON);
+	}
+
+	TOGGLE_LEDS;
+}
+
+//ISR for elevator in-car door open/close requests 
+interrupt VectorNumber_Vportj void DOOR_ISR(void)
+{
+
+	if((PIFJ & CLOSE_BUTTON) == CLOSE_BUTTON){
+	  	doorOpen=0;
+	  	SET_BITS(PIFJ, CLOSE_BUTTON);
+	}
+	else if((PIFJ & OPEN_BUTTON) == OPEN_BUTTON){
+	  	doorOpen=1;
+	  	SET_BITS(PIFJ, OPEN_BUTTON);
 	}
 
 	TOGGLE_LEDS;
