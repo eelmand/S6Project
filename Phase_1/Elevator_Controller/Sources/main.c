@@ -4,7 +4,6 @@
 #include "TA_Header_S2017.h"
 #include "CAN.h"
 #include "FIFO.h"
-#include "lcd.h"
 #include "timer.h"
 #include "spi.h"
 #include "elevator.h"
@@ -18,7 +17,6 @@ void main(void) {
   CONFIGURE_5VA;
   ENABLE_5VA;
   configureTimer();
-  configureLCD();
   configureElevator();
   configureSPI();
   configureCAN(ELEVATOR_CONTROLLER);
@@ -36,8 +34,6 @@ void main(void) {
 	EnableInterrupts;
 
   for(;;) {
-    // Display debug data on LCD
-    LCDprintf("Ena: %u Req: %u\nFloor: %u", enable_req, floor_req, get_floor());
     
     // Check for new CAN messages & process if requried
     if(IsQueueEmpty()) 
@@ -67,7 +63,7 @@ void main(void) {
       
       free(message->Data.DATA); // Free the message data
       free(message);            // Free the message structure
-      TOGGLE_LEDS;    
+      TOGGLE_LEDS;          
     }
   
     // Transmit status message, 2Hz is plenty fast enough

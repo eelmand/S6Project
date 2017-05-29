@@ -57,11 +57,11 @@ void main(void) {
 			message = DeQueue(); // Grab a message from the Queue
       		nodeID = message->Data.ID; // Get the Node ID of the sender
       		if(nodeID == CAR_CONTROLLER){
-      			doorStatus = message->Data.ID & DOOR_STATUS_BIT;
+      			doorStatus = *(message->Data.DATA) & DOOR_STATUS_BIT;
       		}
       		else if(nodeID == ELEVATOR_CONTROLLER){
       			floorNumber = *(message->Data.DATA) & FLOOR_BITS; // Process floor status
-				updateController(floorNumber, doorStatus);
+				    updateController(floorNumber, doorStatus);
       		}
 			free(message->Data.DATA); // Free the memory malloc'd for data
 			free(message);            // Free the memory malloc'd for the node structure				   

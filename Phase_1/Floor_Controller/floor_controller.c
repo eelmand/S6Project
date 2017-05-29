@@ -43,7 +43,7 @@ unsigned char initFloorController(void){
 //---------------------------------------------------------------------
 unsigned char updateController(unsigned char floorNumber, unsigned char doorStatus){
 	// Check if the elevator is at our floor and handle
-	if ((floorNumber == CONTROLLER_FLOOR) && (doorStatus == 1)){
+	if ((floorNumber == CONTROLLER_FLOOR) && (doorStatus == 0)){
 		CanTxBuffer[0] = NO_CALL_REQUEST; // No longer need to request car
 		CLEAR_BITS(PTT, CALL_LED);
 	}	
