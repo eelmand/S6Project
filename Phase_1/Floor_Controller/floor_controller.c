@@ -85,15 +85,15 @@ interrupt VectorNumber_Vtimch4 void timer4Handler(void) {
 	CAN_TX = TCNT + (TCNT_mS * 10); // Interrupt happens every 10 ms
 	if(count++ == 50){ // Send CAN message every 500 ms (50 x 10 ms)
 		if(CONTROLLER_FLOOR == 1){
-		TxCAN(ST_ID_201, 0x00, sizeof(CanTxBuffer), CanTxBuffer);
-	}
-	else if(CONTROLLER_FLOOR == 2){
-		TxCAN(ST_ID_202, 0x00, sizeof(CanTxBuffer), CanTxBuffer);
-	}
-	else if(CONTROLLER_FLOOR == 3){
-		TxCAN(ST_ID_203, 0x00, sizeof(CanTxBuffer), CanTxBuffer); 
-	}
-	TOGGLE_LEDS;	
-	count = 0;
+			TxCAN(ST_ID_201, 0x00, sizeof(CanTxBuffer), CanTxBuffer);
+		}
+		else if(CONTROLLER_FLOOR == 2){
+			TxCAN(ST_ID_202, 0x00, sizeof(CanTxBuffer), CanTxBuffer);
+		}
+		else if(CONTROLLER_FLOOR == 3){
+			TxCAN(ST_ID_203, 0x00, sizeof(CanTxBuffer), CanTxBuffer); 
+		}
+		TOGGLE_LEDS;	
+		count = 0;
 	}
 }
