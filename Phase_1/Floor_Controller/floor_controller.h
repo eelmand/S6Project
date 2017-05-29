@@ -12,7 +12,7 @@
 #include "CAN.h"
 
 // Floor Controller Number
-#define CONTROLLER_FLOOR  1
+#define CONTROLLER_FLOOR  3
 
 // Elevator CAN signal masks
 #define ENABLE_BIT		0b00000100 // Third LSB for enable/disable
