@@ -63,16 +63,16 @@ unsigned char updateFloorLed(unsigned char floorNumber){
 	return 0;
 }
 
-unsigned char updateDoorLed(unsigned char doorOpen){
-	// Display whether the car door is open or closed
-	// In future if metters can return whether door was previously open or closed...
-	if(doorOpen == 0){
-		CLEAR_BITS(PORTA, OPEN_LED);
-		SET_BITS(PORTA, CLOSE_LED);
-	}
-	else{
+unsigned char updateDoorLed(unsigned char doorStatus){
+	// Display whether the car door is open or closed (0 - open, 1 - closed)
+	// In future if matters can return whether door was previously open or closed...
+	if(doorStatus == 0){  
 		CLEAR_BITS(PORTA, CLOSE_LED);
 		SET_BITS(PORTA, OPEN_LED);
+	}
+	else{
+  	CLEAR_BITS(PORTA, OPEN_LED);
+		SET_BITS(PORTA, CLOSE_LED);
 	}
 	return 0;
 }

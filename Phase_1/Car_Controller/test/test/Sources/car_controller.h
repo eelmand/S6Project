@@ -35,4 +35,4 @@
 // Function Prototypes
 unsigned char initCarController(void);
 unsigned char updateFloorLed(unsigned char floorNumber);
-unsigned char updateDoorLed(unsigned char doorOpen);
+unsigned char updateDoorLed(unsigned char doorStatus);

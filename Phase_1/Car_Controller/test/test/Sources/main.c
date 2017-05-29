@@ -17,38 +17,39 @@
 // Global variables
 unsigned char txbuff[1] = {0x00};
 unsigned char floorNumber;
-unsigned char doorOpen;
+unsigned char doorStatus = 1;   // door is closed by default
 
 //**************************************************************
 // main()
 //**************************************************************
 void main(void) {
-	unsigned char * message;
-	
+
+	link message = NULL;
 	link pTemp = NULL;
+	unsigned long nodeID;
+
 	
-// configureCAN(CAR_CONTROLLER);
-		  
-//	configureTimer();
-//	CONFIGURE_LEDS;
-//	InitQueue();
+	/* Setup functions */
+  configureCAN(CAR_CONTROLLER);
+  //configureTimer();
+  CONFIGURE_LEDS;
+  InitQueue();
 	initCarController();
+	
+	
+	
 	
 	
   LED1_ON;
 	LED2_OFF;
 	
-	floorNumber=1;
-	doorOpen=1;
-	
-
   EnableInterrupts;
 
 
 for(;;) {
   
   updateFloorLed(floorNumber);
-	updateDoorLed(doorOpen);
+	updateDoorLed(doorStatus);
 	
 	                                                                       
   _FEED_COP(); /* feeds the dog */
@@ -84,11 +85,11 @@ interrupt VectorNumber_Vportj void DOOR_ISR(void)
 {
 
 	if((PIFJ & CLOSE_BUTTON) == CLOSE_BUTTON){
-	  	doorOpen=0;
+	  	doorStatus=1;
 	  	SET_BITS(PIFJ, CLOSE_BUTTON);
 	}
 	else if((PIFJ & OPEN_BUTTON) == OPEN_BUTTON){
-	  	doorOpen=1;
+	  	doorStatus=0;
 	  	SET_BITS(PIFJ, OPEN_BUTTON);
 	}
 
