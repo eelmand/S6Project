@@ -1,7 +1,0 @@
-Data:1 < ADDXPR ONLY_ADD_IF_NEW "main.c::floorNumber"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "PIFP"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "PIFJ"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "changeFloor"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "new_floorNumber"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "floorNumber"
-Data:2 < ADDXPR ONLY_ADD_IF_NEW "doorStatus"
