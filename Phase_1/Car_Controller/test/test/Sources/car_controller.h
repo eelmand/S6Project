@@ -8,6 +8,8 @@
 // Includes
 #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
+#include "timer.h"
+#include "CAN.h"
 
 // Bit patterns for floor LEDs, floor buttons, car open and close door buttons + 2 LEDs
 #define FLOOR3_LED  0b00000001 // Port A0
@@ -32,7 +34,15 @@
 #define LED2_OFF (CLEAR_BITS(PTS, LED2))
 
 
+// Elevator CAN signal masks
+#define ENABLE_BIT		0b00000100 // Third LSB for enable/disable
+#define FLOOR_BITS 		0b00000011 // Lower 2 bits for floor number request
+#define DOOR_STATUS_BIT 0b00000100 // Third LSB for door open/closed
+#define CAN_TX TC4 // Timer channel 4 will control CAN TX
+
+
 // Function Prototypes
 unsigned char initCarController(void);
 unsigned char updateFloorLed(unsigned char floorNumber);
 unsigned char updateDoorLed(unsigned char doorStatus);
+unsigned char updateController(unsigned char floorNumber, unsigned char new_floorNumber, unsigned char doorStatus);
