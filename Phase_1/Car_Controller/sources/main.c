@@ -8,7 +8,7 @@
 #include "FIFO.h"
 
 // Global variables
-unsigned char floorNumber=1;
+unsigned char floorNumber=0;
 unsigned char new_floorNumber=0; // no change floor requests by default
 unsigned char doorStatus = 1;   // door is closed by default
 
@@ -59,6 +59,16 @@ void main(void) {
   	    //updateController(floorNumber, new_floorNumber, doorStatus);
   	    updateController();
       }                               
+      
+      if(new_floorNumber == 0){        
+        if(nodeID == SUPERVISORY_CONTROLLER){
+    			if(new_floorNumber != *(message->Data.DATA) & FLOOR_BITS) {
+    			  new_floorNumber = *(message->Data.DATA) & FLOOR_BITS;     // Pay attention to commands from other controllers
+    			}
+    	    //updateController(floorNumber, new_floorNumber, doorStatus);
+    	    updateController();
+        }                               
+      }
       	    	
   		free(message->Data.DATA); // Free the memory malloc'd for data
   		free(message);            // Free the memory malloc'd for the node structure				   

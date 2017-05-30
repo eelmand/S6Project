@@ -120,7 +120,7 @@ void startDoorTimer(void){
 unsigned char updateController(void){//, unsigned char new_floorNumber, unsigned char doorStatus){
 
   // Check if the elevator arrived to the requested floor and handle
-  if (floorNumber == new_floorNumber) {
+  if ((floorNumber == new_floorNumber) && (floorNumber != 0)) {
    new_floorNumber=0;  // no change floor requests
    doorStatus=0;   // door open
 
