@@ -1,0 +1,27 @@
+/* 
+CSS Stylesheet for Project Plan Page
+Author: Thomas Abdallah
+Date: 2017-05-30
+*/
+
+/* Table formatting for Gantt Chart */
+table, th, td {
+	border: 1px solid black;
+	border-spacing: 3px;
+	text-align: center;
+	empty-cells: hide;
+}
+
+th {
+	width: 100px;
+}
+
+td:hover, .TASK:hover {
+	background-color: yellow; color: black;
+}
+
+.TASK {width: 355px; text-align: left;}
+.ALL {background-color: grey; color: white;}
+.TA {background-color: red; color: white;}
+.DE {background-color: blue; color: white;}
+.SR {background-color: green; color: white;}
