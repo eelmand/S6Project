@@ -2,16 +2,69 @@
 <html>
 	<head>
 		<title>Log Book</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is the log book for David Eelman"/>
 		<meta name="robots" content="noindex nofollow"/>
 		<meta http-equiv="author" content="David Eelman"/>
 		<meta http-equiv="pragma" content="no-cache"/>
-		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link href="./css/project_david_style.css" type="text/css" rel="stylesheet">
 	</head>
+
 	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>                        
+					</button>
+					<a class="navbar-brand" href="#">
+						<img alt="Logo" src="images/logo.png" width=20>
+					</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="project_plan.html">Project</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="stan_rashevskyi_log_book.html">Stan Rashevskyi</a></li>
+								<li class="active"><a href="david_eelman_log_book.html">David Eelman</a></li>
+								<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>	
+
+		<div class="view">
+			<div class="full-bg-img flex-center">
+			</div>
+		</div>
+
+		<div class="container-fluid">
 		<h1 id="top">Weekly Log Book - David Eelman</h1>
-			<img src="images/david.jpg" alt="Image of David" title="David" />
-			<figcaption><b>David Eelman</b>: ESE Guru</figcaption>
+				<img src="images/david.jpg" alt="Image of David" title="David" />
+				<figcaption><b>David Eelman</b>: ESE Guru</figcaption>
 		
 		<h2>Week 1</h2>
 			<ul>
@@ -58,9 +111,9 @@
 				<li>Helped Thomas setup a testing station for the elevator</li>
 				<li>Wrote the weekly status report for weeks 2 and 3</li>
 			</ul>
-			
-		<p><a href="david_eelman_log_book.html#top">To Top</a></p>
-		<p><a href="index.html">Home</a></p>
-		<footer>Copyright &copy; 2017 David Eelman</p>
+		</div>	
+		<div class="footer-content container-fluid text-center">
+			<p>Copyright &copy; 2017 ESE Team</p>
+		</div>	
 	</body>
 </html>
