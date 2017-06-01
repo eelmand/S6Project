@@ -6,8 +6,6 @@ Date: 2017-05-31
 
 body {font-family: Tahoma, Georgia, serif;} /* Default font - Tahoma */
 p {font-size: 100%; text-indent: 0px}
-h1 {font-size: 160%;}
+h1 {font-size: 200%;}
 h2 {font-size: 125%;}
 p, ul, ol {line-height: 20px; text-align: justify;}
-figcaption {text-align: left; font-style: italic; font-size: 80%}
-footer{font-size: 80%; color: grey;}

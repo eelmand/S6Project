@@ -4,21 +4,28 @@ Author: David Eelman
 Date: 2017-05-31
 */
 
-html,
-body,
-.view {
-    height: 100%;
+html {
+    margin-top: 50px; /* Required margin for .navbar-fixed-top.*/
 }
 
-.view {
-    background: url("https://cdn1.epicgames.com/ue/item/ElevatorSystemDemo_Screenshot_04-1920x1080-7034a15b813fe43754125a2d8b679708.png")no-repeat center center fixed;
+.full {
+    background: url("../images/elevator_background.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
+    -o-background-size: cover;
 }
 
-.footer-content{
+footer {
+    position: fixed;
+  	bottom: 0;
+  	width:100%;
+  	padding: 1rem;
     color: grey; 
-    background-color:rgba(0, 0, 0, 0.9);
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+@media(max-width: 480px) {
+	h1 {font-size: 160%;}
+	h2 {font-size: 140%;}
 }
