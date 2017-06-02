@@ -1,16 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html class="full">
 	<head>
 		<title>About</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is the about page for the S6 Project"/>
 		<meta name="robots" content="noindex nofollow"/>
 		<meta http-equiv="author" content="David Eelman"/>
 		<meta http-equiv="pragma" content="no-cache"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
+		<link href="./css/project_index_style.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
-		<h1>S6 Project - About</h1>
-			<p>This is the <i>about</i> page for <b>S6 Project</b>. Here we will provide an overview of the elevator project.</p>
+		<div id="page">
+			<header>
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>                        
+							</button>
+							<a class="navbar-brand" href="index.html">S6 Project</a>
+						</div>
+						
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li><a href="about.html">About</a></li>
+								<li><a href="project_plan.html">Project</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="stan_rashevskyi_log_book.html">Stan Rashevskyi</a></li>
+										<li><a href="david_eelman_log_book.html">David Eelman</a></li>
+										<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+	
+			<div id="content">
+				<article>
+					<div class="container text-center" style="background-color: rgba(0,0,0,0.4);"> 
+						<section>
+							<h1>About S6 Project</h1>
+							<p>This is the <i>about</i> page for <b>S6 Project</b>. Here we will provide an overview of the elevator project.</p>
+							<div class="row text-left center-block">
+								<div class="col-xs-12 col-md-4">
+									<hr>
+									<a href=""><h2>Phase 1</h2></a>
+									<ul>
+										<li>CAN messaging protocol design</li>
+										<li>CAN node configuration plan</li>
+										<li>Controllable CAN network</li>
+										<li>Test plan and results</li>
+									</ul>
+								</div>
+								<div class="col-xs-12 col-md-4">
+									<hr>
+									<a href=""><h2>Phase 2</h2></a>
+									<ul>
+										<li>An accessible data repository</li>
+										<li>User interface for remote control</li>
+										<li>Internet based remote access system</li>
+									</ul>
+								</div>
+								<div class="col-xs-12 col-md-4">
+									<hr>
+									<a href=""><h2>Phase 3</h2></a>
+									<ul>
+										<li>Design of industrial data network to internet link</li>
+										<li>Fully functional CAN diagnostic system</li>
+										<li>Oral presentation of final project</li>
+										<li>Final project report</li>
+									</ul>
+								</div>
+							</div>
+							
+							<hr>
+							<h2 id="intro_video">Introduction & Demonstration Video</h2>
+							<iframe src="https://youtube.com/embed/ngC5i5d8p84" width="600" height="450" frameborder="0" allowfullscreen></iframe>
+							<hr>
+							<h2 id="system_diagram">System Diagram</h2>
+							<img src="images/system_diagram.jpg" alt="Image of System Diagram" title="System Diagram" class="img-responsive" />
+							<hr>
+							<h2 id="team">Our Team</h2>							
+							<b>Stanislav Rashevskyi</b><br>
+							<b>Thomas Abdallah</b><br>
+							<b>David Eelman</b><br>
+							<hr>
+							<h2 id="campus">Our Campus</h2>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2899.52587161604!2d-80.39901898451085!3d43.386936879131355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b8a7ec9d60715%3A0xd5e712873de8af2d!2sConestoga+College+-+Cambridge+Campus!5e0!3m2!1sen!2sus!4v1495648177696" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</section>
+					</div>
+				</article>
+			</div>
+
+			<footer class="container-fluid text-center push-bottom">
+				<p>Copyright &copy; 2017 ESE Team</p>
+			</footer>	
+		</div>
+	</body>
+</html>
+<!--
 			<h3>Table of Contents</h3>
 				<ul>
 					<li><a href="about.html#intro_video">Introduction & Demonstration Video</a></li>
@@ -69,5 +171,4 @@
 		<p><a href="about.html#top">To Top</a></p>
 		<p><a href="index.html">Home</a></p>
 		<footer>Copyright &copy; 2017 ESE Team</p>
-	</body>
-</html>
+-->	
