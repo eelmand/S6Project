@@ -1,11 +1,64 @@
 /* 
 Common CSS Stylesheet for all pages
 Author: David Eelman
-Date: 2017-05-31
+Date: 2017-06-02
 */
 
-body {font-family: Tahoma, Georgia, serif;} /* Default font - Tahoma */
-p {font-size: 100%; text-indent: 0px}
-h1 {font-size: 200%;}
-h2 {font-size: 125%;}
-p, ul, ol {line-height: 20px; text-align: justify;}
+body { /* Default font - Tahoma */
+	font-family: Tahoma, Georgia, serif;
+} 
+
+html {
+	margin-top: 50px; /* Required margin for .navbar-fixed-top.*/
+}
+
+hr {
+	border-color: grey;
+}
+
+form {
+	width:20%; 
+	min-width:250px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width:100%;
+	padding: 1rem;
+	color: grey; 
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+@media(max-width: 480px) {
+	h1 {font-size: 160%;}
+	h2 {font-size: 140%;}
+}
+
+.full { /* Background image */
+	background: url("../images/elevator_background.png") no-repeat center center fixed;
+	background-color: black;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+.row {
+	margin-bottom: 50px;
+	width: 70%;
+	min-width: 350px;
+}
+
+.top {
+	border-color: grey;
+	width: 50%;
+}
+
+#content {
+	color: white;
+	position: absolute; 
+	width:100%; 
+	background-color: rgba(0,0,0,0.5);
+}
+

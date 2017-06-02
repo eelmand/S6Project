@@ -4,64 +4,10 @@ Author: David Eelman
 Date: 2017-05-31
 */
 
-html {
-	margin-top: 50px; /* Required margin for .navbar-fixed-top.*/
-}
-
-.full {
-	background: url("../images/elevator_background.png") no-repeat center center fixed;
-	background-color: black;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	background-size: cover;
-	-o-background-size: cover;
-}
-
 .progress {
 	width: 50%;
 }
 
 .progress-bar {
 	width: 60%;
-}
-
-.row {
-	margin-bottom: 50px;
-	width: 70%;
-	min-width: 350px;
-}
-
-#content {
-	color: white;
-	position: absolute; 
-	width:100%; background-color: 
-	rgba(0,0,0,0.5);
-}
-
-.top {
-	border-color: grey;
-	width: 50%;
-}
-
-hr {
-	border-color: grey;
-}
-
-form {
-	width:20%; 
-	min-width:250px;
-}
-
-footer {
-	position: fixed;
-	bottom: 0;
-	width:100%;
-	padding: 1rem;
-	color: grey; 
-	background-color:rgba(0, 0, 0, 0.5);
-}
-
-@media(max-width: 480px) {
-	h1 {font-size: 160%;}
-	h2 {font-size: 140%;}
 }
