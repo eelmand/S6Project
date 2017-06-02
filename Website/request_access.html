@@ -1,35 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html class="full">
 	<head>
 		<title>Request Access</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is the request access page for the S6 Project"/>
 		<meta name="robots" content="noindex nofollow"/>
 		<meta http-equiv="author" content="David Eelman"/>
 		<meta http-equiv="pragma" content="no-cache"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
 	</head>
+
 	<body>
-		<h1>Request Access</h1>
-		<form action="php/request_access.php" id="access" method="post">
-			<p>First Name: <input type="text" name="firstname" /></p>
-			<p>Last Name: <input type="text" name="lastname" /></p>
+		<div id="page">
+			<header>
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>                        
+							</button>
+							<a class="navbar-brand" href="index.html">S6 Project</a>
+						</div>
+						
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li><a href="about.html">About</a></li>
+								<li><a href="project_plan.html">Project</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="stan_rashevskyi_log_book.html">Stan Rashevskyi</a></li>
+										<li><a href="david_eelman_log_book.html">David Eelman</a></li>
+										<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
 
-			<input type="radio" name="fac_or_student" value="student" /> Student
-			<input type="radio" name="fac_or_student" value="faculty" /> Faculty
+			<div id="content">
+				<article>
+					<form class="center-block" action="php/login.php" id="login" method="post">
+						<br>
+						<div class="form-group">
+							<label for="first_name">First Name:</label>
+							<input type="first_name" class="form-control" id="first_name">
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name:</label>
+							<input type="last_name" class="form-control" id="last_name">
+						</div>
+						<div class="form-group">
+						 	<label class="radio-inline">
+								<input type="radio" name="faculty_student">Student
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="faculty_student">Faculty
+							</label>
+						</div>
+						<div class="form-group">
+							<label><input type="checkbox" name="involvement" value="none" /> Have no involvment in Project </label><br />
+							<label><input type="checkbox" name="involvement" value="student" /> A student in this Project </label><br />
+							<label><input type="checkbox" name="involvement" value="student_other" /> A student in a different Project </label><br />
+							<label><input type="checkbox" name="involvement" value="instructor" /> An instructor in this Project </label><br />
+							<label><input type="checkbox" name="involvement" value="instructor_other" /> An instructor in a different Project </label><br />
+							<label><input type="checkbox" name="involvement" value="admin" /> A college administrator </label><br />
+							<label><input type="checkbox" name="involvement" value="external" /> An external reviewer </label><br />
+						</div>
+						<div class="form-group">
+							<label for="info">Tell us a bit about yourself:</label>
+							<textarea class="form-control" rows="5" id="info" placeholder="Details..."></textarea>
+						</div>
+						<button type="submit" class="btn btn-default center-block">Submit</button>
+					</form>
+					<br>
+				</article>
+			</div>
 
-			<p>I currently ... (check all that apply)</p>
-			<label><input type="checkbox" name="involvement" value="none" /> Have no involvment in Project </label><br />
-			<label><input type="checkbox" name="involvement" value="student" /> A student in this Project </label><br />
-			<label><input type="checkbox" name="involvement" value="student_other" /> A student in a different Project </label><br />
-			<label><input type="checkbox" name="involvement" value="instructor" /> An instructor in this Project </label><br />
-			<label><input type="checkbox" name="involvement" value="instructor_other" /> An instructor in a different Project </label><br />
-			<label><input type="checkbox" name="involvement" value="admin" /> A college administrator </label><br />
-			<label><input type="checkbox" name="involvement" value="external" /> An external reviewer </label><br />
-
-			<p>Tell us a bit about yourself</p>
-			<textarea>Details...</textarea><br />
-			<input type="submit" value="Submit Request" />
-		</form>
-		<footer>Copyright &copy; 2017 ESE Team</p>
+			<footer class="container-fluid text-center">
+				<p>Copyright &copy; 2017 ESE Team</p>
+			</footer>	
+		</div>
 	</body>
 </html>
