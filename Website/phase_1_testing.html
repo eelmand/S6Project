@@ -119,15 +119,15 @@
 										<!-- Collapsible accordion -->
 										<div class="panel-group" id="accordion">
 										  
-										  	<!-- Position Test 0 -->
+										  	<!-- Position 0 Test -->
 											<div class="panel panel-default">
 										    	<div class="panel-heading">
 										      		<h4 class="panel-title">
-										        	<a data-toggle="collapse" data-parent="#accordion" href="#test_pos0">
-										        	Position Test 0</a>
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_pos0">
+										        	Position 0 Test</a>
 										      		</h4>
 										    	</div>
-										    	<div id="test_pos0" class="panel-collapse collapse">
+										    	<div id="EC_pos0" class="panel-collapse collapse">
 										      		<div class="panel-body">
 												      	<i>Test Description:</i>
 												      	Confirm EC reports "Floor 0" when car is in between floors.
@@ -152,15 +152,15 @@
 										    	</div>
 										  	</div>
 
-										  	<!-- Position Test 1 -->
+										  	<!-- Position 1 Test -->
 											<div class="panel panel-default">
 										    	<div class="panel-heading">
 										      		<h4 class="panel-title">
-										        	<a data-toggle="collapse" data-parent="#accordion" href="#test_pos1">
-										        	Position Test 1</a>
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_pos1">
+										        	Position 1 Test</a>
 										      		</h4>
 										    	</div>
-										    	<div id="test_pos1" class="panel-collapse collapse">
+										    	<div id="EC_pos1" class="panel-collapse collapse">
 										      		<div class="panel-body">
 												      	<i>Test Description:</i>
 												      	Confirm EC reports "Floor 1" when car is at Floor 1.
@@ -185,15 +185,15 @@
 										    	</div>
 										  	</div>
 
-										  	<!-- Position Test 2 -->
+										  	<!-- Position 2 Test -->
 											<div class="panel panel-default">
 										    	<div class="panel-heading">
 										      		<h4 class="panel-title">
-										        	<a data-toggle="collapse" data-parent="#accordion" href="#test_pos2">
-										        	Position Test 2</a>
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_pos2">
+										        	Position 2 Test</a>
 										      		</h4>
 										    	</div>
-										    	<div id="test_pos2" class="panel-collapse collapse">
+										    	<div id="EC_pos2" class="panel-collapse collapse">
 										      		<div class="panel-body">
 												      	<i>Test Description:</i>
 												      	Confirm EC reports "Floor 2" when car is at Floor 2.
@@ -218,15 +218,15 @@
 										    	</div>
 										  	</div>
 
-										  	<!-- Position Test 3 -->
+										  	<!-- Position 3 Test -->
 											<div class="panel panel-default">
 										    	<div class="panel-heading">
 										      		<h4 class="panel-title">
-										        	<a data-toggle="collapse" data-parent="#accordion" href="#test_pos3">
-										        	Position Test 3</a>
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_pos3">
+										        	Position 3 Test</a>
 										      		</h4>
 										    	</div>
-										    	<div id="test_pos3" class="panel-collapse collapse">
+										    	<div id="EC_pos3" class="panel-collapse collapse">
 										      		<div class="panel-body">
 												      	<i>Test Description:</i>
 												      	Confirm EC reports "Floor 3" when car is at Floor 3.
@@ -255,11 +255,11 @@
 											<div class="panel panel-default">
 										    	<div class="panel-heading">
 										      		<h4 class="panel-title">
-										        	<a data-toggle="collapse" data-parent="#accordion" href="#test_ena1">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_ena1">
 										        	Enable Test 1</a>
 										      		</h4>
 										    	</div>
-										    	<div id="test_ena1" class="panel-collapse collapse">
+										    	<div id="EC_ena1" class="panel-collapse collapse">
 										      		<div class="panel-body">
 												      	<i>Test Description:</i>
 												      	Confirm EC applies 0V to the Servo Amp when Disabled.
@@ -285,11 +285,1089 @@
 										    	</div>
 										  	</div>
 
+										  	<!-- Enable Test 2 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_ena2">
+										        	Enable Test 2</a>
+										      		</h4>
+										    	</div>
+										    	<div id="EC_ena2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm EC stops moving car when disabled during transit.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to floor 1.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>SC_Enable = 1 --> 0</li>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>EC_Status = 1 --> 0</li>
+												      		<li>EC stops moving car when Enable is set to zero.</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor 1 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_floor1">
+										        	Floor 1 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="EC_floor1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm EC moves car to Floor 1 when commanded.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 2.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>SC_Enable = 1</li>
+												      		<li>SC_Floor_Cmd = 1</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>EC_Status = 1</li>
+												      		<li>EC_Car_Pos = 1</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor 2 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_floor2">
+										        	Floor 2 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="EC_floor2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm EC moves car to Floor 2 when commanded.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 1.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>SC_Enable = 1</li>
+												      		<li>SC_Floor_Cmd = 2</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>EC_Status = 1</li>
+												      		<li>EC_Car_Pos = 2</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor 3 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#EC_floor3">
+										        	Floor 3 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="EC_floor3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm EC moves car to Floor 3 when commanded.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 2.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>SC_Enable = 1</li>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>EC_Status = 1</li>
+												      		<li>EC_Car_Pos = 3</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Car Controller Test Plan -->
+							<div class="col-xs-12" id="CC">
+								<hr>
+								<h2>Car Controller Testing</h2>
+								<i>Black box test plan for the Car Controller module.</i>
+				
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<h3>Module Inputs</h3>
+										<ul>
+											<li>CAN Message 'EC_Status' (0x101)</li>
+											<ul>
+												<li>Signal 'EC_Car_Pos' (Bits 0-1)</li>
+												<li>Signal 'EC_Status' (Bit 2)</li>
+											</ul>
+											<li>CAN Message 'SC_Cmd_To_EC' (0x100)</li>
+											<ul>
+												<li>Signal 'SC_Floor_Cmd' (Bits 0-1)</li>
+												<li>Signal 'SC_Enable' (Bit 2)</li>
+											</ul>
+											<li>Door Open Button</li>
+											<li>Door Close Button</li>
+											<li>Floor 1 Button</li>
+											<li>Floor 2 Button</li>
+											<li>Floor 3 Button</li>
+										</ul>
+									</div>
+									<div class="col-xs-12 col-sm-6">	
+										<h3>Module Outputs</h3>
+										<ul>
+											<li>CAN Message 'CC_Status' (0x200)</li>
+											<ul>
+												<li>Signal 'CC_Floor_Req' (Bit 0-1)</li>
+												<li>Signal 'CC_Door_State' (Bit 2)</li>
+											</ul>
+											<li>Door Open LED</li>
+											<li>Door Closed LED</li>
+											<li>Floor 1 LED</li>
+											<li>Floor 2 LED</li>
+											<li>Floor 3 LED</li>
+										</ul>
+									</div>
+
+									<div class="col-xs-12">
+										<h3>Test Plans and Results</h3>
+
+
+										<!-- Collapsible accordion -->
+										<div class="panel-group" id="accordion">
+
+										  	<!-- Position 0 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_pos0">
+										        	Position 0 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_pos0" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+										  
+										  	<!-- Position 1 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_pos1">
+										        	Position 1 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_pos1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 1</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = ON</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Position 2 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_pos2">
+										        	Position 2 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_pos2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 2</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = ON</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>										  	
+
+										  	<!-- Position 3 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_pos3">
+										        	Position 3 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_pos3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 3</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Door Open Test 1 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_open1">
+										        	Door Open Test 1</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_open1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC opens door when car reaches desired floor.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0-->3</li>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Door_State = CLOSED --> OPEN</li>
+												      		<li>Door Open LED = OFF --> ON</li>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF-->ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Door Open Test 2 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_open2">
+										        	Door Open Test 2</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_open2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC opens door when button is pressed and car is not moving.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 3</li>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      		<li>Door Open Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Door_State = CLOSED --> OPEN</li>
+												      		<li>Door Open LED = OFF --> ON</li>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Door Open Test 3 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_open3">
+										        	Door Open Test 3</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_open3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC does not open door when button is pressed and car is moving.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0</li>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      		<li>Door Open Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Door_State = CLOSED</li>
+												      		<li>Door Open LED = OFF</li>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF-->ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Door Closed Test 1 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_close1">
+										        	Door Close Test 1</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_close1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC auto-closes door 2 seconds after opening.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Door Open Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Door_State = CLOSED --> OPEN --> 2 seconds hold --> CLOSED</li>
+												      		<li>Door Closed LED = ON --> OFF --> 2 seconds hold --> ON</li>
+												      		<li>Door Open LED = OFF --> ON --> 2 seconds hold --> OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										    </div>
+
+										  	<!-- Door Close Test 2 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_close2">
+										        	Door Close Test 2</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_close2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC closes door when button is pressed.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Door Close Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Door_State = OPEN --> CLOSED</li>
+												      		<li>Door Closed LED = OFF --> ON</li>
+												      		<li>Door Open LED = ON --> OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor 0 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_floor0">
+										        	Floor 0 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_floor0" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC requests no floor when current request is satisfied.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 1.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor 2 Button = Pressed</li>
+												      		<li>EC_Car_Pos = 1-->2</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Floor_Req = 2 --> 0</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>											  	
+
+										  	<!-- Floor 1 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_floor1">
+										        	Floor 1 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_floor1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC requests correct floor based on button pressed.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 2.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor 1 Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Floor_Req = 1</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor 2 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_floor2">
+										        	Floor 2 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_floor2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC requests correct floor based on button pressed.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 1.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor 2 Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Floor_Req = 2</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>	
+
+										  	<!-- Floor 3 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#CC_floor3">
+										        	Floor 3 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="CC_floor3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm CC requests correct floor based on button pressed.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to Floor 2.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor 3 Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>CC_Floor_Req = 3</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>	
+											  												  								
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Floor Controller Test Plan -->
+							<div class="col-xs-12" id="FC">
+								<hr>
+								<h2>Floor Controller Testing</h2>
+								<i>Black box test plan for the Floor Controller modules.</i>
+
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<h3>Module Inputs</h3>
+										<ul>
+											<li>CAN Message 'EC_Status' (0x101)</li>
+											<ul>
+												<li>Signal 'EC_Car_Pos' (Bits 0-1)</li>
+												<li>Signal 'EC_Status' (Bit 2)</li>
+											</ul>
+											<li>CAN Message 'CC_Status' (0x200)</li>
+											<ul>
+												<li>Signal 'CC_Floor_Req' (Bit 0-1)</li>
+												<li>Signal 'CC_Door_State' (Bit 2)</li>
+											</ul>
+											<li>Car Request Button</li>
+										</ul>
+									</div>
+									<div class="col-xs-12 col-sm-6">	
+										<h3>Module Outputs</h3>
+										<ul>
+											<li>CAN Message 'F#_Status' (0x20#)</li>
+											<ul>
+												<li>Signal 'F#_Call_Req' (Bit 0)</li>
+											</ul>
+											<li>Car Request LED</li>
+											<li>Floor 1 LED</li>
+											<li>Floor 2 LED</li>
+											<li>Floor 3 LED</li>
+										</ul>
+									</div>
+
+									<div class="col-xs-12">
+										<h3>Test Plans and Results</h3>
+
+										<!-- Collapsible accordion -->
+										<div class="panel-group" id="accordion">
+										  
+										  	<!-- Position 0 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_pos0">
+										        	Position 0 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_pos0" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+										  
+										  	<!-- Position 1 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_pos1">
+										        	Position 1 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_pos1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 1</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = ON</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Position 2 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_pos2">
+										        	Position 2 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_pos2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 2</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = ON</li>
+												      		<li>Floor 3 LED = OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>										  	
+
+										  	<!-- Position 3 Test -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_pos3">
+										        	Position 3 Test</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_pos3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC illuminates correct LED based on EC reported car position.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	None.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 3</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>Floor 1 LED = OFF</li>
+												      		<li>Floor 2 LED = OFF</li>
+												      		<li>Floor 3 LED = ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Floor Request Test 1-->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_floorReq1">
+										        	Floor Request Test 1</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_floorReq1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC requests floor when button pressed
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to 100cm height marker.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor Request Button = Pressed</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>F#_Request = CAR_REQUESTED</li>
+												      		<li>Floor Request LED = ON</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>										  	
+
+										  	<!-- Floor Request Test 2-->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#FC_floorReq2">
+										        	Floor Request Test 2</a>
+										      		</h4>
+										    	</div>
+										    	<div id="FC_floorReq2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm FC request dies after car stops at requested floor.
+												      	(Tested using Floor Controller 1)
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	Move elevator car to 100cm height marker.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>Floor Request Button = Pressed</li>
+												      		<li>EC_Car_Pos = 0 --> 1</li>
+												      		<li>CC_Door_State = CLOSED --> OPEN</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>F#_Request = CAR_REQUESTED --> CAR_NOT_REQUESTED</li>
+												      		<li>Floor Request LED = ON --> OFF</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>	
 
 										</div>
 									</div>
 								</div>
 							</div>
+
+							<!-- Supervisory Controller Test Plan -->
+							<div class="col-xs-12" id="SC">
+								<hr>
+								<h2>Supervisory Controller Testing</h2>
+								<i>Black box test plan for the Supervisory Controller module.</i>
+
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<h3>Module Inputs</h3>
+										<ul>
+											<li>CAN Message 'EC_Status' (0x101)</li>
+											<ul>
+												<li>Signal 'EC_Car_Pos' (Bits 0-1)</li>
+												<li>Signal 'EC_Status' (Bit 2)</li>
+											</ul>
+											<li>CAN Message 'CC_Status' (0x200)</li>
+											<ul>
+												<li>Signal 'CC_Floor_Req' (Bit 0-1)</li>
+												<li>Signal 'CC_Door_State' (Bit 2)</li>
+											</ul>
+											<li>CAN Message 'F1_Status' (0x201)</li>
+											<ul>
+												<li>Signal 'F1_Call_Req' (Bit 0)</li>												
+											</ul>										
+											<li>CAN Message 'F2_Status' (0x202)</li>
+											<ul>
+												<li>Signal 'F2_Call_Req' (Bit 0)</li>												
+											</ul>		
+											<li>CAN Message 'F3_Status' (0x203)</li>
+											<ul>
+												<li>Signal 'F3_Call_Req' (Bit 0)</li>												
+											</ul>													
+
+											<li>Remote Floor Request</li>
+										</ul>
+									</div>
+									<div class="col-xs-12 col-sm-6">	
+										<h3>Module Outputs</h3>
+										<ul>
+											<li>CAN Message 'SC_Cmd_To_EC' (0x100)</li>
+											<ul>
+												<li>Signal 'SC_Floor_Cmd' (Bits 0-1)</li>
+												<li>Signal 'SC_Enable' (Bit 2)</li>
+											</ul>
+										</ul>
+									</div>
+
+									<div class="col-xs-12">
+										<h3>Test Plans and Results</h3>
+
+										<!-- Collapsible accordion -->
+										<div class="panel-group" id="accordion">
+										  
+										  	<!-- Supervisory Controller Test 1 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#SC_test1">
+										        	Supervisory Controller Test 1</a>
+										      		</h4>
+										    	</div>
+										    	<div id="SC_test1" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm SC transitions from "CAR_NOT_MOVING" to "REQUEST_NEW_FLOOR" when door is closed and a floor is requested.
+												      	Repeat test for each source of a floor request.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	SC State = CAR_NOT_MOVING
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0</li>
+												      		<li>SM_Floor_Req = 3</li>
+												      		<li>Door_State = CLOSED</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>SC_Floor_Cmd = 3</li>
+												      		<li>SC_Enable = 1</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Supervisory Controller Test 2 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#SC_test2">
+										        	Supervisory Controller Test 2</a>
+										      		</h4>
+										    	</div>
+										    	<div id="SC_test2" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm SC remains in state "CAR_NOT_MOVING" when door is open and a floor is requested.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	SC State = CAR_NOT_MOVING.
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0</li>
+												      		<li>SM_Floor_Req = 3</li>
+												      		<li>Door_State = OPEN</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>SC_Floor_Cmd = 0</li>
+												      		<li>SC_Enable = 0</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										  	<!-- Supervisory Controller Test 3 -->
+											<div class="panel panel-default">
+										    	<div class="panel-heading">
+										      		<h4 class="panel-title">
+										        	<a data-toggle="collapse" data-parent="#accordion" href="#SC_test3">
+										        	Supervisory Controller Test 3</a>
+										      		</h4>
+										    	</div>
+										    	<div id="SC_test3" class="panel-collapse collapse">
+										      		<div class="panel-body">
+												      	<i>Test Description:</i>
+												      	Confirm SC transitions from "CAR_MOVING" to "CAR_NOT_MOVING" when elevator car reaches requested floor and door is opened.
+												      	<br><br>
+
+												      	<i>Test Setup:</i>
+												      	SC State = CAR_MOVING
+												      	<br><br>
+
+												      	<i>Inputs:</i>
+												      	<ul>
+												      		<li>EC_Car_Pos = 0 --> 1</li>
+												      		<li>CC_Door_State = CLOSED --> OPEN</li>
+												      	</ul>
+
+												      	<i>Expected Outputs:</i>
+												      	<ul>
+												      		<li>SC_Floor_Cmd = 1 --> 0</li>
+												      		<li>SC_Enable = 1 --> 0</li>
+												      	</ul>
+
+												      	<i>Test Result:</i> Passed
+													</div>
+										    	</div>
+										  	</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</article>
