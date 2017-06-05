@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html class="full">
 	<head>
-		<title>Login</title>
+		<title>Phase 3</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="This is the login page for the S6 Project website"/>
+		<meta name="description" content="This is the page for phase 3 for the S6 Project"/>
 		<meta name="robots" content="noindex nofollow"/>
 		<meta http-equiv="author" content="David Eelman"/>
 		<meta http-equiv="pragma" content="no-cache"/>
@@ -13,7 +13,6 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
 	</head>
-
 	<body>
 		<div id="page">
 			<header>
@@ -33,7 +32,7 @@
 								<li><a href="about.html">About</a></li>
 								<li><a href="phase_1.html">Phase 1</a></li>
 								<li><a href="phase_2.html">Phase 2</a></li>
-								<li><a href="phase_3.html">Phase 3</a></li>
+								<li class="active"><a href="phase_3.html">Phase 3</a></li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
 									<ul class="dropdown-menu">
@@ -44,38 +43,24 @@
 								</li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-								<li class="active"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+								<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</header>
-
+	
 			<div id="content">
 				<article>
-					<br>
-					<form class="center-block" action="php/login.php" id="login" method="post">
-						<div class="form-group">
-							<label for="username">Username:</label>
-							<input type="username" class="form-control" id="username">
-						</div>
-						<div class="form-group">
-							<label for="password">Password:</label>
-							<input type="password" class="form-control" id="password">
-						</div>
-						<div class="checkbox">
-							<label><input type="checkbox"> Remember me</label>
-						</div>
-						<span>
-							<button type="submit" class="btn btn-default">Submit</button>
-							<a href="request_access.html" class="btn btn-info pull-right">Request Access</a>
-						</span>
-					</form>
-					<br>
+					<div class="container text-center" style="background-color: rgba(0,0,0,0.4);"> 
+						<section>
+							<h1>Phase 3 - S6 Project</h1>
+						</section>
+					</div>
 				</article>
 			</div>
 
-			<footer class="container-fluid text-center">
+			<footer class="container-fluid text-center push-bottom">
 				<p>Copyright &copy; 2017 ESE Team</p>
 			</footer>	
 		</div>
