@@ -6,7 +6,7 @@ Date: 2017-05-30
 
 /* Table formatting for Gantt Chart */
 table, th, td {
-	border: 1px solid black;
+	border: 1px solid white;
 	border-spacing: 3px;
 	text-align: center;
 	empty-cells: hide;
