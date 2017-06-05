@@ -10,6 +10,8 @@ body { /* Default font - Tahoma */
 
 html {
 	margin-top: 50px; /* Required margin for .navbar-fixed-top.*/
+	height:100%;
+	min-height:100%;
 }
 
 hr {
