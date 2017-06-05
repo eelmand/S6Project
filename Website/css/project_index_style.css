@@ -1,0 +1,13 @@
+/* 
+Common CSS Stylesheet for the index page
+Author: David Eelman
+Date: 2017-05-31
+*/
+
+.progress {
+	width: 50%;
+}
+
+.progress-bar {
+	width: 60%;
+}

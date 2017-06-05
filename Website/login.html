@@ -1,26 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html class="full">
 	<head>
 		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="This is the login page for the S6 Project website"/>
 		<meta name="robots" content="noindex nofollow"/>
 		<meta http-equiv="author" content="David Eelman"/>
 		<meta http-equiv="pragma" content="no-cache"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
 	</head>
+
 	<body>
-		<form action="php/login.php" id="login" method="post">
-			<h1>Please enter login credentials</h1>
-			<p>Username:
-				<input type="text" name="username" required />
-			</p>
-			<p>Password:
-				<input type="password" name="password" required />
-			</p>
-			<input type="submit" value="Log in">
-			<p><a href="request_access.html">Request Access</a></p>
-			<p><a href="login.html#top">To Top</a></p>
-			<p><a href="index.html">Home</a></p>
-		</form>
-		<p>&copy; 2017 David Eelman</p>
+		<div id="page">
+			<header>
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>                        
+							</button>
+							<a class="navbar-brand" href="index.html">S6 Project</a>
+						</div>
+						
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav">
+								<li><a href="about.html">About</a></li>
+								<li><a href="project_plan.html">Project</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="stan_rashevskyi_log_book.html">Stan Rashevskyi</a></li>
+										<li><a href="david_eelman_log_book.html">David Eelman</a></li>
+										<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="active"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+
+			<div id="content">
+				<article>
+					<br>
+					<form class="center-block" action="php/login.php" id="login" method="post">
+						<div class="form-group">
+							<label for="username">Username:</label>
+							<input type="username" class="form-control" id="username">
+						</div>
+						<div class="form-group">
+							<label for="password">Password:</label>
+							<input type="password" class="form-control" id="password">
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox"> Remember me</label>
+						</div>
+						<span>
+							<button type="submit" class="btn btn-default">Submit</button>
+							<a href="request_access.html" class="btn btn-info pull-right">Request Access</a>
+						</span>
+					</form>
+					<br>
+				</article>
+			</div>
+
+			<footer class="container-fluid text-center">
+				<p>Copyright &copy; 2017 ESE Team</p>
+			</footer>	
+		</div>
 	</body>
 </html>
