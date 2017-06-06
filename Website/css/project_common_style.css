@@ -35,6 +35,7 @@ footer {
 @media(max-width: 480px) {
 	h1 {font-size: 160%;}
 	h2 {font-size: 140%;}
+	.row {min-width: 100%};
 }
 
 .full { /* Background image */
@@ -49,7 +50,6 @@ footer {
 .row {
 	margin-bottom: 50px;
 	width: 70%;
-	min-width: 350px;
 }
 
 .top {
@@ -68,4 +68,23 @@ footer {
 	color: white;
 	width:100%; 
 	background-color: rgba(0,0,0,0.5);
+}
+
+.iframe-1 {
+	position: relative;
+	padding-bottom: 65.25%;
+	padding-top: 0px;
+	height: 0;
+	overflow: hidden; 
+	-webkit-overflow-scrolling:touch;
+	border: solid grey 1px;
+	display:block;
+} 
+
+.iframe-1 iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
