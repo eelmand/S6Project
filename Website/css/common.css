@@ -1,0 +1,113 @@
+/* 
+Common CSS Stylesheet for all pages
+Author: David Eelman
+Date: 2017-06-06
+*/
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body { 
+	font-family: Tahoma, Georgia, serif; /* Default font - Tahoma */
+	color: white;
+	margin-top: 50px; /* Footer */
+	margin-bottom: 50px; /* Navbar */
+	background-color:rgba(0, 0, 0, 0);
+} 
+
+article{
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+hr {
+	border-color: grey;
+}
+
+form {	
+	width:30%; 
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	padding: 1rem;
+	color: grey; 
+	background-color:rgba(0, 0, 0, 0.7);
+}
+
+.background-image { 
+	background: url("../images/elevator_background.png") no-repeat center center fixed;
+	background-color: black;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+@media(max-width: 480px) {
+	h1 {font-size: 160%;}
+	h2 {font-size: 140%;}
+	form {min-width:100%;}
+}
+
+
+/* Index page CSS */
+#phase-1-progress{
+	width: 100%;
+}
+
+#phase-2-progress{
+	width: 10%;
+}
+
+#phase-3-progress{
+	width: 0%;
+}
+
+/* General formatting for iframe elements */
+.iframe-1 {
+	position: relative;
+	padding-bottom: 65.25%;
+	padding-top: 0px;
+	height: 0;
+	overflow: hidden; 
+	-webkit-overflow-scrolling:touch;
+	border: solid grey 1px;
+	display:block;
+} 
+
+.iframe-1 iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Table formatting for Gantt Chart */
+table, th, td {
+	border: 1px solid white;
+	border-spacing: 3px;
+	text-align: center;
+	empty-cells: hide;
+}
+
+th {
+	width: 100px;
+}
+
+td:hover, .TASK:hover {
+	background-color: yellow; color: black;
+}
+
+.TASK {width: 355px; text-align: left;}
+.ALL {background-color: grey; color: white;}
+.TA {background-color: red; color: white;}
+.DE {background-color: blue; color: white;}
+.SR {background-color: green; color: white;}
