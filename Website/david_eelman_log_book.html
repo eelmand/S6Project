@@ -1,127 +1,97 @@
 <!DOCTYPE html>
-<html class="full">
-	<head>
-		<title>S6 Project</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="This is the logbook page for David Eelman"/>
-		<meta name="robots" content="noindex nofollow"/>
-		<meta http-equiv="author" content="David Eelman"/>
-		<meta http-equiv="pragma" content="no-cache"/>
-		<link rel="icon" href="images/elevator.png">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<link href="./css/project_common_style.css" type="text/css" rel="stylesheet">
-	</head>
-	<body>
-		<div id="page">
-			<header>
-				<nav class="navbar navbar-inverse navbar-fixed-top">
-					<div class="container">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>                        
-							</button>
-							<a class="navbar-brand" href="index.html">S6 Project</a>
-						</div>
-						
-						<div class="collapse navbar-collapse" id="myNavbar">
-							<ul class="nav navbar-nav">
-								<li><a href="about.html">About</a></li>
-								<li><a href="phase_1.html">Phase 1</a></li>
-								<li><a href="phase_2.html">Phase 2</a></li>
-								<li><a href="phase_3.html">Phase 3</a></li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logbooks <span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="stan_rashevskyi_log_book.html">Stan Rashevskyi</a></li>
-										<li class="active"><a href="david_eelman_log_book.html">David Eelman</a></li>
-										<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
-									</ul>
-								</li>
-							</ul>
-							<ul class="nav navbar-nav navbar-right">
-								<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</header>
+<html>
 
-			<div id="content">
-				<article>
-					<div class="container text-center" style="background-color: rgba(0,0,0,0.4)"> 
-						<h1>Weekly Log Book - David Eelman</h1>
-						<hr class= "top center-block"> 
-						<img src="images/david.jpg" alt="Image of David" title="David" class="img-rounded" />
-						<div class="row text-left center-block">
-							<div class="col-xs-12">
-								<hr>
-								<h2>Week 1</h2>
-								<ul>
-									<li>Composed Project Plan with Stan and Thomas</li>
-									<li>Started website for S6 Project</li>
-								</ul>
-							</div>
-							<div class="col-xs-12">
-								<hr> 
-								<h2>Week 2</h2>
-								<ul>
-									<li>Work done on Floor Controller hardware</li>
-									<ul>
-										<li>Gathered the necessary hardware (LEDS, Push Buttons, Resistors, and Wires)</li>
-										<li>Arranged 3 LEDS as indicators for the floor status and connected to output pins of the HCS12 Axman board</li>
-										<li>One LED used for indicating elevator call button pressed</li>
-										<li>Push Button used for calling the elevator to current floor</li>
-									</ul>
-									<li>Continued developing website</li>
-									<ul>
-										<li>Created login/request access pages for future PHP development</li>
-										<li>Added images to my logbook page and the about page</li>
-									</ul>
-								</ul>
-							</div>
-							<div class="col-xs-12">
-								<hr> 
-								<h2>Week 3</h2>
-								<ul>
-									<li>Work done on Floor Controller software</li>
-									<ul>
-										<li>Wrote basic functions to control the LEDs and push buttons through software</li>
-										<li>Implemented shared CAN code on a floor controller and performed preliminary CAN testing</li>
-										<li>Implemented the CAN Floor Controller logic</li>
-										<li>Performed testing of CAN Floor Controller with the Elevator Controller written by Thomas</li>
-									</ul>
-									<li>Continued developing website</li>
-									<ul>
-										<li>Added a map to our campus</li>
-										<li>Added content to the about page</li>
-									</ul>
-								</ul>
-							</div>
-							<div class="col-xs-12">
-								<hr> 
-								<h2>Week 4</h2>
-								<ul>
-									<li>Built another floor controller setup and programmed to be floor 3 (Thomas built and programmed floor 2)</li>
-									<li>Worked on integration of floor controllers with supervisor controller. Found and fixed bug in floor controller code</li>
-									<li>Helped Thomas setup a testing station for the elevator</li>
-									<li>Wrote the weekly status report for weeks 2 and 3</li>
-									<li>Filmed video of complete system functionality with entire team</li>
-									<li>Performed an overhaul of the team website to use Bootstrap framework</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</article>
+<head>
+	<title>David Eelman | Logbook</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This is the logbook page for David Eelman"/>
+	<meta name="robots" content="noindex nofollow"/>
+	<meta http-equiv="author" content="David Eelman"/>
+	<meta http-equiv="pragma" content="no-cache"/>
+
+	<link rel="icon" href="images/elevator.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link href="./css/common.css" type="text/css" rel="stylesheet">
+</head>
+
+<body class="background-image">
+	<header>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<?php include 'php/top-menu.php';?>	
+		</nav>
+	</header>
+	
+	<article class="container text-center">
+		<h1>Weekly Log Book - David Eelman</h1>
+		<img src="images/david.jpg" alt="Image of David" title="David" class="img-rounded" />
+		<div class="row text-left center-block">
+			<div class="col-xs-12">
+				<hr>
+				<h2>Week 1</h2>
+				<ul>
+					<li>Composed Project Plan with Stan and Thomas</li>
+					<li>Started website for S6 Project</li>
+				</ul>
 			</div>
-
-			<footer class="container-fluid text-center">
-				<p>Copyright &copy; 2017 ESE Team</p>
-			</footer>	
+			<div class="col-xs-12">
+				<hr> 
+				<h2>Week 2</h2>
+				<ul>
+					<li>Work done on Floor Controller hardware</li>
+					<ul>
+						<li>Gathered the necessary hardware (LEDS, Push Buttons, Resistors, and Wires)</li>
+						<li>Arranged 3 LEDS as indicators for the floor status and connected to output pins of the HCS12 Axman board</li>
+						<li>One LED used for indicating elevator call button pressed</li>
+						<li>Push Button used for calling the elevator to current floor</li>
+					</ul>
+					<li>Continued developing website</li>
+					<ul>
+						<li>Created login/request access pages for future PHP development</li>
+						<li>Added images to my logbook page and the about page</li>
+					</ul>
+				</ul>
+			</div>
+			<div class="col-xs-12">
+				<hr> 
+				<h2>Week 3</h2>
+				<ul>
+					<li>Work done on Floor Controller software</li>
+					<ul>
+						<li>Wrote basic functions to control the LEDs and push buttons through software</li>
+						<li>Implemented shared CAN code on a floor controller and performed preliminary CAN testing</li>
+						<li>Implemented the CAN Floor Controller logic</li>
+						<li>Performed testing of CAN Floor Controller with the Elevator Controller written by Thomas</li>
+					</ul>
+					<li>Continued developing website</li>
+					<ul>
+						<li>Added a map to our campus</li>
+						<li>Added content to the about page</li>
+					</ul>
+				</ul>
+			</div>
+			<div class="col-xs-12">
+				<hr> 
+				<h2>Week 4</h2>
+				<ul>
+					<li>Built another floor controller setup and programmed to be floor 3 (Thomas built and programmed floor 2)</li>
+					<li>Worked on integration of floor controllers with supervisor controller. Found and fixed bug in floor controller code</li>
+					<li>Helped Thomas setup a testing station for the elevator</li>
+					<li>Wrote the weekly status report for weeks 2 and 3</li>
+					<li>Filmed video of complete system functionality with entire team</li>
+					<li>Performed an overhaul of the team website to use Bootstrap framework</li>
+				</ul>
+			</div>
 		</div>
-	</body>
+	</article>
+
+	<footer class="container-fluid text-center">
+		<p>Copyright &copy; 2017 ESE Team</p>
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+
 </html>
