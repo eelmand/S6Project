@@ -24,10 +24,22 @@
 	</header>
 			
 	<article class="container text-center">		
-		<h1>Cool Display.</h1>
-		<div id="example1" class="center-block" style="padding: 0.5em; height: 50px; width: 50px;"></div>
-		<h1>Cool Moving thing.</h1>
-		<img id="elevatorPic" src="images/elevator_2.png" alt="Image of Elevator" title="Elevator" style="width: 100px" class="img-rounded" />
+		<h1>Elevator Control</h1>
+		<div class="row text-left center-block" style="width:30%">
+			<div class="col-xs-6">
+				<h3>Position</h3>
+				<img id="elevatorPic" src="images/elevator_2.png" alt="Image of Elevator" title="Elevator" style="width: 100px" class="img-rounded" />
+			</div>
+			<div class="col-xs-6">
+				<h3>Current Floor</h3>
+				<div id="floor-display" style="padding: 0.5em; height: 70px; width: 70px;"></div>
+				<button onclick="floor_1()" class="btn btn-default">Floor 1</button>
+				<button onclick="floor_2()" class="btn btn-default">Floor 2</button>
+				<button onclick="floor_3()" class="btn btn-default">Floor 3</button>
+				<button onclick="open_doors()" class="btn btn-default">Open Doors</button>
+				<button onclick="close_doors()" class="btn btn-default">Close Doors</button>
+			</div>
+		</div>
 	</article>
 
 	<footer class="container-fluid text-center">
@@ -39,6 +51,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="js/sevenSeg.js"></script>
 	<script src="js/dashboard.js"></script>
+	<script>$("#floor-display").sevenSeg({ value: 0 });</script>
 </body>
 
 </html>
