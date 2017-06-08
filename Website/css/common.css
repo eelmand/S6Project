@@ -96,10 +96,7 @@ table, th, td {
 	border-spacing: 3px;
 	text-align: center;
 	empty-cells: hide;
-}
-
-th {
-	width: 100px;
+	padding: 5px;
 }
 
 td:hover, .TASK:hover {
