@@ -29,7 +29,7 @@
 		
 		<!-- Table of Signals -->
 		<h2 id="schedule">Live CAN Signals</h2>
-		<table align="center">
+		<table id="debug_can_viewer" align="center">
 			<thead>
 				<tr>
 					<th>Signal Name</th>
@@ -39,9 +39,9 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th class="NAME">EC_Car_Pos</th>
-					<td class="RAW">Floor 1</td>
-					<td class="PHYS">1</td>
+					<th id="EC_Car_Pos">EC_Car_Pos</th>
+					<td id="EC_Car_Pos_RAW">0</td>
+					<td id="EC_Car_Pos_PHYS">In Transit</td>
 				</tr>
 			</tbody>
 		</table>
@@ -54,6 +54,8 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script src="js/debug_CAN_viewer.js"></script>
 </body>
 
 </html>
