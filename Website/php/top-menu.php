@@ -24,7 +24,6 @@ echo '
 						<li><a href="thomas_abdallah_log_book.html">Thomas Abdallah</a></li>
 					</ul>
 				</li>
-				<li><a href="dashboard.html">Dashboard</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
