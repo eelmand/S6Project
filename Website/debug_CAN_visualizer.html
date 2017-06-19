@@ -26,8 +26,69 @@
 	<article class="container text-center">						
 		<h1>Debug - CAN Visualizer</h1>					
 		<hr>
-		<h2>Site under construction</h2>
 
+		<table id="debug_can_visualizer" align="center" frame="void">
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><fieldset class="fieldset-auto">
+						<legend>Floor 3 Controller</legend>
+						<button disabled type="button" class="LED F3">3</button><br />
+						<button disabled type="button" class="LED F2">2</button><br />
+						<button disabled type="button" class="LED F1">1</button><br />
+						<button disabled type="button" class="LED" id="F3_CALL_REQ">C</button><br />
+						<br />
+					</fieldset></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td><fieldset class="fieldset-auto">
+						<legend>Floor 2 Controller</legend>
+						<button disabled type="button" class="LED F3">3</button><br />
+						<button disabled type="button" class="LED F2">2</button><br />
+						<button disabled type="button" class="LED F1">1</button><br />
+						<button disabled type="button" class="LED" id="F2_CALL_REQ">C</button><br />
+						<br />
+					</fieldset></td>
+				<tr>
+					<td><fieldset class="fieldset-auto">
+						<legend>Elevator Controller</legend>
+						<button disabled type="button" class="LED F3">3</button><br />
+						<button disabled type="button" class="LED F2">2</button><br />
+						<button disabled type="button" class="LED F1">1</button><br />
+						<button disabled type="button" class="LED" id="EC_ENABLE">E</button><br />
+						<br />
+					</fieldset></td>
+
+					<td><fieldset class="fieldset-auto">
+						<legend>Car Controller</legend>
+						<button disabled type="button" class="LED F3">3</button><br />
+						<button disabled type="button" class="LED F2">2</button><br />
+						<button disabled type="button" class="LED F1">1</button><br />
+						<button disabled type="button" class="LED" id="CC_DOOR_STATE">D</button><br />
+						<br />
+					</fieldset></td>
+
+					<td><fieldset class="fieldset-auto">
+						<legend>Floor 1 Controller</legend>
+						<button disabled type="button" class="LED F3">3</button><br />
+						<button disabled type="button" class="LED F2">2</button><br />
+						<button disabled type="button" class="LED F1">1</button><br />
+						<button disabled type="button" class="LED" id="F1_CALL_REQ">C</button><br />
+						<br />
+					</fieldset></td>
+
+					<td><fieldset class="fieldset-auto">
+						<legend>Supervisory Controller</legend>
+						<button disabled type="button" class="STATE" id="SM_STATE">CAR_NOT_MOVING</button><br />
+						<button disabled type="button" class="STATE" id="SM_FLOOR_REQ">CMD_DON'T_CARE</button><br />
+						<br />
+					</fieldset></td>					
+				</tr>
+			</tbody>
+		</table>
 		<hr>
 	</article>
 
@@ -37,6 +98,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/debug_CAN_visualizer.js"></script>
 </body>
-
 </html>
