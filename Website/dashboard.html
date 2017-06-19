@@ -36,8 +36,11 @@
 				<button onclick="floor_1()" class="btn btn-default">Floor 1</button>
 			</div>
 		</div>
+		<hr>
 	</article>
-
+	<article class="chart container">
+		<canvas id="myChart" width="200" height="400"></canvas>
+	</article>
 	<footer class="container-fluid text-center">
 		<p>Copyright &copy; 2017 ESE Team</p>
 	</footer>	
@@ -45,6 +48,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 	<script src="js/sevenSeg.js"></script>
 	<script src="js/dashboard.js"></script>
 	<script>$("#floor-display").sevenSeg({ value: 0 });</script>
