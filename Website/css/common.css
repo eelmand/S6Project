@@ -92,7 +92,8 @@ footer {
 
 /* Table formatting for Gantt Chart */
 table, th, td {
-	border: 1px solid white;
+	border-style: hidden;
+	//border: 1px solid white;
 	border-spacing: 3px;
 	text-align: center;
 	empty-cells: hide;
@@ -108,3 +109,46 @@ td:hover, .TASK:hover {
 .TA {background-color: red; color: white;}
 .DE {background-color: blue; color: white;}
 .SR {background-color: green; color: white;}
+
+#debug_can_visualizer td:hover {
+	/* Don't want hovering for this table */
+	background-color: transparent;
+	color: white;
+}
+
+#debug_can_viewer th, td{
+	width: 180px;
+	text-align: left;
+}
+
+.fieldset-auto {
+     width: 150px;
+     display: inline-block;
+     text-align: center;
+     border: 1px solid grey;
+     border-radius: 5px
+}
+
+legend {
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+	border-color: grey;
+	font-size: 15px;
+}
+
+.LED {
+	height: 30px;
+	width: 30px;
+	background-color: white;
+	border-radius: 30px;
+	border: 1px solid black;
+	color: black;
+}
+
+.STATE {
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid black;
+	color: black;
+}
