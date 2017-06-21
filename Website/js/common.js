@@ -7,9 +7,20 @@ var year = today.getFullYear();
 // Code for showing David's birthday on his log page
 var davidBirthdate = new Date('April 6, 1993 00:00:00');
 var davidAge = today.getTime() - davidBirthdate.getTime();
-davidAge = Math.floor(davidAge / 31556900000)
+davidAge = Math.floor(davidAge / 31556900000);
 var element = document.getElementById('david_age');
-element.innerHTML = '<p>My age is: ' + davidAge + ' years </p>';
+if(element) {
+	element.innerHTML = '<p>My age is: ' + davidAge + ' years </p>';
+}
+
+// Code for showing Thomas' birthday on his log page
+var thomasBirthdate = new Date('September 14, 1992 00:00:00');
+var thomasAge = today.getTime() - thomasBirthdate.getTime();
+thomasAge = Math.floor(thomasAge / 31556900000);
+var element = document.getElementById('thomas_age');
+if(element) {
+	element.innerHTML = '<p>My age is: ' + thomasAge + ' years </p>';
+}
 
 // Updates the footer with the current year
 var footer = document.getElementsByTagName("footer");
