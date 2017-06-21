@@ -5,12 +5,31 @@ Date: 2017-05-25
 */
 
 /* Font is Georgia with Serif as backup */
-body {font-family: Georgia, serif;}
+body {
+	font-family: Georgia, serif;
+	width: 950px;
+	padding: 0px 10px 0 px 10px;
+	margin: 0px auto 0px auto;
+	border: 2px solid black;
+}
 p {font-size: 100%; text-indent: 15px}
 h1 {font-size: 160%;}
 h2 {font-size: 125%;}
 p, ul, ol {line-height: 20px; text-align: justify;}
-img {height: 300px}
+figure {
+	padding: 0px auto 0px auto;
+	border: 2px solid green;
+	border-radius: 25px;
+}
+
+
+img {
+	display: block;
+	height: 300px;
+	margin: 0px auto 0px auto;
+	border: 2px solid blue;
+	box-shadow: 10px 10px 5px gray;
+}
 figcaption {text-align: center; font-style: italic; font-size: 90%}
 
 .mkunderlined {text-decoration: underline}
