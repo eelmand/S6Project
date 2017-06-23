@@ -37,8 +37,10 @@ if (isset($_SESSION["username"]))
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="dashboard.php">Dashboard</a></li>
-								<li><a href="debug_CAN_viewer.html">Debugger - CAN</a></li>
+								<li><a href="dashboard.html">Dashboard</a></li>
+								<li><a href="debug_CAN_viewer.html">Debug CAN Viewer</a></li>
+								<li><a href="debug_CAN_plot.html">Debug CAN Plot</a></li>
+								<li><a href="debug_CAN_visualizer.html">Debug CAN Visualizer</a></li>
 							</ul>
 						</li>
 					</ul>
