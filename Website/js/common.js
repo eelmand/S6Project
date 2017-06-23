@@ -22,6 +22,15 @@ if(element) {
 	element.innerHTML = '<p>My age is: ' + thomasAge + ' years </p>';
 }
 
+// Code for showing Stan' birthday on his log page
+var stanBirthdate = new Date('October 3, 1996 00:00:00');
+var stanAge = today.getTime() - stanBirthdate.getTime();
+stanAge = Math.floor(stanAge / 31556900000);
+var element = document.getElementById('stan_age');
+if(element) {
+	element.innerHTML = '<p>My age is: ' + stanAge + ' years </p>';
+}
+
 // Updates the footer with the current year
 var footer = document.getElementsByTagName("footer");
 footer[0].innerHTML = '<p>Copyright &copy ' + year + ' ESE Team</p>';
