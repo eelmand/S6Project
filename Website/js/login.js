@@ -1,5 +1,5 @@
 // Event listener to ensure that username and password are both at least 7 characters long
-
+//focus username text input when page has loaded
 
 window.onload = function start() {
 	var username = document.getElementById('username');
@@ -17,3 +17,11 @@ window.onload = function start() {
 		}
 	}
 }
+
+
+function focus_username() {
+	var user_input = document.getElementById('username');
+	user_input.focus();
+}
+
+window.addEventListener('load', focus_username, false);
