@@ -8,18 +8,19 @@ var signals = [
 ]
 
 function updateSignal(signal) {
-    document.getElementById(signal.concat('_RAW')).innerHTML = window[signal.concat('_RAW')];
-    document.getElementById(signal.concat('_PHYS')).innerHTML = window[signal.concat('_PHYS')];
-    document.getElementById(signal.concat('_TIMESTAMP')).innerHTML = window[signal.concat('_TIMESTAMP')];
+    document.getElementById(signal.concat('_RAW')).innerHTML = json_data[signal.concat('_RAW')];
+    document.getElementById(signal.concat('_PHYS')).innerHTML = json_data[signal.concat('_PHYS')];
+    document.getElementById(signal.concat('_TIMESTAMP')).innerHTML = json_data[signal.concat('_TIMESTAMP')];
 }
 
 
-function updateDB() {
+function updateData() {
     window.setInterval(function() {
-        signals.forEach(updateSignal);    
+        signals.forEach(updateSignal);
     }, 1000);   // Repeat forever, polling every second
 }
 
 window.onload = function start(){
-    updateDB();
+    console.log(json_data);
+    updateData();
 }
