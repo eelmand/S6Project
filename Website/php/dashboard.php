@@ -2,11 +2,12 @@
 
 $servername = "localhost";
 $username = "root";
+$password = "password";
 
 echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
 
 try{
-	$dbConnect = new PDO("mysql:host=$servername;dbname=elevator", $username, '');
+	$dbConnect = new PDO("mysql:host=$servername;dbname=elevator", $username, $password);
 	$dbConnect->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 catch(PDOException $e){
