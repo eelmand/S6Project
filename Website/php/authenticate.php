@@ -18,23 +18,22 @@ if(!($username&&$password))
 }
 else
 {
-	include "connect_db.php"; // connect to database
+	// Try to connect to database and catch errors
+	try {
+		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
+	}
+	catch (PDOException $e) {
+		echo "Error: " . $e->getMessage() . "<br />";
+	}
 
 	//check if the username entered is in the database.
 	$login_query = "SELECT * FROM users WHERE username_field = '".$username."'";
-	$query_result = mysql_query($login_query);
+	$query_result = $database->query($login_query);
 
 	//conditions
-	if(mysql_num_rows($query_result)==0) {
-	//if username entered not yet exists
-	    echo "The username you entered is invalid.";
-	}
-	else 
-	{
-		//if exists, then extract the password.
-	    while($row_query = mysql_fetch_array($query_result)) {
-
-	        // check if password are equal
+	if($query_result != FALSE) {
+		foreach($query_result as $row_query) {
+			// check if password are equal
 	        if($row_query['password_field']==$password)
 	        {
 	        	/*
@@ -51,7 +50,12 @@ else
 				header("Location: ../login.html"); /* Redirect browser */
 				exit();
 			}
-	    }
+		}
+
+
+	}
+	else {
+		echo "The username you entered is invalid";
 	}
 }
 
