@@ -1,11 +1,10 @@
 <?php
-
-include "admin_info.php"; // include Admin Login Info 
-
 session_start();
 
+//include "admin_info.php"; // include Admin Login Info 
+
 // Check if user is not logged in or not admin
-if ((isset($_SESSION["username"])==0) || ($_SESSION["username"] != $GLOBALS["admin_usr"]))
+if (isset($_SESSION["username"])==0)
 {
 	echo "<p>Access denied</p>";
 	sleep(1);

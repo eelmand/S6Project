@@ -1,16 +1,6 @@
 <?php
-	echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
+	include "connect_db.php"; // connect to database
 	
-	// Try to connect to database and catch errors
-	try {
-		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
-	}
-	catch (PDOException $e) {
-		echo "Error: " . $e->getMessage() . "<br />";
-	}
-
-	echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
-
 	// Query database for most recent value of each signal
 	$signals = ['SM_STATE', 'SM_FLOOR_REQ', 'SC_ENABLE', 'SC_FLOOR_CMD', 'EC_STATE', 
 					'EC_CAR_POS', 'F1_CALL_REQ', 'F2_CALL_REQ', 'F3_CALL_REQ', 
