@@ -38,51 +38,5 @@
 
 <script>
 	// Make PHP variables available to javascript
-<<<<<<< HEAD
-	var SM_STATE_RAW = <?php echo $SM_STATE_RAW; ?>;
-	var SM_STATE_PHYS = <?php echo "'" . $SM_STATE_PHYS . "'"; ?>;
-	var SM_STATE_TIMESTAMP = <?php echo "'" . $SM_STATE_TIMESTAMP . "'"; ?>;
-
-	var SM_FLOOR_REQ_RAW = <?php echo $SM_FLOOR_REQ_RAW; ?>;
-	var SM_FLOOR_REQ_PHYS = <?php echo "'" . $SM_FLOOR_REQ_PHYS . "'"; ?>;
-	var SM_FLOOR_REQ_TIMESTAMP = <?php echo "'" . $SM_FLOOR_REQ_TIMESTAMP . "'"; ?>;
-
-	var SC_ENABLE_RAW = <?php echo $SC_ENABLE_RAW; ?>;
-	var SC_ENABLE_PHYS = <?php echo "'" . $SC_ENABLE_PHYS . "'"; ?>;
-	var SC_ENABLE_TIMESTAMP = <?php echo "'" . $SC_ENABLE_TIMESTAMP . "'"; ?>;
-
-	var SC_FLOOR_CMD_RAW = <?php echo $SC_FLOOR_CMD_RAW; ?>;
-	var SC_FLOOR_CMD_PHYS = <?php echo "'" . $SC_FLOOR_CMD_PHYS . "'"; ?>;
-	var SC_FLOOR_CMD_TIMESTAMP = <?php echo "'" . $SC_FLOOR_CMD_TIMESTAMP . "'"; ?>;
-
-	var EC_STATE_RAW = <?php echo $EC_STATE_RAW; ?>;
-	var EC_STATE_PHYS = <?php echo "'" . $EC_STATE_PHYS . "'"; ?>;
-	var EC_STATE_TIMESTAMP = <?php echo "'" . $EC_STATE_TIMESTAMP . "'"; ?>;
-
-	var EC_CAR_POS_RAW = <?php echo $EC_CAR_POS_RAW; ?>;
-	var EC_CAR_POS_PHYS = <?php echo "'" . $EC_CAR_POS_PHYS . "'"; ?>;
-	var EC_CAR_POS_TIMESTAMP = <?php echo "'" . $EC_CAR_POS_TIMESTAMP . "'"; ?>;
-
-	var F1_CALL_REQ_RAW = <?php echo $F1_CALL_REQ_RAW; ?>;
-	var F1_CALL_REQ_PHYS = <?php echo "'" . $F1_CALL_REQ_PHYS . "'"; ?>;
-	var F1_CALL_REQ_TIMESTAMP = <?php echo "'" . $F1_CALL_REQ_TIMESTAMP . "'"; ?>;
-	
-	var F2_CALL_REQ_RAW = <?php echo $F2_CALL_REQ_RAW; ?>;
-	var F2_CALL_REQ_PHYS = <?php echo "'" . $F2_CALL_REQ_PHYS . "'"; ?>;
-	var F2_CALL_REQ_TIMESTAMP = <?php echo "'" . $F2_CALL_REQ_TIMESTAMP . "'"; ?>;
-
-	var F3_CALL_REQ_RAW = <?php echo $F3_CALL_REQ_RAW; ?>;
-	var F3_CALL_REQ_PHYS = <?php echo "'" . $F3_CALL_REQ_PHYS . "'"; ?>;
-	var F3_CALL_REQ_TIMESTAMP = <?php echo "'" . $F3_CALL_REQ_TIMESTAMP . "'"; ?>;
-
-	var CC_FLOOR_REQ_RAW = <?php echo $CC_FLOOR_REQ_RAW; ?>;
-	var CC_FLOOR_REQ_PHYS = <?php echo "'" . $CC_FLOOR_REQ_PHYS . "'"; ?>;
-	var CC_FLOOR_REQ_TIMESTAMP = <?php echo "'" . $CC_FLOOR_REQ_TIMESTAMP . "'"; ?>;	
-
-	var CC_DOOR_STATE_RAW = <?php echo $CC_DOOR_STATE_RAW; ?>;
-	var CC_DOOR_STATE_PHYS = <?php echo "'" . $CC_DOOR_STATE_PHYS . "'"; ?>;
-	var CC_DOOR_STATE_TIMESTAMP = <?php echo "'" . $CC_DOOR_STATE_TIMESTAMP . "'"; ?>;
-=======
 	var json_data = <?php echo $json_data; ?>;
->>>>>>> php_json
 </script>
