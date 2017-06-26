@@ -1,3 +1,5 @@
+<?php include 'php/admin_only.php';?>	
+
 <!DOCTYPE html>
 <html>
 

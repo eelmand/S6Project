@@ -31,3 +31,21 @@ window.onload = function start() {
 		}
 	}
 }
+
+// Question 25 Assignment 1 - Character limit on textarea field
+
+function character_count(e){
+	var text_entered, char_display, counter;
+	text_entered = document.getElementById('info_message').value;
+	char_display = document.getElementById('characters_remaining');
+
+	counter = (180 - (text_entered.length));
+	char_display.innerHTML = "Characters remaining: " + counter;
+
+	if(counter <= 0){
+		alert('Please do not exceed 180 characters');
+	}
+}
+
+var element = document.getElementById('info_message');
+element.addEventListener('keyup', character_count, false);

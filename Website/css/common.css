@@ -121,6 +121,26 @@ td:hover, .TASK:hover {
 	text-align: left;
 }
 
+#custom-button{
+	color: black;
+	background-color: lightblue;
+	background: -webkit-radial-gradient(lightblue, grey);
+	border-radius: 4px;
+	padding: 7.5px 7.5px 7.5px 7.5px;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+
+#custom-button:hover{
+	background: -webkit-radial-gradient(#4CAF50, grey);
+	color: white;
+}
+
+#custom-button:active{
+	background: -webkit-radial-gradient(red, grey);
+	color: white;
+}
+
 .fieldset-auto {
      width: 150px;
      display: inline-block;
