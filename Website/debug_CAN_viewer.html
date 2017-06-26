@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<link href="./css/common.css" type="text/css" rel="stylesheet">
+	<?php include 'php/debug_CAN_viewer.php';?>
 </head>
 
 <body class="background-image">
@@ -35,6 +36,7 @@
 					<th>Signal Name</th>
 					<th>Raw Value</th>
 					<th>Physical Value</th>
+					<th>Timestamp</th>
 				</tr>				
 			</thead>
 			<tbody>
@@ -42,55 +44,66 @@
 					<th id="SM_STATE">SM_STATE</th>
 					<td id="SM_STATE_RAW">0</td>
 					<td id="SM_STATE_PHYS">Car Not Moving</td>
+					<th id="SM_STATE_TIMESTAMP">-1</td>
 				</tr>
 				<tr>
 					<th id="SM_FLOOR_REQ">SM_FLOOR_REQ</th>
 					<td id="SM_FLOOR_REQ_RAW">0</td>
 					<td id="SM_FLOOR_REQ_PHYS">No Request</td>
+					<th id="SM_FLOOR_REQ_TIMESTAMP">-1</td>
 				<tr>
 					<th id="SC_ENABLE">SC_ENABLE</th>
 					<td id="SC_ENABLE_RAW">0</td>
 					<td id="SC_ENABLE_PHYS">Cmd Disable Elevator</td>
+					<th id="SC_ENABLE_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="SC_FLOOR_CMD">SC_FLOOR_CMD</th>
 					<td id="SC_FLOOR_CMD_RAW">0</td>
 					<td id="SC_FLOOR_CMD_PHYS">Cmd Don't Care</td>
+					<th id="SC_FLOOR_CMD_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="EC_STATE">EC_STATE</th>
 					<td id="EC_STATE_RAW">0</td>
 					<td id="EC_STATE_PHYS">Elevator Disabled</td>
+					<th id="EC_STATE_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="EC_CAR_POS">EC_CAR_POS</th>
 					<td id="EC_CAR_POS_RAW">0</td>
 					<td id="EC_CAR_POS_PHYS">In Transit</td>
+					<th id="EC_CAR_POS_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="F1_CALL_REQ">F1_CALL_REQ</th>
 					<td id="F1_CALL_REQ_RAW">0</td>
 					<td id="F1_CALL_REQ_PHYS">No Request</td>
+					<th id="F1_CALL_REQ_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="F2_CALL_REQ">F2_CALL_REQ</th>
 					<td id="F2_CALL_REQ_RAW">0</td>
 					<td id="F2_CALL_REQ_PHYS">No Request</td>
+					<th id="F2_CALL_REQ_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="F3_CALL_REQ">F3_CALL_REQ</th>
 					<td id="F3_CALL_REQ_RAW">0</td>
 					<td id="F3_CALL_REQ_PHYS">No Request</td>
+					<th id="F3_CALL_REQ_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="CC_FLOOR_REQ">CC_FLOOR_REQ</th>
 					<td id="CC_FLOOR_REQ_RAW">0</td>
 					<td id="CC_FLOOR_REQ_PHYS">No Request</td>
+					<th id="CC_FLOOR_REQ_TIMESTAMP">-1</td>
 				</tr>				
 				<tr>
 					<th id="CC_DOOR_STATE">CC_DOOR_STATE</th>
 					<td id="CC_DOOR_STATE_RAW">0</td>
 					<td id="CC_DOOR_STATE_PHYS">Door Open</td>
+					<th id="CC_DOOR_STATE_TIMESTAMP">-1</td>
 				</tr>				
 			</tbody>
 		</table>
