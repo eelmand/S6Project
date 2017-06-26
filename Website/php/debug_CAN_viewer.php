@@ -1,50 +1,4 @@
 <?php
-	
-	$SM_STATE_RAW = -1;
-	$SM_STATE_PHYS = -1;
-	$SM_STATE_TIMESTAMP = -1;
-
-	$SM_FLOOR_REQ_RAW = -1;
-	$SM_FLOOR_REQ_PHYS = -1;
-	$SM_FLOOR_REQ_TIMESTAMP = -1;	
-
-	$SC_ENABLE_RAW = -1;
-	$SC_ENABLE_PHYS = -1;
-	$SC_ENABLE_TIMESTAMP = -1;
-
-	$SC_FLOOR_CMD_RAW = -1;
-	$SC_FLOOR_CMD_PHYS = -1;
-	$SC_FLOOR_CMD_TIMESTAMP = -1;
-
-	$EC_STATE_RAW = -1;
-	$EC_STATE_PHYS = -1;
-	$EC_STATE_TIMESTAMP = -1;	
-
-	$EC_CAR_POS_RAW = -1;
-	$EC_CAR_POS_PHYS = -1;
-	$EC_CAR_POS_TIMESTAMP = -1;	
-
-	$F1_CALL_REQ_RAW = -1;
-	$F1_CALL_REQ_PHYS = -1;
-	$F1_CALL_REQ_TIMESTAMP = -1;	
-
-	$F2_CALL_REQ_RAW = -1;
-	$F2_CALL_REQ_PHYS = -1;
-	$F2_CALL_REQ_TIMESTAMP = -1;	
-
-	$F3_CALL_REQ_RAW = -1;
-	$F3_CALL_REQ_PHYS = -1;
-	$F3_CALL_REQ_TIMESTAMP = -1;	
-
-	$CC_FLOOR_REQ_RAW = -1;
-	$CC_FLOOR_REQ_PHYS = -1;
-	$CC_FLOOR_REQ_TIMESTAMP = -1;	
-
-	$CC_DOOR_STATE_RAW = -1;
-	$CC_DOOR_STATE_PHYS = -1;
-	$CC_DOOR_STATE_TIMESTAMP = -1;	
-
-
 	echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
 	
 	// Try to connect to database and catch errors
@@ -62,23 +16,29 @@
 					'EC_CAR_POS', 'F1_CALL_REQ', 'F2_CALL_REQ', 'F3_CALL_REQ', 
 					'CC_FLOOR_REQ', 'CC_DOOR_STATE'];
 
+	$data = array();
+
 	foreach($signals as $signal) {
 		$rows = $database->query("SELECT name, timestamp, raw, phys FROM signals WHERE name='" .
 			$signal . "' ORDER BY timestamp DESC LIMIT 1");
 
-
 		if($rows != FALSE) {
 			foreach($rows as $row){
-				${$row['name'] . '_RAW'} = $row['raw'];
-				${$row['name'] . '_PHYS'} = $row['phys'];
-				${$row['name'] . '_TIMESTAMP'} = $row['timestamp'];
+				$data[$row['name'] . "_RAW"] = $row['raw'];
+				$data[$row['name'] . "_PHYS"] = $row['phys'];
+				$data[$row['name'] . "_TIMESTAMP"] = $row['timestamp'];
 			}
 		}
 	}
+
+	// Encode data into JSON for easy Javascript passing & parsing
+	$json_data = json_encode($data);
+
 ?>
 
 <script>
 	// Make PHP variables available to javascript
+<<<<<<< HEAD
 	var SM_STATE_RAW = <?php echo $SM_STATE_RAW; ?>;
 	var SM_STATE_PHYS = <?php echo "'" . $SM_STATE_PHYS . "'"; ?>;
 	var SM_STATE_TIMESTAMP = <?php echo "'" . $SM_STATE_TIMESTAMP . "'"; ?>;
@@ -122,4 +82,7 @@
 	var CC_DOOR_STATE_RAW = <?php echo $CC_DOOR_STATE_RAW; ?>;
 	var CC_DOOR_STATE_PHYS = <?php echo "'" . $CC_DOOR_STATE_PHYS . "'"; ?>;
 	var CC_DOOR_STATE_TIMESTAMP = <?php echo "'" . $CC_DOOR_STATE_TIMESTAMP . "'"; ?>;
+=======
+	var json_data = <?php echo $json_data; ?>;
+>>>>>>> php_json
 </script>
