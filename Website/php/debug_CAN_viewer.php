@@ -91,9 +91,13 @@
 	var SC_ENABLE_PHYS = <?php echo "'" . $SC_ENABLE_PHYS . "'"; ?>;
 	var SC_ENABLE_TIMESTAMP = <?php echo "'" . $SC_ENABLE_TIMESTAMP . "'"; ?>;
 
-	var EC_ENABLE_RAW = <?php echo $EC_ENABLE_RAW; ?>;
-	var EC_ENABLE_PHYS = <?php echo "'" . $EC_ENABLE_PHYS . "'"; ?>;
-	var EC_ENABLE_TIMESTAMP = <?php echo "'" . $EC_ENABLE_TIMESTAMP . "'"; ?>;
+	var SC_FLOOR_CMD_RAW = <?php echo $SC_FLOOR_CMD_RAW; ?>;
+	var SC_FLOOR_CMD_PHYS = <?php echo "'" . $SC_FLOOR_CMD_PHYS . "'"; ?>;
+	var SC_FLOOR_CMD_TIMESTAMP = <?php echo "'" . $SC_FLOOR_CMD_TIMESTAMP . "'"; ?>;
+
+	var EC_STATE_RAW = <?php echo $EC_STATE_RAW; ?>;
+	var EC_STATE_PHYS = <?php echo "'" . $EC_STATE_PHYS . "'"; ?>;
+	var EC_STATE_TIMESTAMP = <?php echo "'" . $EC_STATE_TIMESTAMP . "'"; ?>;
 
 	var EC_CAR_POS_RAW = <?php echo $EC_CAR_POS_RAW; ?>;
 	var EC_CAR_POS_PHYS = <?php echo "'" . $EC_CAR_POS_PHYS . "'"; ?>;
