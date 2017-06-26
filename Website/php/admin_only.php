@@ -14,7 +14,7 @@ if ((isset($_SESSION["username"])==0) || ($_SESSION["username"] != $GLOBALS["adm
 }
 else
 {
-	echo "<p>Good to go</p>";
+	// Access permitted
 }
 ?>
 
