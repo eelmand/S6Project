@@ -1,5 +1,5 @@
 <?php
-	echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
+	//echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
 	
 	// Try to connect to database and catch errors
 	try {
@@ -10,7 +10,7 @@
 		return;
 	}
 
-	echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
+	//echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
 
 	// Query database for most recent value of each signal
 	$signals = ['SM_STATE', 'SM_FLOOR_REQ', 'SC_ENABLE', 'SC_FLOOR_CMD', 'EC_STATE', 
@@ -31,16 +31,11 @@
 			}
 		}
 		else {
-			echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
+			//echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
 		}
 	}
 
 	// Encode data into JSON for easy Javascript passing & parsing
 	$json_data = json_encode($data);
-
+	echo $json_data;
 ?>
-
-<script>
-	// Make PHP variables available to javascript
-	var json_data = <?php echo $json_data; ?>;
-</script>
