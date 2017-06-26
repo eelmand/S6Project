@@ -7,6 +7,7 @@
 	}
 	catch (PDOException $e) {
 		echo "Error: " . $e->getMessage() . "<br />";
+		return;
 	}
 
 	echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
