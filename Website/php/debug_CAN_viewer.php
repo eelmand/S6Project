@@ -29,6 +29,9 @@
 				$data[$row['name'] . "_TIMESTAMP"] = $row['timestamp'];
 			}
 		}
+		else {
+			echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
+		}
 	}
 
 	// Encode data into JSON for easy Javascript passing & parsing

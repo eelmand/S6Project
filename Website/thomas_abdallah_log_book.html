@@ -133,6 +133,31 @@
 					<li>Implemented <a href="debug_CAN_visualizer.html">CAN Visualizer</a> page which will show live representation of CAN nodes (simulated values for now)</li>
 				</ul>
 			</div>
+			<div class="col-xs-12">
+				<hr>
+				<h2>Week 7</h2>
+				<ul>
+					<li>Created a SQL database on my Linux VM - to be used for the project website</li>
+					<li>Created a simple table with signal names, raw and physical values, and timestamps</li>
+					<li>Entered some fake data in the table to play around with Queries in PHP</li>
+					<li>Wrote PHP script to query most recent value of each signal in the table and display on a page</li>
+					<li>Implemented database querying for the <a href="debug_CAN_viewer.html">CAN viewer page</a></li>
+					<li>Improved PHP x Javascript interaction by using JSON to pass data rather than separate variables</li>
+					<li>Working on using an <a href="https://stackoverflow.com/questions/32241639/run-php-script-every-10-seconds">AJAX request</a> to refresh signal values from the database every second</li>
+				</ul>
+
+				<br />
+				<p>Structure of our Database as of Week 7</p>
+				<ul>
+					<li>SCHEMA name: 'elevator'</li>
+					<li>TABLES: 'signals'</li>
+					<ul>
+						<li>'signals' table will store all CAN signals and their values with timestamps</li>
+						<img src="images/database.png" alt="Image of our database" title="Slick" class="img" />
+					</ul>
+				</ul>
+
+			</div>
 		</div>
 	</article>
 
