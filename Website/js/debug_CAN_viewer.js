@@ -16,7 +16,10 @@ function updateSignal(signal) {
 
 function updateDB() {
     window.setInterval(function() {
-        signals.forEach(updateSignal);    
+        var data = JSON.parse(json_data);
+
+        
+
     }, 1000);   // Repeat forever, polling every second
 }
 
