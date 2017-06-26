@@ -12,6 +12,39 @@
 	$SC_ENABLE_PHYS = -1;
 	$SC_ENABLE_TIMESTAMP = -1;
 
+	$SC_FLOOR_CMD_RAW = -1;
+	$SC_FLOOR_CMD_PHYS = -1;
+	$SC_FLOOR_CMD_TIMESTAMP = -1;
+
+	$EC_STATE_RAW = -1;
+	$EC_STATE_PHYS = -1;
+	$EC_STATE_TIMESTAMP = -1;	
+
+	$EC_CAR_POS_RAW = -1;
+	$EC_CAR_POS_PHYS = -1;
+	$EC_CAR_POS_TIMESTAMP = -1;	
+
+	$F1_CALL_REQ_RAW = -1;
+	$F1_CALL_REQ_PHYS = -1;
+	$F1_CALL_REQ_TIMESTAMP = -1;	
+
+	$F2_CALL_REQ_RAW = -1;
+	$F2_CALL_REQ_PHYS = -1;
+	$F2_CALL_REQ_TIMESTAMP = -1;	
+
+	$F3_CALL_REQ_RAW = -1;
+	$F3_CALL_REQ_PHYS = -1;
+	$F3_CALL_REQ_TIMESTAMP = -1;	
+
+	$CC_FLOOR_REQ_RAW = -1;
+	$CC_FLOOR_REQ_PHYS = -1;
+	$CC_FLOOR_REQ_TIMESTAMP = -1;	
+
+	$CC_DOOR_STATE_RAW = -1;
+	$CC_DOOR_STATE_PHYS = -1;
+	$CC_DOOR_STATE_TIMESTAMP = -1;	
+
+
 	echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
 	
 	// Try to connect to database and catch errors
@@ -58,5 +91,31 @@
 	var SC_ENABLE_PHYS = <?php echo "'" . $SC_ENABLE_PHYS . "'"; ?>;
 	var SC_ENABLE_TIMESTAMP = <?php echo "'" . $SC_ENABLE_TIMESTAMP . "'"; ?>;
 
+	var EC_ENABLE_RAW = <?php echo $EC_ENABLE_RAW; ?>;
+	var EC_ENABLE_PHYS = <?php echo "'" . $EC_ENABLE_PHYS . "'"; ?>;
+	var EC_ENABLE_TIMESTAMP = <?php echo "'" . $EC_ENABLE_TIMESTAMP . "'"; ?>;
 
+	var EC_CAR_POS_RAW = <?php echo $EC_CAR_POS_RAW; ?>;
+	var EC_CAR_POS_PHYS = <?php echo "'" . $EC_CAR_POS_PHYS . "'"; ?>;
+	var EC_CAR_POS_TIMESTAMP = <?php echo "'" . $EC_CAR_POS_TIMESTAMP . "'"; ?>;
+
+	var F1_CALL_REQ_RAW = <?php echo $F1_CALL_REQ_RAW; ?>;
+	var F1_CALL_REQ_PHYS = <?php echo "'" . $F1_CALL_REQ_PHYS . "'"; ?>;
+	var F1_CALL_REQ_TIMESTAMP = <?php echo "'" . $F1_CALL_REQ_TIMESTAMP . "'"; ?>;
+	
+	var F2_CALL_REQ_RAW = <?php echo $F2_CALL_REQ_RAW; ?>;
+	var F2_CALL_REQ_PHYS = <?php echo "'" . $F2_CALL_REQ_PHYS . "'"; ?>;
+	var F2_CALL_REQ_TIMESTAMP = <?php echo "'" . $F2_CALL_REQ_TIMESTAMP . "'"; ?>;
+
+	var F3_CALL_REQ_RAW = <?php echo $F3_CALL_REQ_RAW; ?>;
+	var F3_CALL_REQ_PHYS = <?php echo "'" . $F3_CALL_REQ_PHYS . "'"; ?>;
+	var F3_CALL_REQ_TIMESTAMP = <?php echo "'" . $F3_CALL_REQ_TIMESTAMP . "'"; ?>;
+
+	var CC_FLOOR_REQ_RAW = <?php echo $CC_FLOOR_REQ_RAW; ?>;
+	var CC_FLOOR_REQ_PHYS = <?php echo "'" . $CC_FLOOR_REQ_PHYS . "'"; ?>;
+	var CC_FLOOR_REQ_TIMESTAMP = <?php echo "'" . $CC_FLOOR_REQ_TIMESTAMP . "'"; ?>;	
+
+	var CC_DOOR_STATE_RAW = <?php echo $CC_DOOR_STATE_RAW; ?>;
+	var CC_DOOR_STATE_PHYS = <?php echo "'" . $CC_DOOR_STATE_PHYS . "'"; ?>;
+	var CC_DOOR_STATE_TIMESTAMP = <?php echo "'" . $CC_DOOR_STATE_TIMESTAMP . "'"; ?>;
 </script>
