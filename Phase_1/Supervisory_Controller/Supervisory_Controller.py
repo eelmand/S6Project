@@ -3,12 +3,14 @@
 # Code for keyboard input from https://repolinux.wordpress.com/2012/10/09/non-blocking-read-from-stdin-in-python/
 
 from PCANBasic import *
-from time import sleep
+import time
+import datetime
 from pprint import pprint
 import sys
 import select
 import os
 from tabulate import tabulate
+import MySQLdb
 
 PCAN = PCANBasic() 		# Initialize an instance of the PCANBasic class
 read_list = [sys.stdin] # Files monitored for input
@@ -40,7 +42,7 @@ mask_f3_call_req = 		0b00000001	# Bit mask for f3_call_req signal
 
 # CAN signal value tables
 sig_sc_enable = ["Cmd Disable Elevator", "Cmd Enable Elevator"]
-sig_sc_floor_cmd = ["Cmd Don't Care", "Cmd Floor 1", "Cmd Floor 2", "Cmd Floor 3"]
+sig_sc_floor_cmd = ["Cmd None", "Cmd Floor 1", "Cmd Floor 2", "Cmd Floor 3"]
 sig_ec_state = ["Elevator Disabled", "Elevator Enabled"]
 sig_ec_car_pos = ["In Transit", "Floor 1", "Floor 2", "Floor 3"]
 sig_cc_door_state = ["Door Open", "Door Closed"]
@@ -79,7 +81,7 @@ remote_floor_req = 0 			# Floor number requested from Remote Operator
 # State machine data
 sm_floor_req = 0 				# Floor request input to the state machine
 sm_state = 0 					# State machine current state
-sm_state_values = ["CAR NOT MOVING", "REQUEST NEW FLOOR", "CAR MOVING"]
+sm_state_values = ["Car Not Moving", "Request New Floor", "Car Moving"]
 sm_state_car_not_moving = 0
 sm_state_request_new_floor = 1
 sm_state_car_moving = 2
@@ -88,6 +90,39 @@ sm_state_car_moving = 2
 ##############################################################################################
 ## Functions/methods
 ##############################################################################################
+
+
+##
+## Init_MySQL()
+## Connect to the MySQL database
+##
+def Init_MySQL():
+	global db
+	global db_cursor
+
+	db = MySQLdb.connect(host="localhost", user="root", passwd="password", db="elevator")
+
+	if db.errno():
+		print "Error connecting to database"
+		exit
+	else:
+		print "Connected to database"
+		db_cursor = db.cursor()
+
+## end of method
+
+
+##
+## Uninit_MySQL()
+## Close connection to MySQL database
+##
+def Uninit_MySQL():
+	db.close()
+	print "Disconnected from database"
+
+
+## end of method			
+
 
 ##
 ## Init_PCAN()
@@ -196,23 +231,30 @@ def Rx_CAN(device):
 		if message[1].ID == ID_ec:
 			ec_car_pos = message[1].DATA[0] & mask_ec_car_pos
 			ec_state = ((message[1].DATA[0] & mask_ec_state) >> 2)	# Any good way to dynamically shift bits based on bit number??? Think about this later
+			Insert_MySQL('EC_CAR_POS', ec_car_pos, sig_ec_car_pos[ec_car_pos])
+			Insert_MySQL('EC_STATE', ec_state, sig_ec_state[ec_state])
 		
 		# Process F1 Status Message
 		elif message[1].ID == ID_f1:
 			f1_call_req = message[1].DATA[0] & mask_f1_call_req
+			Insert_MySQL('F1_CALL_REQ', f1_call_req, sig_f1_call_req[f1_call_req])
 
 		# Process F2 Status Message
 		elif message[1].ID == ID_f2:
 			f2_call_req = message[1].DATA[0] & mask_f2_call_req
+			Insert_MySQL('F2_CALL_REQ', f2_call_req, sig_f2_call_req[f2_call_req])
 
 		# Process F3 Status Message
 		elif message[1].ID == ID_f3:
 			f3_call_req = message[1].DATA[0] & mask_f3_call_req
+			Insert_MySQL('F3_CALL_REQ', f3_call_req, sig_f3_call_req[f3_call_req])
 
 		# Process CC Status Message
 		elif message[1].ID == ID_cc:
 			cc_floor_req = message[1].DATA[0] & mask_cc_floor_req
 			cc_door_state = ((message[1].DATA[0] & mask_cc_door_state) >> 2) # Any good way to dynamically shift bits based on bit number??? Think about this later
+			Insert_MySQL('CC_FLOOR_REQ', cc_floor_req, sig_cc_floor_req[cc_floor_req])
+			Insert_MySQL('CC_DOOR_STATE', cc_door_state, sig_cc_door_state[cc_door_state])
 
 		# Read next message
 		message = PCANBasic.Read(PCAN, PCAN_USBBUS1)		
@@ -238,6 +280,28 @@ def Tx_EC_Cmd(device):
 	if status > 0:
 		print "Error transmitting CAN message"
 		exit()
+
+	# Add the signals to the database
+	Insert_MySQL('SC_FLOOR_CMD', sc_floor_cmd, sig_sc_floor_cmd[sc_floor_cmd])
+	Insert_MySQL('SC_ENABLE', sc_enable, sig_sc_enable[sc_enable])
+
+## end of method
+
+
+##
+## Insert_MySQL()
+## Insert a signal into the MySQL database
+##
+def Insert_MySQL(signal, raw, phys):
+	# Generate a timestamp
+	ts = time.time()
+	timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
+	# Build the query
+	query = "INSERT INTO signals(name, timestamp, raw, phys) VALUES(%s,%s,%s,%s)"
+	values = (signal, timestamp, raw, phys)
+	db_cursor.execute(query, values)
+	db.commit()	
 ## end of method
 
 
@@ -312,9 +376,6 @@ def Calc_State():
 			sc_enable = 1
 			sc_floor_cmd = remote_floor_req
 			sm_state = sm_state_request_new_floor
-	
-
-
 ## end of method
 
 ## 
@@ -323,6 +384,7 @@ def Calc_State():
 def main():
 	# Initialize device
 	Init_PCAN(PCAN)
+	Init_MySQL()
 
 	# Infinite loop of reading CAN messages & keyboard input
 	while 1:
@@ -340,7 +402,7 @@ def main():
 			Calc_State()
 	  		update_display()
 	  		Tx_EC_Cmd(PCAN)
-	  		sleep(0.5)  
+	  		time.sleep(0.5)  
 ## end of method
 
 
@@ -348,6 +410,7 @@ try:
 	main()
 except KeyboardInterrupt:
 	print " "
+	Uninit_MySQL()
 	Uninit_PCAN(PCAN)
 
 
@@ -365,3 +428,11 @@ def playground(device):
 
 		for j in range(0, message[1].LEN):
 			print "Byte ", j, ": ", message[1].DATA[j]
+
+
+
+
+	db_cursor.execute("SELECT * FROM signals")
+	for x in range(0, db_cursor.rowcount):
+		row = db_cursor.fetchone()
+		print row[0], "-->", row[1], "-->", row[2], "-->", row[3]
