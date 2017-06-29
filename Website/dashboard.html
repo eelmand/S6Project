@@ -26,20 +26,21 @@
 	</header>
 			
 	<article class="container text-center">		
-		<?php include 'php/dashboard.php';?>	
-		<h1>Elevator Control</h1>
-		<div class="center-block" id="floor-display" style="padding: 0.5em; height: 70px; width: 70px;"></div>
-		<div class="row center-block">
-			<div class="col-xs-6 text-right">
-				<img id="elevator-picture" src="images/elevator_2.png" alt="Image of Elevator" title="Elevator" style="width: 70px" class="img-rounded" />
-			</div>
-			<div class="col-xs-6 text-left">
-				<button onclick="floor_3()" class="btn btn-default" style="margin-bottom: 80px">Floor 3</button><br>
-				<button onclick="floor_2()" class="btn btn-default" style="margin-bottom: 80px">Floor 2</button><br>
-				<button onclick="floor_1()" class="btn btn-default">Floor 1</button>
+		<div id="controls" class="container-fluid" style="background-color:rgba(0, 0, 0, 0.7); width: 300px;">
+			<p id="floor"></p>
+			<h3>Elevator Control</h3>
+			<div class="center-block" id="floor-display" style="padding: 0.5em; height: 70px; width: 70px; border: 1px solid white; margin-bottom: 10px;"></div>
+			<div class="row center-block">
+				<div class="col-xs-6 text-right">
+					<img id="elevator-picture" src="images/elevator_2.png" alt="Image of Elevator" title="Elevator" style="width: 70px" class="img-rounded" />
+				</div>
+				<div class="col-xs-6 text-left">
+					<button onclick="call_elevator(3)" class="btn btn-default" style="margin-bottom: 80px">Floor 3</button><br>
+					<button onclick="call_elevator(2)" class="btn btn-default" style="margin-bottom: 80px">Floor 2</button><br>
+					<button onclick="call_elevator(1)" class="btn btn-default" style="margin-bottom: 20px">Floor 1</button>
+				</div>
 			</div>
 		</div>
-		<hr>
 	</article>
 	<article class="chart container">
 		<canvas id="myChart" width="200" height="400"></canvas>
