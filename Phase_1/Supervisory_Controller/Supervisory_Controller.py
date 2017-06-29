@@ -61,8 +61,8 @@ sc_enable = 0 					# Enable bit value to be sent to EC
 sc_floor_cmd = 0 				# Floor number to be sent to EC
 
 # Elevator Controller Data
-ec_state = -1 					# Enable bit value reported from EC
-ec_car_pos = -1 				# Floor number reported from EC
+ec_state = 0 					# Enable bit value reported from EC
+ec_car_pos = 0 					# Floor number reported from EC
 
 # Floor Controller Data
 f1_call_req = 0 				# Value of request bit from Floor Controller 1
@@ -198,10 +198,11 @@ def update_display():
 	data_f3_call_req = ['F3_CALL_REQ', sig_f3_call_req[f3_call_req]]
 	data_cc_floor_req = ['CC_FLOOR_REQ', sig_cc_floor_req[cc_floor_req]]
 	data_cc_door_state = ['CC_DOOR_STATE', sig_cc_door_state[cc_door_state]]
+	data_remote_req = ['REMOTE_REQ', sig_cc_floor_req[remote_floor_req]]
 
 	data_table = [data_sc_enable, data_sc_floor_cmd, data_ec_state, data_ec_car_pos, 
 					data_f1_call_req, data_f2_call_req, data_f3_call_req, 
-					data_cc_floor_req, data_cc_door_state]
+					data_cc_floor_req, data_cc_door_state, data_remote_req]
 
 	print tabulate(data_table, headers=header)
 
@@ -289,7 +290,7 @@ def Tx_EC_Cmd(device):
 
 
 ##
-## Insert_MySQL()
+## Insert_MySQL(signal, raw, phys)
 ## Insert a signal into the MySQL database
 ##
 def Insert_MySQL(signal, raw, phys):
@@ -304,6 +305,28 @@ def Insert_MySQL(signal, raw, phys):
 	db.commit()	
 ## end of method
 
+##
+## Get_Remote_Req()
+## Pull the most recent value of the REMOTE_REQ signal from the database
+##
+def Get_Remote_Req():
+	global remote_floor_req
+	global ec_car_pos
+
+	query = "SELECT name, timestamp, raw, phys FROM signals WHERE name='REMOTE_REQ' ORDER BY timestamp DESC LIMIT 1"
+	db_cursor.execute(query)
+	numrows = db_cursor.rowcount
+
+	## If there is data, process it
+	if numrows > 0:
+		row = db_cursor.fetchone()
+		remote_floor_req = row[2]
+
+	## Logic to cancel remote floor request when we get to the correct floor
+	if ec_car_pos == remote_floor_req:
+		remote_floor_req = 0
+
+## end of method
 
 ##
 ## Calc_Floor_Req()
@@ -322,7 +345,7 @@ def Calc_Floor_Req():
 
 	if remote_floor_req > 0:
 		sm_floor_req = remote_floor_req
-		remote_floor_req = 0
+		#remote_floor_req = 0
 	elif (cc_floor_req > 0) and (sm_state == sm_state_car_not_moving):
 		sm_floor_req = cc_floor_req
 	elif (f1_call_req > 0) and (sm_state == sm_state_car_not_moving):
@@ -376,6 +399,9 @@ def Calc_State():
 			sc_enable = 1
 			sc_floor_cmd = remote_floor_req
 			sm_state = sm_state_request_new_floor
+
+	Insert_MySQL('SM_STATE', sm_state, sm_state_values[sm_state])
+	Insert_MySQL('SM_FLOOR_REQ', sm_floor_req, sig_cc_floor_req[sm_floor_req])
 ## end of method
 
 ## 
@@ -398,6 +424,7 @@ def main():
 				exit(0)
 		else:
 			Rx_CAN(PCAN)
+			Get_Remote_Req()
 			Calc_Floor_Req()
 			Calc_State()
 	  		update_display()

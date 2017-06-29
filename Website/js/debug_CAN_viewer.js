@@ -6,7 +6,7 @@ var signals = [
     'SM_STATE', 'SM_FLOOR_REQ', 'SC_ENABLE', 
     'SC_FLOOR_CMD', 'EC_STATE', 'EC_CAR_POS',
     'F1_CALL_REQ', 'F2_CALL_REQ', 'F3_CALL_REQ', 
-    'CC_FLOOR_REQ', 'CC_DOOR_STATE'
+    'CC_FLOOR_REQ', 'CC_DOOR_STATE', 'REMOTE_REQ'
 ]
 
 
