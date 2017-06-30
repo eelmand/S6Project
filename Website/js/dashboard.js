@@ -1,59 +1,56 @@
-function call_elevator(floor){
+/*  Description: Javascript for the dashboard.html page
+	Author: David Eelman 
+	Date: June 30, 2017
+*/
+
+
+var gFloorNumberReq = 0;
+// Call a php script to write into the database the floor requested by the user
+function callElevator(floorNumber){
 	$.ajax({
 		type: 'POST',
 		url: './php/dashboard_insert.php',
-		data: { floorRequested : floor },
-		success: function(data) {
-			document.getElementById("floor").innerHTML = data;
+		data: { floorRequested : floorNumber },
+		success: function(result) {
+			if(result){
+				gFloorNumberReq = floorNumber;
+				if(floorNumber){
+					document.getElementById(floorNumber).classList.add('btn-info');
+				}
+			}
 		}
 	});
 }
 
-// Functions to move the elevator on the screen
-
-var lastValue = 0;
-
-function floor_3(){
-	$("#elevator-picture").animate({marginTop : 0}, 1000, function() {
-		$("#floor-display").sevenSeg({ value: 3 });
-		lastValue = 1;
-		//document.getElementById("elevatorPic").src="images/doors_closed.jpg";
-	});
-}
-
-function floor_2(){
-	$("#elevator-picture").animate({marginTop:100}, 1000, function() {
-		$("#floor-display").sevenSeg({ value: 2 });
-		lastValue = 2;
-	});
-}
-
-function floor_1(){
-	$("#elevator-picture").animate({marginTop:200}, 1000, function() {
-		$("#floor-display").sevenSeg({ value: 1 });
-		lastValue = 3;
-	});
-}
-
-// Function to get the latest physical elevator position and update the on screen elevator
 var json_data = {};
-
+var lastValue = 0;
+// Function to get the latest physical elevator position and update the on screen elevator
 function updatePosition(){
-	if(json_data['EC_CAR_POS_RAW'] == lastValue){
-		// Skip
-	}
-	else{
-		if(json_data['EC_CAR_POS_RAW'] == 1){
-			floor_1();  
+	if(json_data['EC_CAR_POS_RAW'] != 0){
+		if(json_data['EC_CAR_POS_RAW'] == gFloorNumberReq){
+			document.getElementById(gFloorNumberReq).classList.remove('btn-info');
+			callElevator(0);
 		}
-		else if(json_data['EC_CAR_POS_RAW'] == 2){
-			floor_2();
-		}
-		else if(json_data['EC_CAR_POS_RAW'] == 3){
-			floor_3();
-		}
-		else{
-			// Do nothing?
+		if(json_data['EC_CAR_POS_RAW'] != lastValue){
+			if(json_data['EC_CAR_POS_RAW'] == 1){
+				$("#elevator-picture").animate({marginTop:200}, 1000, function() {
+					$("#floor-display").sevenSeg({ value: 1 });
+					lastValue = 1;
+			});
+			}
+			else if(json_data['EC_CAR_POS_RAW'] == 2){
+				$("#elevator-picture").animate({marginTop:100}, 1000, function() {
+					$("#floor-display").sevenSeg({ value: 2 });
+					lastValue = 2;
+				});
+			}
+			else if(json_data['EC_CAR_POS_RAW'] == 3){
+				$("#elevator-picture").animate({marginTop : 0}, 1000, function() {
+					$("#floor-display").sevenSeg({ value: 3 });
+					lastValue = 3;
+				});
+			}
+			else{}
 		}
 	}
 }

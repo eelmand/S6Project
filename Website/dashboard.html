@@ -27,7 +27,6 @@
 			
 	<article class="container text-center">		
 		<div id="controls" class="container-fluid" style="background-color:rgba(0, 0, 0, 0.7); width: 300px;">
-			<p id="floor"></p>
 			<h3>Elevator Control</h3>
 			<div class="center-block" id="floor-display" style="padding: 0.5em; height: 70px; width: 70px; border: 1px solid white; margin-bottom: 10px;"></div>
 			<div class="row center-block">
@@ -35,16 +34,18 @@
 					<img id="elevator-picture" src="images/elevator_2.png" alt="Image of Elevator" title="Elevator" style="width: 70px" class="img-rounded" />
 				</div>
 				<div class="col-xs-6 text-left">
-					<button onclick="call_elevator(3)" class="btn btn-default" style="margin-bottom: 80px">Floor 3</button><br>
-					<button onclick="call_elevator(2)" class="btn btn-default" style="margin-bottom: 80px">Floor 2</button><br>
-					<button onclick="call_elevator(1)" class="btn btn-default" style="margin-bottom: 20px">Floor 1</button>
+					<button id="3" onclick="callElevator(3)" class="btn btn-default" style="margin-bottom: 80px">Floor 3</button><br>
+					<button id="2" onclick="callElevator(2)" class="btn btn-default" style="margin-bottom: 80px">Floor 2</button><br>
+					<button id="1" onclick="callElevator(1)" class="btn btn-default" style="margin-bottom: 20px">Floor 1</button>
 				</div>
 			</div>
 		</div>
 	</article>
+
 	<article class="chart container">
 		<canvas id="myChart" width="200" height="400"></canvas>
 	</article>
+
 	<footer class="container-fluid text-center">
 		<p>Copyright &copy; 2017 ESE Team</p>
 	</footer>	

@@ -4,7 +4,7 @@
 		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
 	}
 	catch (PDOException $e) {
-		echo "Error: " . $e->getMessage() . "<br />";
+		//echo "Error: " . $e->getMessage() . "<br />";
 		return;
 	}
 	
@@ -25,4 +25,5 @@
 
 	// Execute the query
 	$result = $statement->execute($params);
+	echo $result;
 ?>

@@ -2,7 +2,9 @@
 
 include "admin_info.php"; // include Admin Login Info 
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if user is logged and has a right to access
 if (isset($_SESSION["username"]))
