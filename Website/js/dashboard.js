@@ -16,6 +16,15 @@ function callElevator(floorNumber){
 				gFloorNumberReq = floorNumber;
 				if(floorNumber){
 					document.getElementById(floorNumber).classList.add('btn-info');
+					if(floorNumber != 1){
+						document.getElementById(1).classList.remove('btn-info');
+					}
+					if(floorNumber != 2){
+						document.getElementById(2).classList.remove('btn-info');
+					}
+					if(floorNumber != 3){
+						document.getElementById(3).classList.remove('btn-info');
+					}
 				}
 			}
 		}
