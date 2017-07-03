@@ -387,6 +387,7 @@ def Calc_State():
 		if (ec_car_pos == sm_floor_req):		# Handle case where car movement happens super fast
 			sc_enable = 0
 			sc_floor_cmd = 0
+			sm_floor_req = 0
 			sm_state = sm_state_car_not_moving
 
 	# Car moving state
