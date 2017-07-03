@@ -104,11 +104,12 @@ td:hover, .TASK:hover {
 	background-color: yellow; color: black;
 }
 
-.TASK {width: 355px; text-align: left;}
+.TASK {width: 550px; text-align: left;}
 .ALL {background-color: grey; color: white;}
 .TA {background-color: red; color: white;}
 .DE {background-color: blue; color: white;}
 .SR {background-color: green; color: white;}
+.WEEK {width: 100px;}
 
 #debug_can_visualizer td:hover {
 	/* Don't want hovering for this table */
