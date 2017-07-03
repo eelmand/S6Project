@@ -63,11 +63,11 @@ footer {
 }
 
 #phase-2-progress{
-	width: 10%;
+	width: 90%;
 }
 
 #phase-3-progress{
-	width: 0%;
+	width: 50%;
 }
 
 /* General formatting for iframe elements */
