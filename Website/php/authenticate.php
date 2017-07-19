@@ -20,21 +20,21 @@ else
 {
 	// Try to connect to database and catch errors
 	try {
-		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
+		$database = new PDO('mysql:host=23.229.227.71;dbname=adequateelevators', 'adequateadmin', 'adequatepassword');	
 	}
 	catch (PDOException $e) {
 		echo "Error: " . $e->getMessage() . "<br />";
 	}
 
 	//check if the username entered is in the database.
-	$login_query = "SELECT * FROM users WHERE username_field = '".$username."'";
+	$login_query = "SELECT * FROM users WHERE username = '".$username."'";
 	$query_result = $database->query($login_query);
 
 	//conditions
 	if($query_result != FALSE) {
 		foreach($query_result as $row_query) {
 			// check if password are equal
-	        if($row_query['password_field']==$password)
+	        if($row_query['password']==$password)
 	        {
 	        	/*
 				// remember username & password to session if "Remember me" was set
