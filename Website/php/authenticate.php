@@ -9,22 +9,8 @@ $password  = $_POST["password"];	// get password
 $remember = isset($_POST["remember"]);		// get rememberMe 
 
 
-// check if login info is valid
-if(!($username&&$password))			
-{
-	echo "<strong>Please fill username and password fields!</strong>";
-	header("Location: ../login.html"); /* Redirect browser */
-	exit();
-}
-else
-{
-	// Try to connect to database and catch errors
-	try {
-		$database = new PDO('mysql:host=23.229.227.71;dbname=adequateelevators', 'adequateadmin', 'adequatepassword');	
-	}
-	catch (PDOException $e) {
-		echo "Error: " . $e->getMessage() . "<br />";
-	}
+
+	include "connect_db.php";		// Connect to the remote database
 
 	//check if the username entered is in the database.
 	$login_query = "SELECT * FROM users WHERE username = '".$username."'";
@@ -57,6 +43,5 @@ else
 	else {
 		echo "The username you entered is invalid";
 	}
-}
 
 ?>
