@@ -1,14 +1,9 @@
 <?php
+	session_start();	// starts a session and creates a session variable
 
-//include "admin_info.php"; // include Admin Login Info 
-
-session_start();	// starts a session and creates a session variable
-
-$username = $_POST["username"];		// get username
-$password  = $_POST["password"];	// get password
-$remember = isset($_POST["remember"]);		// get rememberMe 
-
-
+	$username = $_POST["username"];		// get username
+	$password  = $_POST["password"];	// get password
+	$remember = isset($_POST["remember"]);		// get rememberMe 
 
 	include "connect_db.php";		// Connect to the remote database
 
