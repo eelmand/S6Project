@@ -2,15 +2,25 @@
 
 
 window.onload = function start() {
+	var username = document.getElementById('username');
+	var password = document.getElementById('password');
 	var first_name = document.getElementById('first_name');
 	var last_name = document.getElementById('last_name');
 	var student = document.getElementById('student');
 	var faculty = document.getElementById('faculty');
-	var info = document.getElementById('info');
+	var info = document.getElementById('info_message');
 
-	var form = document.getElementById('login');
+	var form = document.getElementById('submit');
 
 	form.onsubmit = function() {
+		if(username.value.length < 7) {
+			alert('Username must be at least 7 characters long');
+			return false;
+		}
+		if(password.value.length < 7) {
+			alert('Password must be at least 7 characters long');
+			return false;
+		}
 		if(first_name.value.length < 1) {
 			alert('Please enter a First Name');
 			return false;
