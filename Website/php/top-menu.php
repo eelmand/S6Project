@@ -79,7 +79,7 @@ if (isset($_SESSION["username"]))
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Tools <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Elevator Tools <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="dashboard.html">Dashboard</a></li>
 								<li><a href="debug_CAN_viewer.html">Debug CAN Viewer</a></li>
