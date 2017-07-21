@@ -92,7 +92,6 @@ footer {
 
 /* Table formatting for Gantt Chart */
 table, th, td{
-	border-style: hidden;
 	border: 1px solid white;
 	border-spacing: 3px;
 	text-align: center;
@@ -115,6 +114,10 @@ td:hover, .TASK:hover {
 	/* Don't want hovering for this table */
 	background-color: transparent;
 	color: white;
+}
+
+#debug_can_visualizer, #debug_can_visualizer td{
+	border-style: hidden;
 }
 
 #debug_can_viewer th, td{
