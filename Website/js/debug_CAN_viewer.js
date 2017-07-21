@@ -20,6 +20,7 @@ function updateSignal(signal) {
 // Function to request that the server run debug_CAN_viewer.php again
 function updateData() {
     window.setInterval(function() {
+        console.log('here');
         $.ajax({
             url: 'http://adequateelevators.com/Website/php/debug_CAN_viewer.php',
             dataType: 'json',
@@ -28,7 +29,11 @@ function updateData() {
                 console.log(json_data);
                 signals.forEach(updateSignal);
             }
+            error: {
+                console.log('somethign didnt work');
+            }
         });
+        console.log('here');
     }, 1000);   // Repeat forever, polling every second
 }
 

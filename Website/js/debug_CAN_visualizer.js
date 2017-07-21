@@ -18,7 +18,6 @@ var json_data = {};
 // Function to request that the server run debug_CAN_viewer.php again
 function updateData() {
     // Get most recent data from database
-    console.log('here');
     $.ajax({
         url: 'http://adequateelevators.com/Website/php/debug_CAN_viewer.php',
         dataType: 'json',
