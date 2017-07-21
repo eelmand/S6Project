@@ -28,8 +28,10 @@ function updateData() {
                 console.log(json_data);
                 signals.forEach(updateSignal);
             },
-            error: {
-                console.log('somethign didnt work');
+            error: function(data) {
+                json_data = data;
+                console.log('error thrown');
+                console.log(json_data);
             }
         });
     }, 1000);   // Repeat forever, polling every second
