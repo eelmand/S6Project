@@ -95,6 +95,7 @@ if (isset($_SESSION["username"]))
 			</div>
 		';
 	}		
+	exit();
 }
 
 // public menu bar
