@@ -27,5 +27,11 @@
 
 	// Encode data into JSON for easy Javascript passing & parsing
 	$json_data = json_encode($data);
+
+	if(file_put_contents('test.json', $json_data) == FALSE) {
+		echo "<p>Failed to write data to JSON file.</p>";
+	}
+
+
 	echo $json_data;
 ?>
