@@ -1,0 +1,85 @@
+<?php
+session_start();
+
+// Check if user is admin2018
+if($_SESSION["username"] != "admin2018") {
+	echo "<p>Access denied</p>";
+	sleep(1);
+	header("Location: index.html"); /* Redirect browser */
+	exit();
+}
+else
+{
+	// Access permitted
+}
+?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grant Access Page</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This page allows admins to grant access to new users"/>
+	<meta name="robots" content="noindex nofollow"/>
+	<meta http-equiv="author" content="Thomas Abdallah"/>
+	<meta http-equiv="pragma" content="no-cache"/>
+
+	<link rel="icon" href="images/elevator.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link href="./css/common.css" type="text/css" rel="stylesheet">
+</head>
+
+<body class="background-image">
+	<header>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<?php include 'php/top-menu.php';?>	
+		</nav>
+	</header>
+							
+	<article class="container text-center">						
+		<h1>Grant Access to New Users</h1>					
+		<hr>
+		
+		<!-- Table of Users -->
+		<h2>List of New Users</h2>
+		<div>
+			<table align="center" id="users">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
+		<!-- form to grant access -->
+		<hr>
+		<h2>Grant Access to a User by username</h2>
+		<form class="center-block" action="php/grant_access.php" id="login" method="post">
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="username" class="form-control" name="username" id="username">
+			</div>
+			<button type="submit" class="btn btn-default">Grant Access</button>
+		</form>
+
+
+	</article>
+
+	<footer class="container-fluid text-center">
+		<p>Copyright &copy; 2017 ESE Team</p>
+	</footer>
+
+	<script src="js/common.js"></script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/grant_access.js"></script>
+</body>
+
+</html>

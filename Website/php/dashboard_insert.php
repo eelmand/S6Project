@@ -1,12 +1,5 @@
 <?php
-	// Try to connect to database and catch errors
-	try {
-		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
-	}
-	catch (PDOException $e) {
-		//echo "Error: " . $e->getMessage() . "<br />";
-		return;
-	}
+	include "connect_db.php";		// Connect to the remote database
 	
 	// Prep a query for inputting into the database
 	$query = 'INSERT INTO signals (name, timestamp, raw, phys) VALUES(:name, :thing, :raw, :phys)';

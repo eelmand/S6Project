@@ -3,7 +3,7 @@
 	
 	// Try to connect to database and catch errors
 	try {
-		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
+		$database = new PDO('mysql:host=23.229.227.71;dbname=adequateelevators', 'adequateadmin', 'adequatepassword');	
 	}
 	catch (PDOException $e) {
 		echo "Error: " . $e->getMessage() . "<br />";

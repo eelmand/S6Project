@@ -91,7 +91,7 @@ footer {
 }
 
 /* Table formatting for Gantt Chart */
-table, th, td {
+table, th, td{
 	border-style: hidden;
 	border: 1px solid white;
 	border-spacing: 3px;

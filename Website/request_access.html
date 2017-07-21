@@ -24,14 +24,23 @@
 	</header>
 
 	<article class="container">
-		<form class="center-block" action="php/login.php" id="login" method="post">
+		<form class="center-block" action="php/request_access.php" id="submit" method="post">
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="username" class="form-control" name="username" id="username">
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" class="form-control" name="password" id="password">
+			</div>
+
 			<div class="form-group">
 				<label for="first_name">First Name:</label>
-				<input type="first_name" class="form-control" id="first_name">
+				<input type="first_name" class="form-control" name="first_name" id="first_name">
 			</div>
 			<div class="form-group">
 				<label for="last_name">Last Name:</label>
-				<input type="last_name" class="form-control" id="last_name">
+				<input type="last_name" class="form-control" name="last_name" id="last_name">
 			</div>
 			<div class="form-group">
 			 	<label class="radio-inline">
