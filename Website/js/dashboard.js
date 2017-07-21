@@ -76,7 +76,7 @@ function updateStats(stats){
 function updateData() {
 	window.setInterval(function() {
 		$.ajax({
-			url: './php/dashboard.php',
+			url: 'http://adequateelevators.com/Website/php/dashboard.php',
 			dataType: 'json',
 			success: function(data_pos) {
 				json_data_pos = data_pos;
@@ -85,7 +85,7 @@ function updateData() {
 			}
 		});
 		$.ajax({
-			url: './php/dashboard_stats.php',
+			url: 'http://adequateelevators.com/Website/php/dashboard_stats.php',
 			dataType: 'json',
 			success: function(data_stats) {
 				json_data_stats = data_stats;
