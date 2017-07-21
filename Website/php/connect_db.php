@@ -1,5 +1,5 @@
 <?php
-	echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
+	//echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
 	
 	// Try to connect to database and catch errors
 	try {
@@ -9,6 +9,6 @@
 		echo "Error: " . $e->getMessage() . "<br />";
 	}
 
-	echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
+	//echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
 
 ?>
