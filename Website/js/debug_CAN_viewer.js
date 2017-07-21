@@ -21,7 +21,7 @@ function updateSignal(signal) {
 function updateData() {
     window.setInterval(function() {
         $.ajax({
-            url: './php/debug_CAN_viewer.php',
+            url: 'http://adequateelevators.com/Website/php/debug_CAN_viewer.php',
             dataType: 'json',
             success: function(data) {
                 json_data = data;

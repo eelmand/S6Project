@@ -9,7 +9,7 @@ var gFloorNumberReq = 0;
 function callElevator(floorNumber){
 	$.ajax({
 		type: 'POST',
-		url: './php/dashboard_insert.php',
+		url: 'http://adequateelevators.com/Website/php/dashboard_insert.php',
 		data: { floorRequested : floorNumber },
 		success: function(result) {
 			if(result){

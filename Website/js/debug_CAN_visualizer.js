@@ -28,8 +28,6 @@ function updateData() {
         }
     });
 
-    console.log('here');
-
     // Process that data
     EC_CAR_POS = json_data['EC_CAR_POS_RAW'];
     EC_ENABLE = json_data['EC_ENABLE_RAW'];

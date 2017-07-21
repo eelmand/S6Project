@@ -6,7 +6,7 @@ var users = document.getElementById('users');
 window.onload = function start(){
     // Get user info as JSON from the new_users table
     $.ajax({
-        url: '../php/get_new_users.php',
+        url: 'http://adequateelevators.com/Website/php/get_new_users.php',
         dataType: 'json',
         success: function(data) {
             json_data = data;
