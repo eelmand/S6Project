@@ -7,7 +7,7 @@
 
 	// Query for first name, last name and password based on 
 	$rows = $database->query("SELECT username, password first_name, last_name FROM new_users WHERE username='" .
-			$username . "' DESC LIMIT 1");
+			$username . "' LIMIT 1");
 
 	if($rows != FALSE) {
 		foreach($rows as $row){
@@ -21,9 +21,6 @@
 		echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
 		exit();
 	}
-
-	echo 'here';
-	echo $password;
 
 	// Prep a query for inputting into the database
 	$query = 'INSERT INTO new_users(username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
@@ -41,4 +38,7 @@
 
 	// Delete user from new_users table
 	$database->query("DELETE FROM new_users WHERE username='" . $username . "'");
+
+	// Redirect back to grant_access.html
+	header("Location: ../grant_access.html"); /* Redirect browser */
 ?>
