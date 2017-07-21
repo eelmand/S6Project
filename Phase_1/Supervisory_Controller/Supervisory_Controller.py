@@ -100,7 +100,7 @@ def Init_MySQL():
 	global db
 	global db_cursor
 
-	db = MySQLdb.connect(host="localhost", user="root", passwd="password", db="elevator")
+	db = MySQLdb.connect(host="23.229.227.71", user="adequateadmin", passwd="adequatepassword", db="adequateelevators")
 
 	if db.errno():
 		print "Error connecting to database"
