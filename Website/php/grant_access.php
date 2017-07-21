@@ -23,7 +23,7 @@
 	}
 
 	// Prep a query for inputting into the database
-	$query = 'INSERT INTO new_users(username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
+	$query = 'INSERT INTO users(username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
 	$statement = $database->prepare($query);
 	
 	$params = [
