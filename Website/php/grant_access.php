@@ -1,8 +1,7 @@
 <?php
-	$username = $_POST["username"];
-
 	// Get user info from Javascript
 	$username = $_POST["username"];
+	echo $username;
 
 	include "connect_db.php";		// Connect to the remote database
 
@@ -23,8 +22,11 @@
 		exit();
 	}
 
+	echo 'here';
+	echo $password;
+
 	// Prep a query for inputting into the database
-	$query = 'INSERT INTO new_users (username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
+	$query = 'INSERT INTO new_users(username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
 	$statement = $database->prepare($query);
 	
 	$params = [
