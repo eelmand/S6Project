@@ -5,7 +5,7 @@ session_start();
 if($_SESSION["username"] != "admin2018") {
 	echo "<p>Access denied</p>";
 	sleep(1);
-	header("Location: index.html"); /* Redirect browser */
+	header("Location: login.html"); /* Redirect browser */
 	exit();
 }
 else

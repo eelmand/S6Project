@@ -6,7 +6,7 @@
 	include "connect_db.php";		// Connect to the remote database
 
 	// Query for first name, last name and password based on 
-	$rows = $database->query("SELECT username, password first_name, last_name FROM new_users WHERE username='" .
+	$rows = $database->query("SELECT username, password, first_name, last_name FROM new_users WHERE username='" .
 			$username . "' LIMIT 1");
 
 	if($rows != FALSE) {
