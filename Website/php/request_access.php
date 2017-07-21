@@ -72,7 +72,7 @@
 		<body>
 			<form class="center-block" action="http://adequateelevators.com/grant_access.html" id="login" method="post">
 				<h1>A new user has requested access to adequateelevators.com</h1>
-				<p id="username">Username: ' . $username ' </p>
+				<p id="username">Username: ' . $username . ' </p>
 				<input id="usr" name="username" value="test" type="hidden"/>
 				<button type="submit" class="btn btn-default">Grant Access</button>
 			</form>
