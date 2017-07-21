@@ -93,7 +93,7 @@ footer {
 /* Table formatting for Gantt Chart */
 table, th, td{
 	border-style: hidden;
-	//border: 1px solid white;
+	border: 1px solid white;
 	border-spacing: 3px;
 	text-align: center;
 	empty-cells: hide;
@@ -118,6 +118,11 @@ td:hover, .TASK:hover {
 }
 
 #debug_can_viewer th, td{
+	width: 180px;
+	text-align: left;
+}
+
+#dashboard_stats th, td{
 	width: 180px;
 	text-align: left;
 }
