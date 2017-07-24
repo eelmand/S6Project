@@ -16,11 +16,11 @@
 				$nowTimestamp = strtotime("now");
 				$nowMinusTwo = $nowTimestamp - (60*2);
 				if($nowMinusTwo < $signalTimestamp){
-					echo True;
+					echo "True";
 					exit();
 				}
 			}
-			echo False;
+			echo "False";
 		}
 		else {
 			//echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
