@@ -17,7 +17,7 @@
 				$nowMinusTwoMins = $nowTimestamp - (60*2);
 				if($nowMinusTwoMins < $signalTimestamp){
 					echo "True";
-					exit();
+					return;
 				}
 			}
 			
