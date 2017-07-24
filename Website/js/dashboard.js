@@ -95,7 +95,6 @@ function updateData() {
 		});
 		$.ajax({
 			url: 'http://adequateelevators.com/Website/php/elevator_status.php',
-			dataType: 'text',
 			success: function(elevator_status) {
 				console.log(elevator_status);
 			}
