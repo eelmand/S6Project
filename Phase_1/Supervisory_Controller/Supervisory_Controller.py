@@ -302,7 +302,6 @@ def Insert_MySQL(signal, raw, phys):
 	query = "INSERT INTO signals(name, timestamp, raw, phys) VALUES(%s,%s,%s,%s)"
 	values = (signal, timestamp, raw, phys)
 	db_cursor.execute(query, values)
-	db.commit()	
 ## end of method
 
 ##
@@ -430,7 +429,7 @@ def main():
 			Calc_State()
 	  		update_display()
 	  		Tx_EC_Cmd(PCAN)
-	  		time.sleep(0.5)  
+  			db.commit()	
 ## end of method
 
 
