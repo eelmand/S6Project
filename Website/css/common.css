@@ -63,11 +63,11 @@ footer {
 }
 
 #phase-2-progress{
-	width: 10%;
+	width: 90%;
 }
 
 #phase-3-progress{
-	width: 0%;
+	width: 50%;
 }
 
 /* General formatting for iframe elements */
@@ -91,9 +91,8 @@ footer {
 }
 
 /* Table formatting for Gantt Chart */
-table, th, td {
-	border-style: hidden;
-	//border: 1px solid white;
+table, th, td{
+	border: 1px solid white;
 	border-spacing: 3px;
 	text-align: center;
 	empty-cells: hide;
@@ -104,11 +103,12 @@ td:hover, .TASK:hover {
 	background-color: yellow; color: black;
 }
 
-.TASK {width: 355px; text-align: left;}
+.TASK {width: 550px; text-align: left;}
 .ALL {background-color: grey; color: white;}
 .TA {background-color: red; color: white;}
 .DE {background-color: blue; color: white;}
 .SR {background-color: green; color: white;}
+.WEEK {width: 100px;}
 
 #debug_can_visualizer td:hover {
 	/* Don't want hovering for this table */
@@ -116,7 +116,16 @@ td:hover, .TASK:hover {
 	color: white;
 }
 
+#debug_can_visualizer, #debug_can_visualizer td{
+	border-style: hidden;
+}
+
 #debug_can_viewer th, td{
+	width: 180px;
+	text-align: left;
+}
+
+#dashboard_stats th, td{
 	width: 180px;
 	text-align: left;
 }

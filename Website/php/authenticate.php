@@ -1,45 +1,42 @@
 <?php
+	session_start();	// starts a session and creates a session variable
 
-include "admin_info.php"; // include Admin Login Info 
+	$username = $_POST["username"];		// get username
+	$password  = $_POST["password"];	// get password
+	$remember = isset($_POST["remember"]);		// get rememberMe 
 
-session_start();	// starts a session and creates a session variable
+	include "connect_db.php";		// Connect to the remote database
 
-$username = $_POST["username"];		// get username
-$password  = $_POST["password"];	// get password
-$remember = isset($_POST["remember"]);		// get rememberMe 
+	//check if the username entered is in the database.
+	$login_query = "SELECT * FROM users WHERE username = '".$username."'";
+	$query_result = $database->query($login_query);
 
-
-// check if login info is valid
-if(!($username&&$password))			
-{
-	echo "<strong>Please fill username and password fields!</strong>";
-	header("Location: ../login.html"); /* Redirect browser */
-	exit();
-}
-else
-{
-	if(($username == $GLOBALS["admin_usr"]) && ($password == $GLOBALS["admin_pwd"]))
-	{
-		$_SESSION["username"] = $username;
-		$_SESSION["password"] = $password; 
-		
-/*
-		// remember username & password to session if "Remember me" was set
-		if($remember){
-
+	//conditions
+	if($query_result != FALSE) {
+		foreach($query_result as $row_query) {
+			// check if password are equal
+	        if($row_query['password']==$password)
+	        {
+	        	/*
+				// remember username & password to session if "Remember me" was set
+				*/
+	            $_SESSION["username"] = $username;
+				$_SESSION["password"] = $password; 
+	            header("Location: ../index.html"); /* Redirect browser */
+				exit();
+	        }
+	        else
+			{
+				echo "<strong>Invalid login info</strong>";
+				header("Location: ../login.html"); /* Redirect browser */
+				exit();
+			}
 		}
-*/
-		echo "<strong>Welcome, ESE-guru!</strong>";
-		header("Location: ../index.html"); /* Redirect browser */
-		exit();
-	}
-	else
-	{
-		echo "<strong>Invalid login info</strong>";
-		header("Location: ../login.html"); /* Redirect browser */
-		exit();
-	}
 
-}
+
+	}
+	else {
+		echo "The username you entered is invalid";
+	}
 
 ?>

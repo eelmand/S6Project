@@ -21,12 +21,17 @@ function updateSignal(signal) {
 function updateData() {
     window.setInterval(function() {
         $.ajax({
-            url: './php/debug_CAN_viewer.php',
+            url: 'http://adequateelevators.com/Website/php/debug_CAN_viewer.php',
             dataType: 'json',
             success: function(data) {
                 json_data = data;
                 console.log(json_data);
                 signals.forEach(updateSignal);
+            },
+            error: function(data) {
+                json_data = data;
+                console.log('error thrown');
+                console.log(json_data);
             }
         });
     }, 1000);   // Repeat forever, polling every second

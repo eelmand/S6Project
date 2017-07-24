@@ -9,7 +9,7 @@ var gFloorNumberReq = 0;
 function callElevator(floorNumber){
 	$.ajax({
 		type: 'POST',
-		url: './php/dashboard_insert.php',
+		url: 'http://adequateelevators.com/Website/php/dashboard_insert.php',
 		data: { floorRequested : floorNumber },
 		success: function(result) {
 			if(result){
@@ -31,29 +31,29 @@ function callElevator(floorNumber){
 	});
 }
 
-var json_data = {};
+var json_data_pos = {};
 var lastValue = 0;
 // Function to get the latest physical elevator position and update the on screen elevator
 function updatePosition(){
-	if(json_data['EC_CAR_POS_RAW'] != 0){
-		if(json_data['EC_CAR_POS_RAW'] == gFloorNumberReq){
+	if(json_data_pos['EC_CAR_POS_RAW'] != 0){
+		if(json_data_pos['EC_CAR_POS_RAW'] == gFloorNumberReq){
 			document.getElementById(gFloorNumberReq).classList.remove('btn-info');
 			callElevator(0);
 		}
-		if(json_data['EC_CAR_POS_RAW'] != lastValue){
-			if(json_data['EC_CAR_POS_RAW'] == 1){
+		if(json_data_pos['EC_CAR_POS_RAW'] != lastValue){
+			if(json_data_pos['EC_CAR_POS_RAW'] == 1){
 				$("#elevator-picture").animate({marginTop:200}, 1000, function() {
 					$("#floor-display").sevenSeg({ value: 1 });
 					lastValue = 1;
 			});
 			}
-			else if(json_data['EC_CAR_POS_RAW'] == 2){
+			else if(json_data_pos['EC_CAR_POS_RAW'] == 2){
 				$("#elevator-picture").animate({marginTop:100}, 1000, function() {
 					$("#floor-display").sevenSeg({ value: 2 });
 					lastValue = 2;
 				});
 			}
-			else if(json_data['EC_CAR_POS_RAW'] == 3){
+			else if(json_data_pos['EC_CAR_POS_RAW'] == 3){
 				$("#elevator-picture").animate({marginTop : 0}, 1000, function() {
 					$("#floor-display").sevenSeg({ value: 3 });
 					lastValue = 3;
@@ -64,16 +64,50 @@ function updatePosition(){
 	}
 }
 
+var json_data_stats = {};
+var stats = ['FLRS_TRVL_DAY', 'FLRS_TRVL_WEEK', 'MOST_VSTD_FLR'];
+
+function updateStats(stats){
+	document.getElementById(stats.concat('_VALUE')).innerHTML = json_data_stats[stats.concat('_VALUE')];
+    document.getElementById(stats.concat('_TIMESTAMP')).innerHTML = json_data_stats[stats.concat('_TIMESTAMP')];
+}
+
+function updateElevatorStatus(status){
+	if(status == "True"){
+		document.getElementById('elevator_status').innerHTML = "Status: Online";
+	}
+	else if (status == "False"){
+		document.getElementById('elevator_status').innerHTML = "Status: Offline";
+	}
+}
+
+
 // Function to request that the server run dashboard.php every second in the background
 function updateData() {
 	window.setInterval(function() {
 		$.ajax({
-			url: './php/dashboard.php',
+			url: 'http://adequateelevators.com/Website/php/dashboard.php',
 			dataType: 'json',
-			success: function(data) {
-				json_data = data;
-				console.log(json_data);
+			success: function(data_pos) {
+				json_data_pos = data_pos;
+				console.log(json_data_pos);
 				updatePosition();
+			}
+		});
+		$.ajax({
+			url: 'http://adequateelevators.com/Website/php/dashboard_stats.php',
+			dataType: 'json',
+			success: function(data_stats) {
+				json_data_stats = data_stats;
+				console.log(json_data_stats);
+				stats.forEach(updateStats);
+			}
+		});
+		$.ajax({
+			url: 'http://adequateelevators.com/Website/php/elevator_status.php',
+			success: function(elevator_status) {
+				console.log(elevator_status);
+				updateElevatorStatus(elevator_status);
 			}
 		});
 	}, 1000);   // Repeat forever, polling every second
@@ -84,6 +118,7 @@ window.onload = function start(){
 	updateData();
 }
 
+/*
 // Beautiful chart that maybe I'll use one day
 Chart.defaults.global.defaultFontColor = 'white';
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -146,4 +181,4 @@ var myChart = new Chart(ctx, {
 			}]
 		}
 	}
-});
+});*/

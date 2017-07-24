@@ -1,16 +1,6 @@
 <?php
-	//echo "<script type='text/javascript'> console.log('CONNECTING TO DATABASE') </script>";
-	
-	// Try to connect to database and catch errors
-	try {
-		$database = new PDO('mysql:host=127.0.0.1;dbname=elevator', 'root', 'password');	
-	}
-	catch (PDOException $e) {
-		echo "Error: " . $e->getMessage() . "<br />";
-		return;
-	}
 
-	//echo "<script type='text/javascript'> console.log('CONNECTED TO DATABASE') </script>";
+	include "connect_db.php";		// Connect to the remote database
 
 	// Query database for most recent value of each signal
 	$signals = ['SM_STATE', 'SM_FLOOR_REQ', 'SC_ENABLE', 'SC_FLOOR_CMD', 'EC_STATE', 
@@ -37,5 +27,11 @@
 
 	// Encode data into JSON for easy Javascript passing & parsing
 	$json_data = json_encode($data);
+
+	if(file_put_contents('test.json', $json_data) == FALSE) {
+		echo "<p>Failed to write data to JSON file.</p>";
+	}
+
+
 	echo $json_data;
 ?>
