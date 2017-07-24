@@ -6,7 +6,7 @@
 					'EC_CAR_POS', 'F1_CALL_REQ', 'F2_CALL_REQ', 'F3_CALL_REQ', 
 					'CC_FLOOR_REQ', 'CC_DOOR_STATE'];
 
-	date_default_timezone_set('America/Detroit')
+	date_default_timezone_set('America/Detroit');
 	$status = False;
 	foreach($signals as $signal) {
 		$rows = $database->query("SELECT name, timestamp, raw, phys FROM signals WHERE name='" .
