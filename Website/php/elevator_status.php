@@ -14,16 +14,17 @@
 			foreach($rows as $row){
 				$signalTimestamp = strtotime($row['timestamp']);
 				$nowTimestamp = strtotime("now");
-				$nowMinusTwo = $nowTimestamp - (60*2);
-				if($nowMinusTwo < $signalTimestamp){
+				$nowMinusTwoMins = $nowTimestamp - (60*2);
+				if($nowMinusTwoMins < $signalTimestamp){
 					echo "True";
 					exit();
 				}
 			}
-			echo "False";
+			
 		}
 		else {
 			//echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
 		}
 	}
+	echo "False";
 ?>

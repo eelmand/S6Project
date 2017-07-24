@@ -72,6 +72,16 @@ function updateStats(stats){
     document.getElementById(stats.concat('_TIMESTAMP')).innerHTML = json_data_stats[stats.concat('_TIMESTAMP')];
 }
 
+function updateElevatorStatus(status){
+	if(status == "True"){
+		document.getElementById('elevator_status').innerHTML = "Status: Online";
+	}
+	else if (status == "False"){
+		document.getElementById('elevator_status').innerHTML = "Status: Offline";
+	}
+}
+
+
 // Function to request that the server run dashboard.php every second in the background
 function updateData() {
 	window.setInterval(function() {
@@ -97,6 +107,7 @@ function updateData() {
 			url: 'http://adequateelevators.com/Website/php/elevator_status.php',
 			success: function(elevator_status) {
 				console.log(elevator_status);
+				updateElevatorStatus(elevator_status);
 			}
 		});
 	}, 1000);   // Repeat forever, polling every second
