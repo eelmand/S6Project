@@ -6,6 +6,7 @@
 					'EC_CAR_POS', 'F1_CALL_REQ', 'F2_CALL_REQ', 'F3_CALL_REQ', 
 					'CC_FLOOR_REQ', 'CC_DOOR_STATE'];
 
+	$status = False;
 	foreach($signals as $signal) {
 		$rows = $database->query("SELECT name, timestamp, raw, phys FROM signals WHERE name='" .
 			$signal . "' ORDER BY timestamp DESC LIMIT 1");
@@ -16,8 +17,7 @@
 				$nowTimestamp = strtotime("now");
 				$nowMinusTwoMins = $nowTimestamp - (60*2);
 				if($nowMinusTwoMins < $signalTimestamp){
-					echo "True";
-					return;
+					$status = True;
 				}
 			}
 			
@@ -26,5 +26,11 @@
 			//echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
 		}
 	}
-	echo "False";
+	if($status){
+		echo "True";
+	}
+	else{
+		echo "False";
+	}
+	
 ?>
