@@ -93,6 +93,13 @@ function updateData() {
 				stats.forEach(updateStats);
 			}
 		});
+		$.ajax({
+			url: 'http://adequateelevators.com/Website/php/elevator_status.php',
+			dataType: 'text',
+			success: function(elevator_status) {
+				console.log(elevator_status);
+			}
+		});
 	}, 1000);   // Repeat forever, polling every second
 }
 
