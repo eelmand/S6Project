@@ -56,6 +56,7 @@
 	$result = $statement->execute($params);
 
 	// Send email to admins asking if they want to approve or deny the person
+	$to = 'tabdallah1518@conestogac.on.ca, deelman-cc@conestogac.on.ca, srashevskyi8178@conestogac.on.ca';
 	$subject = 'Access request for AdequateElevators.com';
 	$headers = "From: webmaster@adequateelevators.com" . PHP_EOL;
 	$headers .= "Reply-To: webmaster@adequateelevators.com" . PHP_EOL;
@@ -73,9 +74,8 @@
 		<html>
 		<body>
 			<form class="center-block" action="http://adequateelevators.com/Website/user_management.html" id="login" method="post">
-				<h1>A new user has requested access to adequateelevators.com</h1>
+				<h3>A new user has requested access to adequateelevators.com</h3>
 				<p id="username">Username: ' . $username . ' </p>
-				<input id="usr" name="username" value="test" type="hidden"/>
 				<button type="submit" class="btn btn-default">Grant Access</button>
 			</form>
 		</body>
@@ -83,5 +83,5 @@
 	';
 
 
-	mail("thomas.abdallah@gmail.com", $subject, $msg, $headers);
+	mail($to, $subject, $msg, $headers);
 ?>
