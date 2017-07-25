@@ -41,7 +41,7 @@ if (isset($_SESSION["username"]))
 								<li><a href="debug_CAN_viewer.html">Debug CAN Viewer</a></li>
 								<li><a href="debug_CAN_plot.html">Debug CAN Plot</a></li>
 								<li><a href="debug_CAN_visualizer.html">Debug CAN Visualizer</a></li>
-								<li><a href="grant_access.html">Grant Access</a></li>
+								<li><a href="user_management.html">User Management</a></li>
 							</ul>
 						</li>
 					</ul>
