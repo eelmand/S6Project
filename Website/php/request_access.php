@@ -73,12 +73,8 @@
 		<!DOCTYPE html>
 		<html>
 		<body>
-			<form class="center-block" action="http://adequateelevators.com/Website/user_management.html" id="login" method="post">
-				<h3>A new user has requested access to adequateelevators.com</h3>
-				<p id="username">Username: ' . $username . ' </p>
-				<input id="usr" name="username" value="test" type="hidden"/>
-				<button type="submit" class="btn btn-default">Grant Access</button>
-			</form>
+			<h3>A new user has requested access to adequateelevators.com</h3>
+			<a href="http://adequateelevators.com/Website/user_management.html">Grant Access to User :</a> ' . $username .'
 		</body>
 		</html>		
 	';

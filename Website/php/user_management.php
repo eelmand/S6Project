@@ -58,12 +58,8 @@
 						<!DOCTYPE html>
 						<html>
 						<body>
-							<form class="center-block" action="http://adequateelevators.com/Website/login.html" id="login" method="post">
-								<h3>An administrator has granted you access to adequateelevators.com</h3>
-								<p id="username">Username: ' . $username . ' </p>
-								<input id="usr" name="username" value="test" type="hidden"/>
-								<button type="submit" class="btn btn-default">Login</button>
-							</form>
+							<h3>An administrator has granted you access to adequateelevators.com</h3>
+							<a href="http://adequateelevators.com/Website/login.html">Login Page</a>
 						</body>
 						</html>		
 					';
