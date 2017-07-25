@@ -41,11 +41,12 @@ else
 	</header>
 							
 	<article class="container text-center">						
-		<h1>Grant Access to New Users</h1>					
-		<hr>
 		
-		<!-- Table of Users -->
-		<h2>List of New Users</h2>
+		<h1>Admin Page - User Management</h1>
+		<hr>
+
+		<!-- List of registered users information -->
+		<h2>Registered Users</h2>
 		<div>
 			<table align="center" id="users">
 				<thead>
@@ -59,16 +60,37 @@ else
 				</thead>
 			</table>
 		</div>
-		
-		<!-- form to grant access -->
+
 		<hr>
-		<h2>Grant Access to a User</h2>
-		<form class="center-block" action="php/grant_access.php" id="login" method="post">
+
+		<!-- List of new users information -->
+		<h2>New Users</h2>
+		<div>
+			<table align="center" id="new_users">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Date Requested</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
+		<!-- form to grant or revoke access access -->
+		<hr>
+		<h2>User Management</h2>
+		<form class="center-block" action="php/access_control.php" id="login" method="post">
 			<div class="form-group">
 				<label for="username">Username:</label>
 				<input type="username" class="form-control" name="username" id="username">
 			</div>
-			<button type="submit" class="btn btn-default">Grant Access</button>
+			<span>
+				<button type="submit" class="btn btn-default" name="grant_access">Grant Access</button>
+				<button type="submit" class="btn btn-default" name="revoke_access">Revoke Access</button>
+			</span>
 		</form>
 
 
@@ -81,7 +103,7 @@ else
 	<script src="js/common.js"></script>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="js/grant_access.js"></script>
+	<script src="js/user_management.js"></script>
 </body>
 
 </html>
