@@ -22,7 +22,13 @@
 				*/
 	            $_SESSION["username"] = $username;
 				$_SESSION["password"] = $password; 
-	            header("Location: ../index.html"); /* Redirect browser */
+
+				// Update last login time for this user
+				$timestamp_query = "UPDATE users SET last_login=NOW() WHERE username='" . $username ."'";
+				$query_result = $database->query($timestamp_query);
+				// Not checking result for now
+
+	            header("Location: ../dashboard.html"); /* Redirect browser */
 				exit();
 	        }
 	        else
