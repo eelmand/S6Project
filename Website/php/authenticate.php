@@ -32,7 +32,7 @@
 	        }
 	        else
 			{
-				echo "<strong>Invalid login info</strong>";
+				echo "Invalid login info.";
 				header("Location: ../login.html"); /* Redirect browser */
 			}
 		}
@@ -40,7 +40,7 @@
 
 	}
 	else {
-		echo "<strong>Invalid login info</strong>";
+		echo "Invalid login info.";
 		header("Location: ../login.html"); /* Redirect browser */
 	}
 
