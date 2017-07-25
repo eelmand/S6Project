@@ -29,19 +29,20 @@
 				// Not checking result for now
 
 	            header("Location: ../dashboard.html"); /* Redirect browser */
+	            exit();
 	        }
 	        else
 			{
 				echo "Invalid login info.";
 				header("Location: ../login.html"); /* Redirect browser */
+				exit();
 			}
 		}
 
 
 	}
-	else {
-		echo "Invalid login info.";
-		header("Location: ../login.html"); /* Redirect browser */
-	}
-
+	
+	echo "Invalid login info.";
+	header("Location: ../login.html"); /* Redirect browser */
+	exit();
 ?>
