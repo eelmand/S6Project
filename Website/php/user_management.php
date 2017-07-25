@@ -11,8 +11,7 @@
 		$rows = $database->query("SELECT username, password, first_name, last_name, email, last_login FROM new_users WHERE username='" .
 				$username . "' LIMIT 1");
 
-		echo $rows;
-		sleep(10);
+		echo $db->num_rows();
 
 
 		if($rows != FALSE) {
