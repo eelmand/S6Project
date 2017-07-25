@@ -36,18 +36,20 @@
 	$password  = $_POST["password"];
 	$first_name = $_POST["first_name"];
 	$last_name = $_POST["last_name"];
+	$email = $_POST["email"];
 
 	include "connect_db.php";		// Connect to the remote database
 
 	// Prep a query for inputting into the database
-	$query = 'INSERT INTO new_users (username, password, first_name, last_name) VALUES(:username, :password, :first_name, :last_name)';
+	$query = 'INSERT INTO new_users (username, password, first_name, last_name, email) VALUES(:username, :password, :first_name, :last_name, :email)';
 	$statement = $database->prepare($query);
 	
 	$params = [
 		'username' => $username,
 		'password' => $password,
 		'first_name' => $first_name,
-		'last_name' => $last_name
+		'last_name' => $last_name,
+		'email' => $email
 	];
 
 	// Execute the query
