@@ -29,20 +29,19 @@
 				// Not checking result for now
 
 	            header("Location: ../dashboard.html"); /* Redirect browser */
-				exit();
 	        }
 	        else
 			{
 				echo "<strong>Invalid login info</strong>";
 				header("Location: ../login.html"); /* Redirect browser */
-				exit();
 			}
 		}
 
 
 	}
 	else {
-		echo "The username you entered is invalid";
+		echo "<strong>Invalid login info</strong>";
+		header("Location: ../login.html"); /* Redirect browser */
 	}
 
 ?>
