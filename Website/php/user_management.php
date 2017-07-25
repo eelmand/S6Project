@@ -40,36 +40,36 @@
 				$database->query("DELETE FROM new_users WHERE username='" . $username . "'");
 
 				// Send email to user letting them know they have been granted access
-				$to = $email;
-				$subject = 'Access to AdequateElevators.com granted';
-				$headers = "From: webmaster@adequateelevators.com" . PHP_EOL;
-				$headers .= "Reply-To: webmaster@adequateelevators.com" . PHP_EOL;
-				$headers .= "X-Mailer: PHP/" . phpversion();
-			    $headers .= "MIME-Version: 1.0" . PHP_EOL;
-			    $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
+				if ($email != NULL) {
+					$to = $email;
+					$subject = 'Access to AdequateElevators.com granted';
+					$headers = "From: webmaster@adequateelevators.com" . PHP_EOL;
+					$headers .= "Reply-To: webmaster@adequateelevators.com" . PHP_EOL;
+					$headers .= "X-Mailer: PHP/" . phpversion();
+				    $headers .= "MIME-Version: 1.0" . PHP_EOL;
+				    $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
 
-				$msg = '
-					<?php
-						$username = $_POST["username"];
-						echo $username;
-					?>
+					$msg = '
+						<?php
+							$username = $_POST["username"];
+							echo $username;
+						?>
 
-					<!DOCTYPE html>
-					<html>
-					<body>
-						<form class="center-block" action="http://adequateelevators.com/Website/login.html" id="login" method="post">
-							<h3>An administrator has granted you access to adequateelevators.com</h3>
-							<p id="username">Username: ' . $username . ' </p>
-							<button type="submit" class="btn btn-default">Login</button>
-						</form>
-					</body>
-					</html>		
-				';
-
-
-				mail($to, $subject, $msg, $headers);
+						<!DOCTYPE html>
+						<html>
+						<body>
+							<form class="center-block" action="http://adequateelevators.com/Website/login.html" id="login" method="post">
+								<h3>An administrator has granted you access to adequateelevators.com</h3>
+								<p id="username">Username: ' . $username . ' </p>
+								<button type="submit" class="btn btn-default">Login</button>
+							</form>
+						</body>
+						</html>		
+					';
 
 
+					mail($to, $subject, $msg, $headers);
+				}
 			}
 		}
 		else {
