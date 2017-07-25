@@ -18,13 +18,24 @@ window.onload = function start(){
               var username = document.createElement("td");
               var first_name = document.createElement("td");
               var last_name = document.createElement("td");
+              var email = document.createElement("td");
+              var last_login = document.createElement("td");
               
               username.appendChild(document.createTextNode(json_data[i].username));
               tr.appendChild(username);
+              
               first_name.appendChild(document.createTextNode(json_data[i].first_name));
               tr.appendChild(first_name);
+              
               last_name.appendChild(document.createTextNode(json_data[i].last_name));
               tr.appendChild(last_name);
+              
+              email.appendChild(document.createTextNode(json_data[i].email));
+              tr.appendChild(email);
+
+              last_login.appendChild(document.createTextNode(json_data[i].last_login));
+              tr.appendChild(last_login);
+
               table.appendChild(tr);
             }
         }
