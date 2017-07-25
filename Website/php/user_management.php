@@ -10,23 +10,21 @@
 		// Query for first name, last name and password based on 
 		$rows = $database->query("SELECT username, password, first_name, last_name, email, last_login FROM new_users WHERE username='" .
 				$username . "' LIMIT 1");
-
-		echo $test;
-		var_dump($rows);
-
-		if($rows != $username) {
-			foreach($rows as $row){
-				$username = $row['username'];
-				$password = $row['password'];
-				$first_name = $row['first_name'];
-				$last_name = $row['last_name'];
-				$email = $row['email'];
-				$last_login = $row['last_login'];
+		while($record = $db->fetch_array($rows)) {
+			if($record['rcount'] == 0) {
+				echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
+				exit();	
 			}
-		}
-		else {
-			echo "<script type='text/javascript'> console.log('ERROR: Query returned nothing.') </script>";
-			exit();
+			else {
+				foreach($rows as $row){
+					$username = $row['username'];
+					$password = $row['password'];
+					$first_name = $row['first_name'];
+					$last_name = $row['last_name'];
+					$email = $row['email'];
+					$last_login = $row['last_login'];
+				}	
+			}
 		}
 
 		// Prep a query for inputting into the database
