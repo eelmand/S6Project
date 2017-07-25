@@ -11,6 +11,9 @@
 		$rows = $database->query("SELECT username, password, first_name, last_name, email, last_login FROM new_users WHERE username='" .
 				$username . "' LIMIT 1");
 
+		var_dump($rows);
+		sleep(10);
+
 		if($rows != FALSE) {
 			foreach($rows as $row){
 				$username = $row['username'];
