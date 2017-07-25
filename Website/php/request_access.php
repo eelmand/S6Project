@@ -70,7 +70,7 @@
 		<!DOCTYPE html>
 		<html>
 		<body>
-			<form class="center-block" action="http://adequateelevators.com/Website/grant_access.html" id="login" method="post">
+			<form class="center-block" action="http://adequateelevators.com/Website/user_management.html" id="login" method="post">
 				<h1>A new user has requested access to adequateelevators.com</h1>
 				<p id="username">Username: ' . $username . ' </p>
 				<input id="usr" name="username" value="test" type="hidden"/>
