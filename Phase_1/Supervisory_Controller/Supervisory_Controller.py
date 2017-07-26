@@ -134,6 +134,7 @@ def Init_PCAN(device):
 	PCANBasic.Reset(device, PCAN_USBBUS1)
 	if status > 0:
 		print "Error Initializing PCAN USB"
+		print PCANBasic.GetErrorText(device, status, 0)
 		exit
 	else:
 		print "PCAN USB Initialized"	
@@ -149,6 +150,7 @@ def Uninit_PCAN(device):
 	status = PCANBasic.Uninitialize(device, PCAN_USBBUS1)
 	if status > 0:
 		print "Error Uninitializing PCAN USB"
+		print PCANBasic.GetErrorText(device, status, 0)
 		exit
 	else:
 		print "PCAN USB Uninitialized"
@@ -225,40 +227,49 @@ def Rx_CAN(device):
 	global cc_floor_req
 	global cc_door_state
 
-	# Do-while loop of reading messages until there aren't any more
+	# Read a message
 	message = PCANBasic.Read(PCAN, PCAN_USBBUS1)
+	
+	# Don't update database if no messages read
+	if message[1].ID <= 1:
+		return;
+
+	# Read all the messages - then update the database ONCE
 	while message[1].ID > 1:					
 		# Process EC Status Message
 		if message[1].ID == ID_ec:
 			ec_car_pos = message[1].DATA[0] & mask_ec_car_pos
 			ec_state = ((message[1].DATA[0] & mask_ec_state) >> 2)	# Any good way to dynamically shift bits based on bit number??? Think about this later
-			Insert_MySQL('EC_CAR_POS', ec_car_pos, sig_ec_car_pos[ec_car_pos])
-			Insert_MySQL('EC_STATE', ec_state, sig_ec_state[ec_state])
 		
 		# Process F1 Status Message
 		elif message[1].ID == ID_f1:
 			f1_call_req = message[1].DATA[0] & mask_f1_call_req
-			Insert_MySQL('F1_CALL_REQ', f1_call_req, sig_f1_call_req[f1_call_req])
 
 		# Process F2 Status Message
 		elif message[1].ID == ID_f2:
 			f2_call_req = message[1].DATA[0] & mask_f2_call_req
-			Insert_MySQL('F2_CALL_REQ', f2_call_req, sig_f2_call_req[f2_call_req])
 
 		# Process F3 Status Message
 		elif message[1].ID == ID_f3:
 			f3_call_req = message[1].DATA[0] & mask_f3_call_req
-			Insert_MySQL('F3_CALL_REQ', f3_call_req, sig_f3_call_req[f3_call_req])
 
 		# Process CC Status Message
 		elif message[1].ID == ID_cc:
 			cc_floor_req = message[1].DATA[0] & mask_cc_floor_req
 			cc_door_state = ((message[1].DATA[0] & mask_cc_door_state) >> 2) # Any good way to dynamically shift bits based on bit number??? Think about this later
-			Insert_MySQL('CC_FLOOR_REQ', cc_floor_req, sig_cc_floor_req[cc_floor_req])
-			Insert_MySQL('CC_DOOR_STATE', cc_door_state, sig_cc_door_state[cc_door_state])
 
 		# Read next message
-		message = PCANBasic.Read(PCAN, PCAN_USBBUS1)		
+		message = PCANBasic.Read(PCAN, PCAN_USBBUS1)
+
+	# Update the database (all messages)
+	Insert_MySQL('EC_CAR_POS', ec_car_pos, sig_ec_car_pos[ec_car_pos])
+	Insert_MySQL('EC_STATE', ec_state, sig_ec_state[ec_state])
+	Insert_MySQL('F1_CALL_REQ', f1_call_req, sig_f1_call_req[f1_call_req])
+	Insert_MySQL('F2_CALL_REQ', f2_call_req, sig_f2_call_req[f2_call_req])
+	Insert_MySQL('F3_CALL_REQ', f3_call_req, sig_f3_call_req[f3_call_req])
+	Insert_MySQL('CC_FLOOR_REQ', cc_floor_req, sig_cc_floor_req[cc_floor_req])
+	Insert_MySQL('CC_DOOR_STATE', cc_door_state, sig_cc_door_state[cc_door_state])
+
 ## end of method
 
 
@@ -280,6 +291,7 @@ def Tx_EC_Cmd(device):
 	status = PCANBasic.Write(device, PCAN_USBBUS1, message)
 	if status > 0:
 		print "Error transmitting CAN message"
+		print PCANBasic.GetErrorText(device, status, 0)
 		exit()
 
 	# Add the signals to the database
@@ -300,7 +312,9 @@ def Insert_MySQL(signal, raw, phys):
 
 	# Build the query
 	query = "INSERT INTO signals(name, timestamp, raw, phys) VALUES(%s,%s,%s,%s)"
+	#query = "INSERT INTO signals(name, raw, phys) VALUES(%s,%s,%s)"
 	values = (signal, timestamp, raw, phys)
+	#values = (signal, raw, phys)
 	db_cursor.execute(query, values)
 ## end of method
 
@@ -429,7 +443,6 @@ def main():
 			Calc_State()
 	  		update_display()
 	  		Tx_EC_Cmd(PCAN)
-  			db.commit()	
 ## end of method
 
 
