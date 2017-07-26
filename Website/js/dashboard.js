@@ -94,7 +94,7 @@ function updateData() {
 				updatePosition();
 			}
 		});
-		$.ajax({
+		/*$.ajax({
 			url: 'http://adequateelevators.com/Website/php/dashboard_stats.php',
 			dataType: 'json',
 			success: function(data_stats) {
@@ -102,7 +102,7 @@ function updateData() {
 				console.log(json_data_stats);
 				stats.forEach(updateStats);
 			}
-		});
+		});*/
 		$.ajax({
 			url: 'http://adequateelevators.com/Website/php/elevator_status.php',
 			success: function(elevator_status) {
