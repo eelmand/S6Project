@@ -106,7 +106,7 @@ else {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>                        
 			</button>
-			<a class="navbar-brand" href="index.html">S6 Project</a>
+			<a class="navbar-brand" href="dashboard.html">S6 Project</a>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
