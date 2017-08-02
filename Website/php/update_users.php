@@ -32,8 +32,7 @@
 		$database->beginTransaction();
 
 		try{
-			$query = 'UPDATE users 
-					SET password = :password WHERE username = :username';
+			$query = 'UPDATE users SET password = :password WHERE username = :username';
 
 			$statement = $database->prepare($query);
 			$statement->bindValue('username', $username);
