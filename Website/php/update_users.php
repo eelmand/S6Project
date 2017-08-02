@@ -1,4 +1,5 @@
 <?php
+	/*
 	function update_usersTable($username, $password, $firstName, $lastName, $userId){
 		include "connect_db.php";		// Connect to the remote database
 
@@ -23,7 +24,7 @@
 		catch (Exception $e) {
 			$database->rollBack();
 		}
-	}
+	}*/
 
 	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
