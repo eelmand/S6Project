@@ -28,35 +28,35 @@
 		}		
 
 		// Accessor functions for the User class
-		public function getId() : int {
+		public function getId(){
 			return $this->id;
 		}
 
-		public function getLevel() : int {
+		public function getLevel(){
 			return $this->level;
 		}
 
-		public function getUsername() : string {
+		public function getUsername(){
 			return $this->username;
 		}
 
-		public function getPassword() : string {
+		public function getPassword(){
 			return $this->password;
 		}
 
-		public function getFirstName() : string {
+		public function getFirstName(){
 			return $this->firstName;
 		}
 
-		public function getLastName() : string {
+		public function getLastName(){
 			return $this->lastName;
 		}
 		
-		public function getEmail() : string {
+		public function getEmail(){
 			return $this->email;
 		}
 		
-		public function getLastLogin() : string {
+		public function getLastLogin(){
 			return $this->lastLogin;
 		}
 
