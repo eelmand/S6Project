@@ -33,6 +33,7 @@
 		echo 'console.log(' . $username . ')';
 		echo '</script>';
 
+		sleep(10);
 
 		$database->beginTransaction();
 		
