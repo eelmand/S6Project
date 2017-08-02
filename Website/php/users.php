@@ -78,6 +78,9 @@
 
 			// Execute the query
 			$result = $statement->execute($params);
+			if($result == FALSE) {
+				throw new Exception('Request access failure: MySQL Insert Failed');
+			}
 
 			// Send email to admins asking if they want to approve or deny the person
 			$to = 'tabdallah1518@conestogac.on.ca, deelman-cc@conestogac.on.ca, srashevskyi8178@conestogac.on.ca';
@@ -139,8 +142,9 @@
 						exit();
 					}
 				}
-
-
+			}
+			else {
+				throw new Exception('Login error: MySQL query failed.');
 			}
 			
 			echo "Invalid login info.";
@@ -168,7 +172,7 @@
 		public function grantAccess($username) {
 			include "connect_db.php";		// Connect to the remote database
 
-			// Query for first name, last name and password based on 
+			// Query for first name, last name and password based on given username
 			$rows = $database->query("SELECT username, password, first_name, last_name, email, last_login FROM new_users WHERE username='" .
 					$username . "' LIMIT 1");
 
@@ -181,8 +185,8 @@
 					$email = $row['email'];
 					$last_login = $row['last_login'];
 
-					// Prep a query for inputting into the database
-					$query = 'INSERT INTO users(username, password, first_name, last_name, email, last_login) VALUES(:username, :password, :first_name, :last_name, :email, :last_login)';
+					// Prep a query for inserting user into users table
+					$query = 'INSERT INTO users(username, password, first_name, last_name, last_login) VALUES(:username, :password, :first_name, :last_name, :last_login)';
 					$statement = $database->prepare($query);
 					
 					$params = [
@@ -190,8 +194,36 @@
 						'password' => $password,
 						'first_name' => $first_name,
 						'last_name' => $last_name,
-						'email' => $email,
 						'last_login' => $last_login
+					];
+
+					// Execute the query
+					$result = $statement->execute($params);
+					if($result == FALSE) {
+						throw new Exception("Grant Access Error: MySQL Query Failed.");
+					}
+
+					// Query to get the ID of the new user
+					$login_query = "SELECT id FROM users WHERE username = '".$username."'";
+					$query_result = $database->query($login_query);
+
+					if($query_result != FALSE) {
+						foreach($query_result as $row_query) {
+							// set a variable called ID
+					        $id = $row_query['id'];
+					    }
+					}
+					else {
+						throw new Exception('Error: Could not get User ID');
+					}
+
+					// Prep a query for inserting email into emails table
+					$query = 'INSERT INTO emails(id,email) VALUES(:id, :email)';
+					$statement = $database->prepare($query);
+					
+					$params = [
+						'id' => $id,
+						'email' => $email
 					];
 
 					// Execute the query
