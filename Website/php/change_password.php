@@ -3,6 +3,11 @@
 	$username = $_SESSION["username"];
 	$password = $_POST["password"];
 
+	echo '<script>';
+	echo 'console.log(' . 'test123' . ')';
+	echo '</script>';
+	sleep(5);
+
 	include "update_users.php";
 
 	
