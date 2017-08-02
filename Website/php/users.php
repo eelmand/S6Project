@@ -27,6 +27,8 @@
 			}
 		}
 
+
+		/*
 		// Accessor functions for the User class
 		public function getId() : int {
 			return $this->id;
@@ -147,6 +149,7 @@
 			header("Location: ../login.html"); // Redirect browser
 			exit();			
 		}	// End of login function
+		*/
 
 		public function logout() {
 			session_start();
