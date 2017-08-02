@@ -2,14 +2,14 @@
 	// Class definition for normal users	
 	class User {
 		// Properties of a User
-		protected $username;
-		protected $password;
-		protected $id;
+		private $username;
+		private $password;
+		private $id;
 		private $level = 0;	// Users are always level 0
-		protected $firstName;
-		protected $lastName;
-		protected $email;
-		protected $lastLogin;
+		private $firstName;
+		private $lastName;
+		private $email;
+		private $lastLogin;
 
 		public function __construct() {
 			$argv = func_get_args();
