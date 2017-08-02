@@ -11,7 +11,6 @@
 		private $email;
 		private $lastLogin;
 
-		/*
 
 		// Constructor for logging out a user (i.e. don't care about username or password)
 		public function __construct() {}
@@ -31,6 +30,9 @@
 			$this->lastName = $last;
 			$this->email = $mail;
 		}
+
+
+		/*
 
 		// Accessor functions for the User class
 		public function getId() : int {
