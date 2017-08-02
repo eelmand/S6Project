@@ -30,7 +30,7 @@
 		include "connect_db.php";		// Connect to the remote database		
 
 		$database->beginTransaction();
-		
+		/*
 		try{
 			$query = "UPDATE users SET password=':password' WHERE username=':username'";
 
@@ -47,7 +47,7 @@
 		catch (Exception $e) {
 			$database->rollBack();
 			throw $e;
-		}
+		}*/
 	}
 
 ?>
