@@ -29,56 +29,8 @@
     session_write_close();
 
 
-    // Now process data and send email
-
-	// Get user info from Javascript
-	$username = $_POST["username"];
-	$password  = $_POST["password"];
-	$first_name = $_POST["first_name"];
-	$last_name = $_POST["last_name"];
-	$email = $_POST["email"];
-
-	include "connect_db.php";		// Connect to the remote database
-
-	// Prep a query for inputting into the database
-	$query = 'INSERT INTO new_users (username, password, first_name, last_name, email) VALUES(:username, :password, :first_name, :last_name, :email)';
-	$statement = $database->prepare($query);
-	
-	$params = [
-		'username' => $username,
-		'password' => $password,
-		'first_name' => $first_name,
-		'last_name' => $last_name,
-		'email' => $email
-	];
-
-	// Execute the query
-	$result = $statement->execute($params);
-
-	// Send email to admins asking if they want to approve or deny the person
-	$to = 'tabdallah1518@conestogac.on.ca, deelman-cc@conestogac.on.ca, srashevskyi8178@conestogac.on.ca';
-	$subject = 'Access request for AdequateElevators.com';
-	$headers = "From: webmaster@adequateelevators.com" . PHP_EOL;
-	$headers .= "Reply-To: webmaster@adequateelevators.com" . PHP_EOL;
-	$headers .= "X-Mailer: PHP/" . phpversion();
-    $headers .= "MIME-Version: 1.0" . PHP_EOL;
-    $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
-
-	$msg = '
-		<?php
-			$username = $_POST["username"];
-			echo $username;
-		?>
-
-		<!DOCTYPE html>
-		<html>
-		<body>
-			<h3>A new user has requested access to adequateelevators.com</h3>
-			<a href="http://adequateelevators.com/Website/user_management.html">Grant Access to User :</a> ' . $username .'
-		</body>
-		</html>		
-	';
-
-
-	mail($to, $subject, $msg, $headers);
+    // Now process data and request access
+    include "users.php";
+    $user = new User($_POST["username"], $_POST["password"], $_POST["first_name"], $_POST["last_name"], $_POST["email"]);
+    $user.requestAccess();
 ?>
