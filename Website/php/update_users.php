@@ -52,10 +52,6 @@
 			$database->rollBack();
 			throw $e;
 		}
-
-		echo $username;
-		echo $password;
-		header("Refresh:10");
 	}
 
 ?>
