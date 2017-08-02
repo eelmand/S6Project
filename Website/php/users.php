@@ -30,8 +30,8 @@
 
 
 		// Accessor functions for the User class
-		public function getId() : int{
-			return $level;
+		public function getId(){
+			return $this->id;
 		}
 
 		/*
