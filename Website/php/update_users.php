@@ -29,8 +29,8 @@
 	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
 
-		$database->begin_transaction();
-
+		$database->beginTransaction();
+		/*
 		try{
 			$query = 'UPDATE users SET password = :password WHERE username = :username';
 
@@ -46,7 +46,7 @@
 		catch (Exception $e) {
 			$database->rollBack();
 			throw $e;
-		}
+		}*/
 	}
 
 ?>
