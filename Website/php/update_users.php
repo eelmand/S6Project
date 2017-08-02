@@ -29,7 +29,7 @@
 	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
 
-		$database->beginTransaction();
+		$database->begin_transaction();
 
 		try{
 			$query = 'UPDATE users SET password = :password WHERE username = :username';
