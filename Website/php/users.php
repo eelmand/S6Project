@@ -270,8 +270,24 @@
 
 		public function revokeAccess($username) {
 			include "connect_db.php";		// Connect to the remote database
-	    	$database->query("DELETE FROM users WHERE username='" . $username . "'");
+	    	
+	    	// Query to get the ID of the user
+			$login_query = "SELECT id FROM users WHERE username = '".$username."'";
+			$query_result = $database->query($login_query);
 
+			if($query_result != FALSE) {
+				foreach($query_result as $row_query) {
+					// set a variable called ID
+			        $id = $row_query['id'];
+			    }
+			}
+			else {
+				throw new Exception('Error: Could not get User ID');
+			}
+
+	    	// Query both tables separately for a delete
+	    	$database->query("DELETE FROM users WHERE id='" . $id . "'");
+	    	$database->query("DELETE FROM emails WHERE id='" . $id . "'");
 		}
 	}	// End of admin class
 ?>
