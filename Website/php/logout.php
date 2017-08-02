@@ -3,5 +3,11 @@
 
 	// Create a blank user to use the logout function
 	$user = new User;
-	$user->logout();
+	try {
+		$user->logout();	
+	}
+	catch(Exception $e) {
+		echo $e->getMessage();
+	}
+	
 ?>
