@@ -29,15 +29,13 @@
 	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
 
-		echo '<script>';
-		echo 'console.log(' . 'test' . ')';
-		echo '</script>';
-
-		sleep(10);
-
 		$database->beginTransaction();
 		
 		try{
+			$myquery = "UPDATE users SET password='" . $password . "' WHERE username='" . $username . "'";
+			$query_result = $database->query($myquery);
+
+			/*
 			$query = "UPDATE users SET password=':password' WHERE username=':username'";
 
 			$statement = $database->prepare($query);
@@ -45,6 +43,10 @@
 			$statement->bindValue('password', $password);
 			
 			if(!$statement->execute()){
+				throw new Exception('Error - could not update password');
+			}*/
+
+			if(!$query_result) {
 				throw new Exception('Error - could not update password');
 			}
 
