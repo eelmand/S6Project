@@ -238,8 +238,6 @@
 
 		public function revokeAccess($username) {
 			include "connect_db.php";		// Connect to the remote database
-			echo $username;
-			header("Refresh: 10");
 	    	$database->query("DELETE FROM users WHERE username='" . $username . "'");
 
 		}

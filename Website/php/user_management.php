@@ -9,11 +9,11 @@
 
 	// Grant or revoke access for user
 	if (isset($_POST['grant_access'])) {
-		$admin->grantAccess();
+		$admin->grantAccess($username);
 	} 
 	// Revoke access from user
 	else if (isset($_POST['revoke_access'])) {
-	    $admin->revokeAccess();
+	    $admin->revokeAccess($username);
 	}
 
 	// Redirect back to user_management.html
