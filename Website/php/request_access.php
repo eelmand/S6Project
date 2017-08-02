@@ -32,5 +32,5 @@
     // Now process data and request access
     include "users.php";
     $user = new User($_POST["username"], $_POST["password"], $_POST["first_name"], $_POST["last_name"], $_POST["email"]);
-    $user.requestAccess();
+    $user->requestAccess();
 ?>
