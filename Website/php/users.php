@@ -2,14 +2,14 @@
 	// Class definition for normal users	
 	class User {
 		// Properties of a User
-		private: $username;
-		private: $password;
-		private: $id;
-		private: $level = 0;	// Users are always level 0
-		private: $firstName;
-		private: $lastName;
-		private: $email;
-		private: $lastLogin;
+		private $username;
+		private $password;
+		private $id;
+		private $level = 0;	// Users are always level 0
+		private $firstName;
+		private $lastName;
+		private $email;
+		private $lastLogin;
 
 		// Constructor for logging out a user (i.e. don't care about username or password)
 		public function __construct() {}
