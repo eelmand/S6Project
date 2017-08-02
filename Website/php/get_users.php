@@ -5,7 +5,7 @@
 	// Query database for all user info in new_users table
 	$data = array();
 
-	$rows = $database->query("SELECT username, first_name, last_name, email, last_login FROM users");
+	$rows = $database->query("SELECT t1.username, t1.first_name, t1.last_name, t2.email, t1.last_login FROM users t1 emails t2 WHERE t1.id = t2.id");
 
 	if($rows != FALSE) {
 		foreach($rows as $row){
