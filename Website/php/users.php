@@ -11,10 +11,6 @@
 		private $email;
 		private $lastLogin;
 
-
-		// Constructor for logging out a user (i.e. don't care about username or password)
-		public function __construct() {}
-
 		// Constructor for when users login (i.e. only username and password provided)
 		public function __construct(string $user, string $pwd) {
 			$this->username = $user;
