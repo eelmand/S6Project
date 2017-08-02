@@ -87,6 +87,7 @@ if (isset($_SESSION["username"]))
 								<li><a href="debug_CAN_visualizer.html">Debug CAN Visualizer</a></li>
 							</ul>
 						</li>
+						<li><a href="change_password.html">Change Password</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
