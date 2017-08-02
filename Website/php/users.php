@@ -15,15 +15,15 @@
 			$argv = func_get_args();
 			switch( func_num_args()) {
 				case 2:
-					$this->username = $user;
-					$this->password = $pwd;		
+					$this->username = $argv[0];
+					$this->password = $argv[1];
 
 				case 5:
-					$this->username = $user;
-					$this->password = $pwd;
-					$this->firstName = $first;
-					$this->lastName = $last;
-					$this->email = $mail;
+					$this->username = $argv[0];
+					$this->password = $argv[1];
+					$this->firstName = $argv[2];
+					$this->lastName = $argv[3];
+					$this->email = $argv[4];
 			}
 		}
 
