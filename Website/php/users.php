@@ -11,20 +11,20 @@
 		private $email;
 		private $lastLogin;
 
-		// Constructor for when users login (i.e. only username and password provided)
-		public function __construct(string $user, string $pwd) {
-			$this->username = $user;
-			$this->password = $pwd;
-		}
+		public function __construct() {
+			$argv = func_get_args();
+			switch( func_num_args()) {
+				case 2:
+					$this->username = $user;
+					$this->password = $pwd;		
 
-
-		// Constructor for when new users request access (i.e. all info provided)
-		public function __construct(string $user, string $pwd, string $first, string $last, string $mail) {
-			$this->username = $user;
-			$this->password = $pwd;
-			$this->firstName = $first;
-			$this->lastName = $last;
-			$this->email = $mail;
+				case 5:
+					$this->username = $user;
+					$this->password = $pwd;
+					$this->firstName = $first;
+					$this->lastName = $last;
+					$this->email = $mail;
+			}
 		}
 
 
