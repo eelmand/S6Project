@@ -123,9 +123,7 @@
 					// check if password are equal
 			        if($row_query['password']==$this->password)
 			        {
-			        	/*
 						// remember username & password to session if "Remember me" was set
-						*/
 			            $_SESSION["username"] = $this->username;
 						$_SESSION["password"] = $this->password; 
 
@@ -134,13 +132,13 @@
 						$query_result = $database->query($timestamp_query);
 						// Not checking result for now
 
-			            header("Location: ../dashboard.html"); /* Redirect browser */
+			            header("Location: ../dashboard.html"); // Redirect browser
 			            exit();
 			        }
 			        else
 					{
 						echo "Invalid login info.";
-						header("Location: ../login.html"); /* Redirect browser */
+						header("Location: ../login.html"); // Redirect browser
 						exit();
 					}
 				}
@@ -149,7 +147,7 @@
 			}
 			
 			echo "Invalid login info.";
-			header("Location: ../login.html"); /* Redirect browser */
+			header("Location: ../login.html"); // Redirect browser
 			exit();			
 		}	// End of login function
 
@@ -159,10 +157,9 @@
 
 			echo "<p>You have been successfully logged out!</p>";
 			sleep(1);
-			header("Location: ../login.html"); /* Redirect browser */
+			header("Location: ../login.html"); // Redirect browser
 			exit();
-		}	// End of logout function
-	
+		}	// End of logout function	
 
 	}	// End of user class
 ?>
