@@ -30,7 +30,7 @@
 
 
 		// Accessor functions for the User class
-		public function getId() : int {
+		public function getId() {
 			return $this->id;
 		}
 
