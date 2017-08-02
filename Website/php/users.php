@@ -5,11 +5,13 @@
 		private $username;
 		private $password;
 		private $id;
-		private $level = 0;	// Users are always level 0
+		private static $level = 0;	// Users are always level 0
 		private $firstName;
 		private $lastName;
 		private $email;
 		private $lastLogin;
+
+		/*
 
 		// Constructor for logging out a user (i.e. don't care about username or password)
 		public function __construct() {}
@@ -160,6 +162,7 @@
 			header("Location: ../login.html"); // Redirect browser
 			exit();
 		}	// End of logout function	
+	*/
 
 	}	// End of user class
 ?>
