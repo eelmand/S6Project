@@ -2,14 +2,14 @@
 	// Class definition for normal users	
 	class User {
 		// Properties of a User
-		private $username;
-		private $password;
-		private $id;
-		private static $level = 0;	// Users are always level 0
-		private $firstName;
-		private $lastName;
-		private $email;
-		private $lastLogin;
+		protected $username;
+		protected $password;
+		protected $id;
+		private $level = 0;	// Users are always level 0
+		protected $firstName;
+		protected $lastName;
+		protected $email;
+		protected $lastLogin;
 
 		public function __construct() {
 			$argv = func_get_args();
@@ -159,4 +159,87 @@
 		}	// End of logout function	
 
 	}	// End of user class
+
+	class Admin extends User {
+		private $level = 1;	// Admin are always level 1
+		public function __construct() {
+		}
+
+		public function grantAccess($username) {
+			include "connect_db.php";		// Connect to the remote database
+
+			// Query for first name, last name and password based on 
+			$rows = $database->query("SELECT username, password, first_name, last_name, email, last_login FROM new_users WHERE username='" .
+					$username . "' LIMIT 1");
+
+			if($rows != FALSE) {
+				foreach($rows as $row){
+					$username = $row['username'];
+					$password = $row['password'];
+					$first_name = $row['first_name'];
+					$last_name = $row['last_name'];
+					$email = $row['email'];
+					$last_login = $row['last_login'];
+
+					// Prep a query for inputting into the database
+					$query = 'INSERT INTO users(username, password, first_name, last_name, email, last_login) VALUES(:username, :password, :first_name, :last_name, :email, :last_login)';
+					$statement = $database->prepare($query);
+					
+					$params = [
+						'username' => $username,
+						'password' => $password,
+						'first_name' => $first_name,
+						'last_name' => $last_name,
+						'email' => $email,
+						'last_login' => $last_login
+					];
+
+					// Execute the query
+					$result = $statement->execute($params);
+
+					// Delete user from new_users table
+					$database->query("DELETE FROM new_users WHERE username='" . $username . "'");
+
+					// Send email to user letting them know they have been granted access
+					if ($email != NULL) {
+						$to = $email;
+						$subject = 'Access to AdequateElevators.com granted';
+						$headers = "From: webmaster@adequateelevators.com" . PHP_EOL;
+						$headers .= "Reply-To: webmaster@adequateelevators.com" . PHP_EOL;
+						$headers .= "X-Mailer: PHP/" . phpversion();
+					    $headers .= "MIME-Version: 1.0" . PHP_EOL;
+					    $headers .= "Content-Type: text/html; charset=ISO-8859-1" . PHP_EOL;
+
+						$msg = '
+							<?php
+								$username = $_POST["username"];
+								echo $username;
+							?>
+
+							<!DOCTYPE html>
+							<html>
+							<body>
+								<h3>An administrator has granted you access to adequateelevators.com</h3>
+								<a href="http://adequateelevators.com/Website/login.html">Login Page</a>
+							</body>
+							</html>		
+						';
+
+
+						mail($to, $subject, $msg, $headers);
+					}
+				}
+			}
+			else {
+				header("Location: ../user_management.html"); /* Redirect browser */
+				exit();
+			}
+		}	// End of grantAccess function
+
+		public function revokeAccess($username) {
+			include "connect_db.php";		// Connect to the remote database
+	    	$database->query("DELETE FROM users WHERE username='" . $username . "'");
+
+		}
+	}	// End of admin class
 ?>
