@@ -1,5 +1,5 @@
 <?php
-	function update_usersTable($username, $password){
+	function update_usersTable($username, $password, $firstName, $lastName, $userId){
 		include "connect_db.php";		// Connect to the remote database
 
 		$database->beginTransaction();
