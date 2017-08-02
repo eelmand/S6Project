@@ -1,5 +1,5 @@
 <?php
-	function update_usersTable(string $username, string $password){
+	function update_usersTable($username, $password){
 		include "connect_db.php";		// Connect to the remote database
 
 		$database->beginTransaction();
@@ -25,7 +25,7 @@
 		}
 	}
 
-	function update_password(string $username, string $password) {
+	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
 
 		try{
@@ -43,6 +43,7 @@
 		$database->commit();
 		catch (Exception $e) {
 			$database->rollBack();
+			throw new $e;
 		}
 	}
 
