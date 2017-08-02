@@ -48,6 +48,10 @@
 			$database->rollBack();
 			throw $e;
 		}
+
+		echo $username;
+		echo $password;
+		sleep(10);
 	}
 
 ?>
