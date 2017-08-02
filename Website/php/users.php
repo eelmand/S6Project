@@ -25,7 +25,7 @@
 					$this->lastName = $argv[3];
 					$this->email = $argv[4];
 			}
-		}
+		}		
 
 		// Accessor functions for the User class
 		public function getId() : int {
