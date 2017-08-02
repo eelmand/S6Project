@@ -28,12 +28,13 @@
 		}
 
 
-		/*
+
 		// Accessor functions for the User class
 		public function getId() : int {
 			return $this->id;
 		}
 
+		/*
 		public function getLevel() : int {
 			return $this->level;
 		}
