@@ -46,7 +46,7 @@
 		$database->commit();
 		catch (Exception $e) {
 			$database->rollBack();
-			throw new $e;
+			throw $e;
 		}
 	}
 
