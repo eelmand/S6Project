@@ -29,6 +29,11 @@
 	function update_password($username, $password) {
 		include "connect_db.php";		// Connect to the remote database		
 
+		echo '<script>';
+		echo 'console.log(' . $username . ')';
+		echo '</script>';
+
+
 		$database->beginTransaction();
 		
 		try{
