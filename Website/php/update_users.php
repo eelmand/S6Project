@@ -41,13 +41,13 @@
 			if(!$statement->execute()){
 				throw new Exception('Error - could not update password');
 			}
+
+			$database->commit();
 		}
 		catch (Exception $e) {
 			$database->rollBack();
 			throw $e;
 		}
-
-		$database->commit();
 	}
 
 ?>
