@@ -31,7 +31,7 @@
 
 		// Accessor functions for the User class
 		public function getId() : int{
-			return $id;
+			return $level;
 		}
 
 		/*
