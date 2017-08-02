@@ -30,7 +30,7 @@
 		include "connect_db.php";		// Connect to the remote database		
 
 		echo '<script>';
-		echo 'console.log(' . $username . ')';
+		echo 'console.log(' . 'test' . ')';
 		echo '</script>';
 
 		sleep(10);
