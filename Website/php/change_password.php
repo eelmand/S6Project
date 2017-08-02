@@ -1,9 +1,8 @@
 <?php
  {
-	session_start();
-
 	include "update_users.php";
 
+	session_start();
 	$username = $_SESSION["username"];
 	$password = $_POST["password"];
 	

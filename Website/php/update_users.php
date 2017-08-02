@@ -32,17 +32,13 @@
 		$database->beginTransaction();
 		
 		try{
-			$result = $database->query("UPDATE users SET password='" . $password . "' WHERE username='" . $username . "'");
-
-			/*
-			$query = "UPDATE users SET password=':password' WHERE username=':username'";	
+			$query = "UPDATE users SET password=':password' WHERE username=':username'";
 
 			$statement = $database->prepare($query);
 			$statement->bindValue('username', $username);
 			$statement->bindValue('password', $password);
-			*/
 			
-			if(!$result){
+			if(!$statement->execute()){
 				throw new Exception('Error - could not update password');
 			}
 
